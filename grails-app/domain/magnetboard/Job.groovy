@@ -109,6 +109,8 @@ static constraints = {process(nullable:true)
 					aoiBeOperator(nullable:true)
 					aoiBeMachineLightSource(nullable:true)
 					noOfSignalLayers(nullable:true)
+					tinStripDate(nullable:true)
+					tinStripOperator(nullable:true)
 }
 
 double getScrubbedTotalValue() {

@@ -5,7 +5,7 @@ import magnetboard.Finishedjobs
 
 import grails.plugins.springsecurity.Secured
 
-@Secured(['ROLE_ADMIN'])
+
 class ProcessController {
 
 	static allowedMethods = [save: "POST", update: "POST", delete: "POST"]

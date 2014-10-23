@@ -78,7 +78,7 @@
                                     <label for="mainOperator"><g:message code="maintenanceOnMachines.mainOperator.label" default="Main Operator" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: maintenanceOnMachinesInstance, field: 'mainOperator', 'errors')}">
-                                    <g:select name="mainOperator" from="${['Jim Monda','Greg Krasicki','Joe Pawlowksi','Kim Stanley','Matt Dudik','Ken Gulick','Jake Kurnot','Other']}" value="${maintenanceOnMachinesInstance?.mainOperator}" />
+                                    <g:select name="mainOperator" from="${['Jim Monda','Greg Krasicki','Jim and Greg','Joe Pawlowksi','Kim Stanley','Matt Dudik','Ken Gulick','Jake Kurnot','Other']}" value="${maintenanceOnMachinesInstance?.mainOperator}" />
                                 </td>
                             </tr>
                         
