@@ -1,4 +1,4 @@
-
+  
 
 <%@ page import="magnetboard.Job" %>
 <html>
@@ -197,13 +197,13 @@
                         
                             <tr class="prop2">
                                 <td valign="top" class="name">
-                                  <label for="dcAt"><g:message code="job.dcAt.label" default="DC Plating A_T" /></label>
+                                  <label for="dcAt"><g:message code="job.dcAt.label" default="DC Plating Area Top" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'dcAt', 'errors')}">
                                     <g:textField name="dcAt" value="${jobInstance?.dcAt}" />
                                 </td>
                                  <td valign="top" class="name">
-                                    <label for="dcAb"><g:message code="job.dcAb.label" default="DC Plating A_B" /></label>
+                                    <label for="dcAb"><g:message code="job.dcAb.label" default="DC Plating Area Bottom" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'dcAb', 'errors')}">
                                     <g:textField name="dcAb" value="${jobInstance?.dcAb}" />
@@ -265,7 +265,7 @@
                                     <g:textField name="dcRack" value="${jobInstance?.dcRack}" />
                                 </td>
                                 <td valign="top" class="name">
-                                  <label for="pluritecXcomp"><g:message code="job.pluritecXcomp.label" default="pluritecXcomp" /></label>
+                                  <label for="pluritecXcomp"><g:message code="job.pluritecXcomp.label" default="Pluritec X Compensation" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'pluritecXcomp', 'errors')}">
                                     <g:textField name="pluritecXcomp" value="${jobInstance?.pluritecXcomp}" />
@@ -274,28 +274,28 @@
                              
                              <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="pluritecYcomp"><g:message code="pluritecYcomp.label" default="pluritecYcomp" /></label>
+                                  <label for="pluritecYcomp"><g:message code="pluritecYcomp.label" default="Pluritec Y Compensation" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'pluritecYcomp', 'errors')}">
                                     <g:textField name="pluritecYcomp" value="${jobInstance?.pluritecYcomp}" />
                                 </td>
                                 <td valign="top" class="name">
-                                  <label for="pluritecOperator"><g:message code="job.pluritecOperator.label" default="pluritecOperator" /></label>
+                                  <label for="pluritecOperator"><g:message code="job.pluritecOperator.label" default="Pluritec Operator" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'pluritecOperator', 'errors')}">
                                     <g:textField name="pluritecOperator" value="${jobInstance?.pluritecOperator}" />
                                 </td>
                              </tr>     
                              
-                             <tr class="prop">
+                             <tr class="prop2">
                                 <td valign="top" class="name">
-                                  <label for="olEtchDate"><g:message code="olEtchDate.label" default="olEtchDate" /></label>
+                                  <label for="olEtchDate"><g:message code="olEtchDate.label" default="OL Etch Date" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'olEtchDate', 'errors')}">
                                     <g:textField name="olEtchDate" value="${jobInstance?.olEtchDate}" />
                                 </td>
                                 <td valign="top" class="name">
-                                  <label for="olEtchOperator"><g:message code="job.olEtchOperator.label" default="olEtchOperator" /></label>
+                                  <label for="olEtchOperator"><g:message code="job.olEtchOperator.label" default="OL Etch Operator" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'olEtchOperator', 'errors')}">
                                     <g:textField name="olEtchOperator" value="${jobInstance?.olEtchOperator}" />
@@ -304,28 +304,28 @@
                               
                               <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="olEtchTwBefore"><g:message code="olEtchTwBefore.label" default="olEtchTwBefore" /></label>
+                                  <label for="olEtchTwBefore"><g:message code="olEtchTwBefore.label" default="OL Etch Tw Before" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'olEtchTwBefore', 'errors')}">
                                     <g:textField name="olEtchTwBefore" value="${jobInstance?.olEtchTwBefore}" />
                                 </td>
                                 <td valign="top" class="name">
-                                  <label for="olEtchTwAfter"><g:message code="job.olEtchTwAfter.label" default="tinStripTwAfter" /></label>
+                                  <label for="olEtchTwAfter"><g:message code="job.olEtchTwAfter.label" default="Tin Strip Tw After" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'olEtchTwAfter', 'errors')}">
                                     <g:textField name="olEtchTwAfter" value="${jobInstance?.olEtchTwAfter}" />
                                 </td>
                              </tr>     
                              
-                             <tr class="prop">
+                             <tr class="prop2">
                                 <td valign="top" class="name">
-                                  <label for="olEtchLineSpeed"><g:message code="olEtchLineSpeed.label" default="olEtchLineSpeed" /></label>
+                                  <label for="olEtchLineSpeed"><g:message code="olEtchLineSpeed.label" default="OL Etch Line Speed" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'olEtchLineSpeed', 'errors')}">
                                     <g:textField name="olEtchLineSpeed" value="${jobInstance?.olEtchLineSpeed}" />
                                 </td>
                                 <td valign="top" class="name">
-                                  <label for="olEtchCuThickness"><g:message code="job.olEtchCuThickness.label" default="olEtchCuThickness" /></label>
+                                  <label for="olEtchCuThickness"><g:message code="job.olEtchCuThickness.label" default="OL Etch Cu Thickness" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'olEtchCuThickness', 'errors')}">
                                     <g:textField name="olEtchCuThickness" value="${jobInstance?.olEtchCuThickness}" />
@@ -334,28 +334,238 @@
                              
                              <tr class="prop">
                                 <td valign="top" class="name">
-                                  <label for="olEtchSplash"><g:message code="olEtchSplash.label" default="olEtchSplash" /></label>
+                                  <label for="olEtchSplash"><g:message code="olEtchSplash.label" default="OL Etch Splash" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'olEtchSplash', 'errors')}">
                                     <g:textField name="olEtchSplash" value="${jobInstance?.olEtchSplash}" />
                                 </td>                    
                              </tr>  
                              
-                             <tr class="prop">
+                             <tr class="prop2">
                                 <td valign="top" class="name">
-                                  <label for="tinStripDate"><g:message code="tinStripDate.label" default="tinStripDate" /></label>
+                                  <label for="tinStripDate"><g:message code="tinStripDate.label" default="Tin Strip Date" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'tinStripDate', 'errors')}">
                                     <g:textField name="tinStripDate" value="${jobInstance?.tinStripDate}" />
                                 </td>
                                 <td valign="top" class="name">
-                                  <label for="tinStripOperator"><g:message code="job.tinStripOperator.label" default="tinStripOperator" /></label>
+                                  <label for="tinStripOperator"><g:message code="job.tinStripOperator.label" default="Tin Strip Operator" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'tinStripOperator', 'errors')}">
                                     <g:textField name="tinStripOperator" value="${jobInstance?.tinStripOperator}" />
                                 </td>
-                             </tr>        
+                             </tr>  
                              
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="noOfSignalLayers"><g:message code="noOfSignalLayers.label" default="No. Of Signal Layers" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'noOfSignalLayers', 'errors')}">
+                                    <g:textField name="noOfSignalLayers" value="${jobInstance?.noOfSignalLayers}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiBeMachineLightSource"><g:message code="job.aoiBeMachineLightSource.label" default="AOI Before Etch Machine Light Source" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeMachineLightSource', 'errors')}">
+                                    <g:textField name="aoiBeMachineLightSource" value="${jobInstance?.aoiBeMachineLightSource}" />
+                                </td>
+                             </tr>              
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="aoiBeOperator"><g:message code="aoiBeOperator.label" default="AOI Before Etch Operator" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeOperator', 'errors')}">
+                                    <g:textField name="aoiBeOperator" value="${jobInstance?.aoiBeOperator}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiBeDate"><g:message code="job.aoiBeDate.label" default="AOI Before Etch Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeDate', 'errors')}">
+                                    <g:textField name="aoiBeDate" value="${jobInstance?.aoiBeDate}" />
+                                </td>
+                             </tr>   
+                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="minLine"><g:message code="minLine.label" default="Minimum Line" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'minLine', 'errors')}">
+                                    <g:textField name="minLine" value="${jobInstance?.minLine}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="minSpace"><g:message code="job.minSpace.label" default="Minimum Space" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'minSpace', 'errors')}">
+                                    <g:textField name="minSpace" value="${jobInstance?.minSpace}" />
+                                </td>
+                             </tr>
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="aoiBeNoOfShorts"><g:message code="aoiBeNoOfShorts.label" default="AOI Before Etch No. Of Shorts" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeNoOfShorts', 'errors')}">
+                                    <g:textField name="aoiBeNoOfShorts" value="${jobInstance?.aoiBeNoOfShorts}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiBeNoOfOpens"><g:message code="job.aoiBeNoOfOpens.label" default="AOI Before Etch No. Of Opens" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeNoOfOpens', 'errors')}">
+                                    <g:textField name="aoiBeNoOfOpens" value="${jobInstance?.aoiBeNoOfOpens}" />
+                                </td>
+                             </tr>
+                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="aoiAeOperator"><g:message code="aoiAeOperator.label" default="AOI After Etch Operator" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeOperator', 'errors')}">
+                                    <g:textField name="aoiAeOperator" value="${jobInstance?.aoiAeOperator}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiAeNoOfPanelsScrap"><g:message code="job.aoiAeNoOfPanelsScrap.label" default="AOI After Etch No. Of Panels Scrap" /></label>                   
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeNoOfPanelsScrap', 'errors')}">
+                                    <g:textField name="aoiAeNoOfPanelsScraps" value="${jobInstance?.aoiAeNoOfPanelsScrap}" />
+                                </td>
+                             </tr>
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="aoiAeDate"><g:message code="aoiAeDate.label" default="AOI After Etch Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeDate', 'errors')}">
+                                    <g:textField name="aoiAeDate" value="${jobInstance?.aoiAeDate}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiAeNoOfShorts"><g:message code="job.aoiAeNoOfShorts.label" default="AOI After Etch No. Of Shorts" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeNoOfShorts', 'errors')}">
+                                    <g:textField name="aoiAeNoOfShorts" value="${jobInstance?.aoiAeNoOfShorts}" />
+                                </td>
+                             </tr>
+                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="aoiAeNoOfOpens"><g:message code="aoiAeNoOfOpens.label" default="AOI After Etch No. Of Opens" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeNoOfOpens', 'errors')}">
+                                    <g:textField name="aoiAeNoOfOpens" value="${jobInstance?.aoiAeNoOfOpens}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiAeMachineLightSource"><g:message code="job.aoiAeMachineLightSource.label" default="AOI After Etch Machine Light Source" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeMachineLightSource', 'errors')}">
+                                    <g:textField name="aoiAeMachineLightSource" value="${jobInstance?.aoiAeMachineLightSource}" />
+                                </td>
+                             </tr>
+                                                                                       
+          <!-- HAL EDIT -->
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="halDate"><g:message code="halDate.label" default="HAL Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halDate', 'errors')}">
+                                    <g:textField name="halDate" value="${jobInstance?.halDate}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="halOperator"><g:message code="job.halOperator.label" default="HAL Operator" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halOperator', 'errors')}">
+                                    <g:textField name="halOperator" value="${jobInstance?.halOperator}" />
+                                </td>
+                             </tr>                              
+  
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="halBakeTime"><g:message code="halBakeTime.label" default="HAL Bake Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halBakeTime', 'errors')}">
+                                    <g:textField name="halBakeTime" value="${jobInstance?.halBakeTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="halTimeSinceLastBaked"><g:message code="job.halTimeSinceLastBaked.label" default="HAL Time Since Last Baked" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halTimeSinceLastBaked', 'errors')}">
+                                    <g:textField name="halTimeSinceLastBaked" value="${jobInstance?.halTimeSinceLastBaked}" />
+                                </td>
+                             </tr>                                        
+  
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="halAirKnifeGap"><g:message code="halAirKnifeGap.label" default="HAL Air Knife Gap" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halAirKnifeGap', 'errors')}">
+                                    <g:textField name="halAirKnifeGap" value="${jobInstance?.halAirKnifeGap}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="halDoubleFlux"><g:message code="job.halDoubleFlux.label" default="HAL Double Flux" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halDoubleFlux', 'errors')}">
+                                    <g:textField name="halDoubleFlux" value="${jobInstance?.halDoubleFlux}" />
+                                </td>
+                             </tr> 
+                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="halDwellTime"><g:message code="halDwellTime.label" default="HAL Dwell Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halDwellTime', 'errors')}">
+                                    <g:textField name="halDwellTime" value="${jobInstance?.halDwellTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="halDoubleDip"><g:message code="job.halDoubleDip.label" default="HAL Double Dip" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halDoubleDip', 'errors')}">
+                                    <g:textField name="halDoubleDip" value="${jobInstance?.halDoubleDip}" />
+                                </td>
+                             </tr> 
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="halAirKnifePressureFront"><g:message code="halAirKnifePressureFront.label" default="HAL Air Knife Pressure Front" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halAirKnifePressureFront', 'errors')}">
+                                    <g:textField name="halAirKnifePressureFront" value="${jobInstance?.halAirKnifePressureFront}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="halAirKnifePressureRear"><g:message code="job.halAirKnifePressureRear.label" default="HAL Air Knife Pressure Rear" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halAirKnifePressureRear', 'errors')}">
+                                    <g:textField name="halAirKnifePressureRear" value="${jobInstance?.halAirKnifePressureRear}" />
+                                </td>
+                             </tr> 
+                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="halWithdrawalTurns"><g:message code="halWithdrawalTurns.label" default="HAL Withdrawal Turns" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halWithdrawalTurns', 'errors')}">
+                                    <g:textField name="halWithdrawalTurns" value="${jobInstance?.halWithdrawalTurns}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="halGoldFingers"><g:message code="job.halGoldFingers.label" default="HAL Gold Fingers" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halGoldFingers', 'errors')}">
+                                    <g:textField name="halGoldFingers" value="${jobInstance?.halGoldFingers}" />
+                                </td>
+                             </tr>
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="halColdPress"><g:message code="halColdPress.label" default="HAL Cold Press" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halColdPress', 'errors')}">
+                                    <g:textField name="halColdPress" value="${jobInstance?.halColdPress}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="halNotes"><g:message code="job.halNotes.label" default="HAL Notes" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halNotes', 'errors')}">
+                                    <g:textField name="halNotes" value="${jobInstance?.halNotes}" />
+                                </td>
+                             </tr>                                                            
                         </tbody>
                     </table>
                 </div>

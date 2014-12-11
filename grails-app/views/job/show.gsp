@@ -263,8 +263,85 @@
                             <td valign="top" class="name" style="text-align:right"><g:message code="job.tinStripOperator.label" default="Tin Strip Operator"/></td>
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "tinStripOperator")}</td>
+                        </tr> 
+
+<!-- HAL -->
+          
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halDate.label" default="HAL Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halDate")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halOperator.label" default="HAL Operator"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halOperator")}</td>
                         </tr>
-                   
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halBakeTime.label" default="HAL Bake Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halBakeTime")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halTimeSinceLastBaked.label" default="HAL Time Since Last Baked"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halTimeSinceLastBaked")}</td>
+                        </tr> 
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halAirKnifeGap.label" default="HAL Air Knife Gap"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halAirKnifeGap")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halDoubleFlux.label" default="HAL Double Flux"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halDoubleFlux")}</td>
+                        </tr>
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halDoubleDip.label" default="HAL Double Dip"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halDoubleDip")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halDwellTime.label" default="HAL Dwell Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halDwellTime")}</td>
+                        </tr> 
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halAirKnifePressureFront.label" default="HAL Air Knife Pressure Front"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halAirKnifePressureFront")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halAirKnifePressureRear.label" default="HAL Air Knife Pressure Rear"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halAirKnifePressureRear")}</td>
+                        </tr>
+
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halWithdrawalTurns.label" default="HAL Withdrawal Turns"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halWithdrawalTurns")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halGoldFingers.label" default="HAL Gold Fingers"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halGoldFingers")}</td>                            
+                        </tr>                                                 
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halColdPress.label" default="HAL Cold Press"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halColdPress")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.halNotes.label" default="HAL Notes"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halNotes")}</td>
+                        </tr>                                                                                                                                                                  
                     </tbody>
                 </table>
             </div>

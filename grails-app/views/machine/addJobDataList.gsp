@@ -53,7 +53,7 @@
     		<jque:dialogField name="mean" value="" />
     		<jque:dialogField name="operator" value="" type="select" from="${['Adrian Smith','Brian Emerschak','Ed Norcott','Jake Kurnot','Carlos Harrison','Becky Brunner','Joe Pawlowski','Mark Husarik','Bob Gosliak','Cindy Stemmler','Beth Lang','Cliff Gray','Joel Williams','Melissa Knight','Jesse Ward','Gerry Glatz','Oscar Curtis','Matt Shirey'] }"/>
     		</jque:newDialog> 
-    		
+    		<!-- AOI Before Etch -->
     		<jque:newDialog controller='job' action="aoiBeforeEtch" ajax="false" id='aoibe' title="AOI Before Etch Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
     		<jque:dialogField name="noOfSignalLayers" value="" />
@@ -113,7 +113,26 @@
     		<jque:dialogField name="twAfter" value="" />
     		<jque:dialogField name="operator" value="" type="select" from="${['Cliff Gray','Frank Krznaric','Kim Stanley','Jake Kurnot','Don Lang','Pete Sullivan','Oscar Curtis','Jason Persun'] }"/>
     		</jque:newDialog>  
+
+    		<jque:newDialog controller='job' action="hal" ajax="false" id='hal' title="HASL Variables" success="s_div2" width="600">
+    		<jque:dialogField name="workorder" value="" />
+    		<jque:dialogField name="operator" value="" type="select" from="${['Cliff Gray','Frank Krznaric','Jason Persun','Oscar Curtis'] }"/>
+    		<jque:dialogField name="bakeTime" value="" />
+    		<jque:dialogField name="timeSinceLastBaked" value="" />		
+    		<jque:dialogField name="airKnifeGap" value="" />	
+    		<jque:checkBoxField name="doubleFlux" type="checkbox" labelName="Double Flux"  checked="${false}"/>
+    		<jque:dialogField name="dwellTime" value="" />
+    		<jque:checkBoxField name="doubleDip" type="checkbox" labelName="Double Dip"  checked="${false}"/>
+    		<jque:dialogField name="airKnifePressureFront" value="" />
+    		<jque:dialogField name="airKnifePressureRear" value="" />
+    		<jque:dialogField name="withdrawalTurns" value="" />
+    		<jque:checkBoxField name="goldFingers" type="checkbox" labelName="Gold Fingers"  checked="${false}"/>
+    		<jque:checkBoxField name="coldPress" type="checkbox" labelName="Cold Press"  checked="${false}"/>
+    		<jque:dialogField name="notes" value="" />   		
+    		</jque:newDialog>
     
+            
+<!-- Page display.  Each block produces a button that calls the applicable job dialog -->            
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -206,8 +225,12 @@
                             <div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="Tin Strip" dialogId="tinstrip" />
                				</div> 
-               				
-               				
+               				</g:if>
+
+                            <g:if test = "${machineInstance.name == 'Outer Etch'}">
+                            <div class="job" style = "float:right"> 
+                   	 		<jque:newShowDialog buttonCaption="HAL" dialogId="hal" />
+               				</div> 
                             </g:if>
                                     
                     </g:each>

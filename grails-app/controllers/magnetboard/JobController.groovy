@@ -18,6 +18,26 @@ class JobController {
         [jobInstanceList: Job.list(params), jobInstanceTotal: Job.count()]
     }
 	
+	def innerLayerFirstPassYield = {
+		def jobInstance = Job.findAllByAoiAeDateIsNotNull()		
+		def i = 1
+		def finalYield = 0
+		jobInstance.sort{it.aoiAeDate}
+		def firstPassYield = []
+		jobInstance.each {
+			Integer numberOfLayers = it.nooflayers.toInteger()
+			Integer numberOfPanelsMade = it.noofpanelsmade.toInteger()
+			Integer panelsScrap = it.aoiAeNoOfPanelsScrap.toInteger()
+			if (numberOfLayers <= 2) {numberOfLayers = 4} 
+			def totalLayers = ((numberOfLayers - 2)/2) * numberOfPanelsMade
+			def jobYield = (1  - panelsScrap/totalLayers) * 100
+		    finalYield = (jobYield + finalYield)/ i  
+			firstPassYield << [it.aoiAeDate, finalYield]
+			i++
+		}
+		[jobInstance: jobInstance,firstPassYield: firstPassYield]
+	}
+	
 	def pepData = {
 		def jobInstance = Job.findAllByPepMeanIsNotNull()
 		def summ = jobInstance.sum{it.numberPepMean}
@@ -238,6 +258,37 @@ class JobController {
 			  redirect(controller: "machine", action: "addJobDataList")
 			}
 	}
+	
+	//HAL
+	def hal = {
+		if(magnetboard.Job.findByWorkorder(params.workorder)){
+		def jobNumber = magnetboard.Job.findByWorkorder(params.workorder)
+			def jobInstance = Job.get(jobNumber.id)
+			def today = new Date()
+			jobInstance.halDate = today
+			jobInstance.halOperator = params.operator
+			jobInstance.halBakeTime = params.bakeTime
+			jobInstance.halTimeSinceLastBaked = params.timeSinceLastBaked
+			jobInstance.halAirKnifeGap = params.airKnifeGap
+			jobInstance.halDoubleFlux = params.doubleFlux
+			jobInstance.halDwellTime = params.dwellTime
+			jobInstance.halDoubleDip = params.doubleDip
+			jobInstance.halAirKnifePressureFront = params.airKnifePressureFront
+			jobInstance.halAirKnifePressureRear = params.airKnifePressureRear
+			jobInstance.halWithdrawalTurns = params.withdrawalTurns
+			jobInstance.halGoldFingers = params.goldFingers
+			jobInstance.halColdPress = params.coldPress
+			jobInstance.halNotes = params.notes
+
+			redirect(controller: "machine", action: "addJobDataList")
+		}
+		else {
+			flash.message = "NO WORK ORDER FOUND"
+			redirect(controller: "machine", action: "addJobDataList")
+		}
+	}
+	
+	//End HAL
 	
 	def searchWorkOrder = {
 		if(magnetboard.Job.findByWorkorder(params.workorder)){

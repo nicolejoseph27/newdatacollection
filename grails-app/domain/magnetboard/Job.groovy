@@ -6,6 +6,7 @@ class Job {
 	
 	static belongsTo = Process
 	
+// original variables added by setup to create the job
 String priority
 String thickness
 String jobname
@@ -17,7 +18,7 @@ String totalvalue
 String valueperboard
 String nooflayers
 String noboardsperpanel
-String size
+String size 
 String cam
 String material
 String projectmanager
@@ -26,9 +27,13 @@ String noofboardsordered
 String noofpanelsmade
 String notes
 Process process
+
+// PEP variables
 Date pepDate
 String pepMean
 String pepOperator
+
+// dc variables
 String dcCell
 String dcAt
 String dcAb
@@ -40,10 +45,14 @@ String dcAsf
 String dcTct
 Date dcDate
 String dcRack
+
+//pluritec variables
 Date pluritecDate
 String pluritecOperator
 String pluritecXcomp
 String pluritecYcomp
+
+//Ol Etch variables
 Date olEtchDate
 String olEtchOperator
 Float olEtchTwBefore
@@ -51,8 +60,12 @@ Float olEtchTwAfter		//This variable is used with tinStrip
 Float olEtchLineSpeed
 Float olEtchCuThickness
 Boolean olEtchSplash
+
+// Tin Strip variables
 Date tinStripDate
 String tinStripOperator
+
+//AOI variables
 String noOfSignalLayers
 String aoiBeMachineLightSource
 String aoiBeOperator
@@ -67,6 +80,26 @@ Date aoiAeDate
 String aoiAeNoOfShorts
 String aoiAeNoOfOpens
 String aoiAeMachineLightSource
+
+//HAL
+Date halDate
+String halOperator
+String halAirKnifeGap
+Boolean halDoubleFlux
+Boolean halDoubleDip
+Boolean halGoldFingers
+Boolean halColdPress
+String halNotes
+
+//Should be Floats
+String halBakeTime
+String halTimeSinceLastBaked
+String halWithdrawalTurns
+
+//Should be integers
+String halDwellTime
+String halAirKnifePressureFront
+String halAirKnifePressureRear
 
 static constraints = {process(nullable:true)
 					pepMean(nullable:true)
@@ -111,6 +144,22 @@ static constraints = {process(nullable:true)
 					noOfSignalLayers(nullable:true)
 					tinStripDate(nullable:true)
 					tinStripOperator(nullable:true)
+					//hal
+					halDate(nullable:true)
+					halOperator(nullable:true)
+					halAirKnifeGap(nullable:true)
+					halDoubleFlux(nullable:true)
+					halDoubleDip(nullable:true)
+					halGoldFingers(nullable:true)
+					halColdPress(nullable:true)
+					halNotes(nullable:true)
+					halBakeTime(nullable:true)
+					halTimeSinceLastBaked(nullable:true)
+					halWithdrawalTurns(nullable:true)
+					halDwellTime(nullable:true)
+					halAirKnifePressureFront(nullable:true)
+					halAirKnifePressureRear(nullable:true)
+
 }
 
 double getScrubbedTotalValue() {

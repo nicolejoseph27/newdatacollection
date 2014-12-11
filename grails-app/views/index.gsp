@@ -46,6 +46,9 @@
     <jque:dialogField name="partnumber" value="" />
     </jque:newDialog>
     
+    <jque:newDialog controller='machineVariable' action="chartChoice" ajax="false" id='chartChoice' title="Pick a Chart" success="s_div2" width="600">
+    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield'] }" />
+    </jque:newDialog>
       
                
         <div id="pageBody">
@@ -78,6 +81,14 @@
                <div class="job" style = "float:right"> 
                    	 <g:link controller="maintenanceOnMachines" action="create" style="color:#228B22;text-transform:capitalize">Maintenance Time</g:link>
                </div>
+               <div style="height:60px"></div>
+                <div class="job" style = "float:left"> 
+                   	 <g:link controller="bottomsUp" action="create" style="color:#228B22;text-transform:capitalize">Create a quote</g:link>
+               </div>
+               <div class="job" style = "float:right"> 
+                   	 <jque:newShowDialog buttonCaption="SPC Charts" dialogId="chartChoice" />
+               </div>
+               
                <!--
                <div class="job" style = "float:right"> 
                    	 <g:link controller="maintenanceOnMachines" action="maintenanceGraph" style="color:#228B22;text-transform:capitalize">Maintenance Graph</g:link>
