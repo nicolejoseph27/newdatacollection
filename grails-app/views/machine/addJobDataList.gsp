@@ -137,33 +137,18 @@
             <div class="message">${flash.message}</div>
             </g:if>
              <div class="list">
-               
-                    <g:each in="${machineInstanceList}" status="i" var="machineInstance">
-                            
-                            <g:if test = "${machineInstance.name == 'PEP'}">
                             
                             <div class="job" style = "float:left">
             				<span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
         					</div>   
-        					
         					<div style="height:60px"></div>
         					
                             <div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="PEP" dialogId="PEP" />
                				</div>
-               				
+               		      
                				<div class="job" style = "float:right"> 
-                   	 		<g:link controller="job" action="pepData" style="color:#228B22;text-transform:capitalize">PEP Chart</g:link>
-               				</div>
-               				
-               				<div style="height:60px"></div>
-               				      
-               				<div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="AOI Before Etch" dialogId="aoibe" />
-               				</div>
-               				
-               				<div class="job" style = "float:right"> 
-                   	 		<g:link controller="job" action="pepData" style="color:#228B22;text-transform:capitalize">PEP Chart</g:link>
                				</div>
                				
                				<div style="height:60px"></div>  
@@ -172,15 +157,12 @@
                    	 		<jque:newShowDialog buttonCaption="AOI After Etch" dialogId="aoiae" />
                				</div>
                				
-               				<div class="job" style = "float:right"> 
-                   	 		<g:link controller="job" action="pepData" style="color:#228B22;text-transform:capitalize">PEP Chart</g:link>
+       						<div class="job" style = "float:right"> 
+                   	 		<jque:newShowDialog buttonCaption="Pluritec" dialogId="pluritec" />
                				</div>
                				
                				<div style="height:60px"></div>    
-               				      
-                            </g:if>
-                           
-                            <g:if test = "${machineInstance.name == 'DC Plating'}">
+               				     
                             <div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="DC Plating" dialogId="dcplating" />
                				</div>  
@@ -190,51 +172,21 @@
                				</div>
                				
                				<div style="height:60px"></div>
-                            </g:if>
                             
-                            <g:if test = "${machineInstance.name == 'PTH'}">
-                            
-                            <div class="job" style = "float:right"> 
-                   	 		<jque:newShowDialog buttonCaption="Plate Through" dialogId="pth" />
-               				</div>    
-                            </g:if>
-                            
-                            <g:if test = "${machineInstance.name == 'Pluritec'}">
-                            <div class="job" style = "float:left"> 
-                   	 		<jque:newShowDialog buttonCaption="Pluritec" dialogId="pluritec" />
-               				</div>
-               				<div class="job" style = "float:right"> 
-                   	 		<g:link controller="job" action="pluritecData" style="color:#228B22;text-transform:capitalize">Pluritec Chart</g:link>
-               				</div>  
-               				<div style="height:60px"></div>  
-                            </g:if>
-                            
-                      
-                            
-                            <g:if test = "${machineInstance.name == 'Outer Etch'}">
                             <div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="Outer Etch" dialogId="oletch" />
                				</div> 
+               				
                				<div class="job" style = "float:right"> 
-                   	 		<g:link controller="job" action="pluritecData" style="color:#228B22;text-transform:capitalize">Pluritec Chart</g:link>
-               				</div>  
+                   	 		<jque:newShowDialog buttonCaption="HAL" dialogId="hal" />
+               				</div> 
+               				
                				<div style="height:60px"></div> 
-               				</g:if>
-                            
-                            <g:if test = "${machineInstance.name == 'Outer Etch'}">
+               	
                             <div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="Tin Strip" dialogId="tinstrip" />
                				</div> 
-               				</g:if>
-
-                            <g:if test = "${machineInstance.name == 'Outer Etch'}">
-                            <div class="job" style = "float:right"> 
-                   	 		<jque:newShowDialog buttonCaption="HAL" dialogId="hal" />
-               				</div> 
-                            </g:if>
-                                    
-                    </g:each>
-
+               				
             </div>
             
         </div>

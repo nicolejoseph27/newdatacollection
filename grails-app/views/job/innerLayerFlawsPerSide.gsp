@@ -22,36 +22,27 @@
           
     	  var data = new google.visualization.DataTable();
     	  data.addColumn('datetime', 'Short');
-    	  data.addColumn('number', 'Percent First Pass Yield');
-    	  <g:each in="${firstPassYield}" var="e" >
+    	  data.addColumn('number', 'Flaws/side');
+    	  <g:each in="${flawsPerSide}" var="e" >
     	  data.addRow([new Date("${e[0]}"),${e[1]}]);
 		  </g:each>
     	  
         var options = {
-        	    title: 'Inner Layer First Pass Yield',
+        	    title: 'Inner Layer Before Etch (Flaws/side) Thirteen Week Average',
         	    curveType: 'function',
         	    legend: { position: 'bottom' },
         	    chartArea: {width: '80%', height: '80%'},
-        	    vAxis: {viewWindow: {max: 101, min:0}}
+        	    vAxis: {viewWindow: {max: 3, min:0}}
         	  };
     	  
-        var chart = new google.visualization.LineChart(document.getElementById('firstPassYield_div'));
-
-     // This will create printable version but will remove mouseover effect  
-     //   google.visualization.events.addListener(chart, 'ready', function () {
-     //   	firstPassYield_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
-     //       console.log(firstPassYield_div.innerHTML);
-     //     });
+        var chart = new google.visualization.LineChart(document.getElementById('flawsPerSide_div'));
         
         chart.draw(data, options);
         document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version</a>';
       }
 </script>
 
-        <div id="firstPassYield_div" style="width: 1500px; height: 1000px;"></div> 
-              
-      <!--<div id='png'></div>  -->
-        
-        
+        <div id="flawsPerSide_div" style="width: 1500px; height: 1000px;"></div> 
+                
        </body>
 </html>  

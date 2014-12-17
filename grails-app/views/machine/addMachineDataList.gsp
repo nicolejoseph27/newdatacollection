@@ -86,7 +86,6 @@
     		<jque:dialogField name="layup5" value="" />
     		<jque:dialogField name="layupTemperature" value="" />
     		<jque:dialogField name="layupHumidity" value="" />
-    		<jque:dialogField name="layupPressure" value="" />
     		<jque:dialogField name="staging" value="" />
     		<jque:dialogField name="staging5" value="" />
     		<jque:dialogField name="stagingTemperature" value="" />

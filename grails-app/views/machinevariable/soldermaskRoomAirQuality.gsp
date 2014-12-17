@@ -12,8 +12,7 @@
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
         </div>
-        
-        
+             
         <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
@@ -22,35 +21,35 @@
           
     	  var data = new google.visualization.DataTable();
     	  data.addColumn('datetime', 'Short');
-    	  data.addColumn('number', 'Percent First Pass Yield');
-    	  <g:each in="${firstPassYield}" var="e" >
-    	  data.addRow([new Date("${e[0]}"),${e[1]}]);
+    	  data.addColumn('number', 'Hall');
+    	  data.addColumn('number', 'Soldermask Room');
+    	  <g:each in="${soldermaskRoomAirQuality}" var="e" >
+    	  data.addRow([new Date("${e[0]}"),${e[1]},${e[2]}]);
 		  </g:each>
     	  
         var options = {
-        	    title: 'Inner Layer First Pass Yield',
+        	    title: 'Hall vs. Soldermask Room',
         	    curveType: 'function',
         	    legend: { position: 'bottom' },
         	    chartArea: {width: '80%', height: '80%'},
-        	    vAxis: {viewWindow: {max: 101, min:0}}
+        	    vAxis: {viewWindow: {max: 1000001, min:0}}
         	  };
     	  
-        var chart = new google.visualization.LineChart(document.getElementById('firstPassYield_div'));
+        var chart = new google.visualization.LineChart(document.getElementById('soldermaskRoomAirQuality_div'));
 
-     // This will create printable version but will remove mouseover effect  
-     //   google.visualization.events.addListener(chart, 'ready', function () {
-     //   	firstPassYield_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
-     //       console.log(firstPassYield_div.innerHTML);
-     //     });
+      // This will create printable version but will remove mouseover effect
+      // 	 	google.visualization.events.addListener(chart, 'ready', function () {
+       //	 	soldermaskRoomAirQuality_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
+       // 	console.log(soldermaskRoomAirQuality_div.innerHTML);
+       //   });
         
         chart.draw(data, options);
-        document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version</a>';
       }
 </script>
 
-        <div id="firstPassYield_div" style="width: 1500px; height: 1000px;"></div> 
+        <div id="soldermaskRoomAirQuality_div" style="width: 1500px; height: 1000px;"></div> 
               
-      <!--<div id='png'></div>  -->
+        <!--<div id='png'></div>  -->
         
         
        </body>

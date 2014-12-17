@@ -123,7 +123,8 @@
       }
 </script>
         <div id="hall_div" style="width: 1500px; height: 500px;"></div>
--->        
+-->   
+ 
 <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});
       google.setOnLoadCallback(drawChart);
@@ -147,11 +148,6 @@
     	  
         var chart = new google.visualization.LineChart(document.getElementById('temp_div'));
         
-        google.visualization.events.addListener(chart, 'ready', function () {
-            temp_div.innerHTML = '<img src="' + chart.getImageURI() + '">';
-            console.log(temp_div.innerHTML);
-          });
-        
         chart.draw(data, options);
         document.getElementById('png').outerHTML = '<a href="' + chart.getImageURI() + '">Printable version</a>';
       }
@@ -159,7 +155,7 @@
 
         <div id="temp_div" style="width: 1500px; height: 1000px;"></div> 
               
-        <div id='png'></div>
+        
 <!--       
 <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});

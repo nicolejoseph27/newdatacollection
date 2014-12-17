@@ -14,25 +14,33 @@ class MachineVariableController {
     }
 	
 	def chartChoice = {
-		def l =  MachineVariable.list(params)
-		def air = []
-		def hall = []
+		def list =  MachineVariable.list(params)
 		def temp = []
-		def humid = []
-		def fiveMicron = []
-		def goldRoom = []
-		def goldRoomFilms = []
+		
 		if (params.chartName == "Goldroom Temperatures"){
-			l.each {
+			list.each {
 				temp << [it.airQuality_date,  it.airQuality_2cameraTemp, it.airQuality_4cameraTemp]
 				}
-			params.max = Math.min(params.max ? params.int('max') : 100, 100)
-			[machineVariableInstanceList:l, machineVariableInstanceTotal: MachineVariable.count(),air: air,hall: hall,temp: temp,humid: humid,fiveMicron: fiveMicron,goldRoom: goldRoom,goldRoomFilms: goldRoomFilms]
+			
 					}
 			if (params.chartName == "Innerlayer first pass yield")	{
 				redirect(controller: "job", action: "innerLayerFirstPassYield")
 			}
-	
+			
+			if (params.chartName == "Innerlayer before etch flaws/side")	{
+				redirect(controller: "job", action: "innerLayerFlawsPerSide")
+			}
+			
+			if (params.chartName == "Soldermask Room Air Quality")	{	
+				redirect(action: "soldermaskRoomAirQuality")
+		}
+			if (params.chartName == "Post Etch Punch")	{
+				redirect(controller: "job", action: "pepData")
+		}
+			if (params.chartName == "Pluritec")	{
+				redirect(controller: "job", action: "pluritecData")
+		}
+			[temp: temp]
 	//	l.each {
 	//	air << [it.airQuality_date, it.airQuality_spray, it.airQuality_sprayafterac]
 	//	}
@@ -58,6 +66,16 @@ class MachineVariableController {
 	//	[machineVariableInstanceList:l, machineVariableInstanceTotal: MachineVariable.count(),air: air,hall: hall,temp: temp,humid: humid,fiveMicron: fiveMicron,goldRoom: goldRoom,goldRoomFilms: goldRoomFilms]
 	}
 	
+	def soldermaskRoomAirQuality = {
+		def list =  MachineVariable.list(params)
+		def soldermaskRoomAirQuality = []
+		list.each {
+			soldermaskRoomAirQuality << [it.airQuality_date,  it.airQuality_hall, it.airQuality_spray]
+			}
+		
+		[soldermaskRoomAirQuality: soldermaskRoomAirQuality]
+		
+	}
 	def pluritec = {
 		if (params.pluritecMaintenance)	{
 			flash.message = "Joe Pawlowski"
@@ -106,7 +124,7 @@ class MachineVariableController {
 	
 	def airQuality = {
 		def today = new Date()
-		def maintenanceEvent = new MachineVariable(airQuality_date: today,airQuality_operator: params.operator,airQuality_films: params.Films,airQuality_films5: params.Films5,airQuality_filmsTemp: params.FilmsTemperature,airQuality_filmsHumid: params.FilmsHumidity,airQuality_filmsPressure: params.FilmsPressure,airQuality_spray: params.spray,airQuality_spray5: params.spray5,airQuality_sprayTemp: params.sprayTemperature,airQuality_sprayHumid: params.sprayHumidity,airQuality_sprayPressure: params.sprayPressure,airQuality_sprayafterac: params.sprayAfterAirHandler,airQuality_sprayafterac5: params.sprayAfterAirHandler5,airQuality_hall: params.hall,airQuality_hall5: params.hall5,airQuality_2camera: params.twoCamera,airQuality_2camera5: params.twoCamera5,airQuality_2cameraHumid: params.twoCameraHumidity,airQuality_2cameraTemp: params.twoCameraTemperature,airQuality_2cameraPressure: params.twoCameraPressure,airQuality_4camera: params.fourCamera,airQuality_4camera5: params.fourCamera5,airQuality_4cameraHumid: params.fourCameraHumidity,airQuality_4cameraTemp: params.fourCameraTemperature,airQuality_4cameraPressure: params.fourCameraPressure,airQualityLayup: params.layup,airQualityLayup5: params.layup5,airQualityLayupTemp: params.layupTemperature,airQualityLayupHumid: params.layupHumidity,airQualityLayupPressure: params.layupPressure,airQualityStaging: params.staging,airQualityStaging5: params.staging5,airQualityStagingTemp: params.stagingTemperature,airQualityOutsideHumid: params.outsideHumid,airQualityOutsideTemp: params.outsideTemp,airQualityStagingHumid: params.stagingHumidity,airQualityStagingPressure: params.stagingPressure)
+		def maintenanceEvent = new MachineVariable(airQuality_date: today,airQuality_operator: params.operator,airQuality_films: params.Films,airQuality_films5: params.Films5,airQuality_filmsTemp: params.FilmsTemperature,airQuality_filmsHumid: params.FilmsHumidity,airQuality_filmsPressure: params.FilmsPressure,airQuality_spray: params.spray,airQuality_spray5: params.spray5,airQuality_sprayTemp: params.sprayTemperature,airQuality_sprayHumid: params.sprayHumidity,airQuality_sprayPressure: params.sprayPressure,airQuality_sprayafterac: params.sprayAfterAirHandler,airQuality_sprayafterac5: params.sprayAfterAirHandler5,airQuality_hall: params.hall,airQuality_hall5: params.hall5,airQuality_2camera: params.twoCamera,airQuality_2camera5: params.twoCamera5,airQuality_2cameraHumid: params.twoCameraHumidity,airQuality_2cameraTemp: params.twoCameraTemperature,airQuality_2cameraPressure: params.twoCameraPressure,airQuality_4camera: params.fourCamera,airQuality_4camera5: params.fourCamera5,airQuality_4cameraHumid: params.fourCameraHumidity,airQuality_4cameraTemp: params.fourCameraTemperature,airQuality_4cameraPressure: params.fourCameraPressure,airQualityLayup: params.layup,airQualityLayup5: params.layup5,airQualityLayupTemp: params.layupTemperature,airQualityLayupHumid: params.layupHumidity,airQualityStaging: params.staging,airQualityStaging5: params.staging5,airQualityStagingTemp: params.stagingTemperature,airQualityOutsideHumid: params.outsideHumid,airQualityOutsideTemp: params.outsideTemp,airQualityStagingHumid: params.stagingHumidity,airQualityStagingPressure: params.stagingPressure)
 		saveOrThrow(maintenanceEvent)
 		redirect(controller: "machine", action: "addMachineDataList")
 	}

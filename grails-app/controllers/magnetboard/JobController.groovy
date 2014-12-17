@@ -18,6 +18,28 @@ class JobController {
         [jobInstanceList: Job.list(params), jobInstanceTotal: Job.count()]
     }
 	
+	def innerLayerFlawsPerSide = {
+		Date todaysDate = new Date()
+		Date previousThirteen = todaysDate - 90
+		def jobInstance = Job.findAllByAoiBeDateBetween(previousThirteen, todaysDate)
+		Integer totalFlaws = 0
+		Integer totalSides = 0 
+		jobInstance.sort{it.aoiBeDate}
+		def flawsPerSide = []
+		jobInstance.each {
+			Integer jobFlaws = it.aoiBeNoOfOpens.toInteger()
+			Integer signals = it.noOfSignalLayers.toInteger()
+			Integer panels = it.noofpanelsmade.toInteger()
+			Integer jobSides = signals * panels
+			totalFlaws = totalFlaws + jobFlaws
+			totalSides = totalSides + jobSides
+			def finalYield = totalFlaws/totalSides
+			flawsPerSide << [it.aoiBeDate, finalYield]
+		}
+		[flawsPerSide: flawsPerSide]
+	}
+	
+	
 	def innerLayerFirstPassYield = {
 		def jobInstance = Job.findAllByAoiAeDateIsNotNull()		
 		def i = 1
@@ -35,7 +57,7 @@ class JobController {
 			firstPassYield << [it.aoiAeDate, finalYield]
 			i++
 		}
-		[jobInstance: jobInstance,firstPassYield: firstPassYield]
+		[firstPassYield: firstPassYield]
 	}
 	
 	def pepData = {

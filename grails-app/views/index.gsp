@@ -47,7 +47,7 @@
     </jque:newDialog>
     
     <jque:newDialog controller='machineVariable' action="chartChoice" ajax="false" id='chartChoice' title="Pick a Chart" success="s_div2" width="600">
-    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield'] }" />
+    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec'] }" />
     </jque:newDialog>
       
                
@@ -86,7 +86,7 @@
                    	 <g:link controller="bottomsUp" action="create" style="color:#228B22;text-transform:capitalize">Create a quote</g:link>
                </div>
                <div class="job" style = "float:right"> 
-                   	 <jque:newShowDialog buttonCaption="SPC Charts" dialogId="chartChoice" />
+                   	 <jque:newShowDialog buttonCaption="Charts" dialogId="chartChoice" />
                </div>
                
                <!--
