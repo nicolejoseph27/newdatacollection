@@ -1,4 +1,4 @@
-package magnetboard
+ package magnetboard
 
 class MaintenanceOnMachines {
 

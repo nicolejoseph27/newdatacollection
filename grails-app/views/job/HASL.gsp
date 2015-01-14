@@ -15,7 +15,7 @@
         </div>
         
         <%
-   def dcPlatingColumns = [['datetime', 'Date'], ['string', 'Asf'], ['string', 'Total Copper TIme'], ['string', 'Cell'],['string', 'Minimum Plating Reading'], ['string', 'Maximum Plating Reading'],['string', 'Class'],['string', 'Line Speed'],['string', 'Copper Thickness'],['string', 'Was panel splashed?']]
+   def haslColumns = [['datetime', 'Date'], ['string', 'Operator'], ['string', 'Bake Time'], ['string', 'Last Baked'],['string', 'Air Knife Gap'], ['string', 'Double Flux'],['string', 'Dwell Time'],['string', 'Double Dip'],['string', 'Front Air Knife Pressure'],['string', 'Rear Air Knife Pressure'],['string', 'Withdrawal (Turns)'],['string', 'Gold Fingers'],['string', 'Cold Press'],['string', 'Notes']]
 %>
 <script type="text/javascript">
    function selectHandler(e) {
@@ -23,7 +23,7 @@
    }
 </script>
 
-<gvisualization:table elementId="table"  columns="${dcPlatingColumns}" 
+<gvisualization:table elementId="table" columns="${haslColumns}" 
  data="${jobSearch}" select="selectHandler" />
 <div id="table"></div>
         

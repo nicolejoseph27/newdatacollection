@@ -7,6 +7,7 @@
    <g:javascript plugin="jquery-ui-extensions" library="jquery-extensions" />
    
         <meta name="layout" content="main"/>
+        
         <h1 style="font-size:52px;text-align:center;text-shadow:5px 5px 8px #7F7F7F;color:#228B22">Compunetics</h1> 
         <h2 style="font-style:italic;font-size:20px;text-align:center">excellence, measured in microns.</h2>
         
@@ -41,13 +42,16 @@
                
     </head>
     <body>
+     <div>
+            <g:link controller="job" action ="engineering" style="color:#228B22;text-transform:capitalize">Engineering</g:link>
+        </div>
         
         <jque:newDialog controller='job' action="reCreate" ajax="false" id='redoJob' title="Search for Existing Jobs" success="s_div2" width="600">
     <jque:dialogField name="partnumber" value="" />
     </jque:newDialog>
     
     <jque:newDialog controller='machineVariable' action="chartChoice" ajax="false" id='chartChoice' title="Pick a Chart" success="s_div2" width="600">
-    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec'] }" />
+    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec','Labor Graph'] }" />
     </jque:newDialog>
       
                
@@ -123,5 +127,6 @@
                </div>   -->
                </ul>
         </div>
+    
     </body>
 </html>

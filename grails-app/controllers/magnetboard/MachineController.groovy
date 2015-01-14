@@ -29,6 +29,20 @@ class MachineController {
         return [machineInstance: machineInstance]
     }
 
+	def maintenanceGraph = {
+		def i =1 
+		def machineInstance = Machine.findAllByNameIsNotNull()
+		machineInstance.sort{it.totalLaborHours}
+		machineInstance = machineInstance.reverse()
+		def topTenHours = []
+		machineInstance.each{
+			if (i < 11) {
+				topTenHours << [it.name, it.totalLaborHours]
+			}
+		i++}
+		[topTenHours: topTenHours]
+	}
+	
     def save = {
         def machineInstance = new Machine(params)
         if (machineInstance.save(flush: true)) {

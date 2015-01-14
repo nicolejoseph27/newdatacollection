@@ -50,34 +50,34 @@
          
             <jque:newDialog controller='job' action="PEP" ajax="false" id='PEP' title="PEP Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		<jque:dialogField name="mean" value="" />
+    		<jque:dialogField name="mean" value="0" />
     		<jque:dialogField name="operator" value="" type="select" from="${['Adrian Smith','Brian Emerschak','Ed Norcott','Jake Kurnot','Carlos Harrison','Becky Brunner','Joe Pawlowski','Mark Husarik','Bob Gosliak','Cindy Stemmler','Beth Lang','Cliff Gray','Joel Williams','Melissa Knight','Jesse Ward','Gerry Glatz','Oscar Curtis','Matt Shirey'] }"/>
     		</jque:newDialog> 
     		<!-- AOI Before Etch -->
     		<jque:newDialog controller='job' action="aoiBeforeEtch" ajax="false" id='aoibe' title="AOI Before Etch Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		<jque:dialogField name="noOfSignalLayers" value="" />
-    		<jque:dialogField name="minLine" value="" />
-    		<jque:dialogField name="minSpace" value="" />
-    		<jque:dialogField name="noOfOpens" value="" />
-    		<jque:dialogField name="noOfShorts" value="" />
+    		<jque:dialogField name="noOfSignalLayers" value="0" />
+    		<jque:dialogField name="minLine" value="0" />
+    		<jque:dialogField name="minSpace" value="0" />
+    		<jque:dialogField name="noOfOpens" value="0" />
+    		<jque:dialogField name="noOfShorts" value="0" />
     		<jque:dialogField name="machineLightSource" value="" type="select" from="${['Camtek','Lloyd Doyle/Red'] }"/>
     		<jque:dialogField name="operator" value="" type="select" from="${['Adrian Smith','Brian Emerschak','Ed Norcott','Joe Pawlowski'] }"/>
     		</jque:newDialog> 
     		
     		<jque:newDialog controller='job' action="aoiAfterEtch" ajax="false" id='aoiae' title="AOI After Etch Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		<jque:dialogField name="noOfPanelsScrap" value="" />
-    		<jque:dialogField name="noOfOpens" value="" />
-    		<jque:dialogField name="noOfShorts" value="" />
+    		<jque:dialogField name="noOfPanelsScrap" value="0" />
+    		<jque:dialogField name="noOfOpens" value="0" />
+    		<jque:dialogField name="noOfShorts" value="0" />
     		<jque:dialogField name="machineLightSource" value="" type="select" from="${['Camtek','Lloyd Doyle/Red','Lloyd Doyle/Blue'] }"/>
     		<jque:dialogField name="operator" value="" type="select" from="${['Adrian Smith','Brian Emerschak','Ed Norcott','Joe Pawlowski'] }"/>
     		</jque:newDialog> 
     		
     		<jque:newDialog controller='job' action="pluritec" ajax="false" id='pluritec' title="Pluritec Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		<jque:dialogField name="Xcomp" value="" />
-    		<jque:dialogField name="Ycomp" value="" />
+    		<jque:dialogField name="Xcomp" value="0" />
+    		<jque:dialogField name="Ycomp" value="0" />
     		<jque:dialogField name="operator" value="" type="select" from="${['Matt Shirey','Scott Zaboski','Bob Atkinson','Ken Gulick','Jason Gale'] }"/>
     		</jque:newDialog> 
     		
@@ -95,22 +95,23 @@
     		<jque:dialogField name="totalCopperTime" value="" />    		
     		</jque:newDialog>   
     		
-    		<jque:newDialog controller='job' action="dcplatingSearch" ajax="false" id='searchDcplating' title="DC Plating Job Search" success="s_div2" width="600">
+    		<jque:newDialog controller='job' action="dcplatingSearch" ajax="false" id='searchDcplating' title="Search for DC Plating" success="s_div2" width="600">
     		<jque:dialogField name="jobName" value="" />
+    		<jque:dialogField name="equipment" value="" type="select" from = "${['DC Plating/ Outer Layer Etch','HASL'] }" />
     		</jque:newDialog> 
     		
     		<jque:newDialog controller='job' action="olEtch" ajax="false" id='oletch' title="Outer Layer Etch" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		<jque:dialogField name="twBefore" value="" />
-    		<jque:dialogField name="lineSpeed" value="" />
-    		<jque:dialogField name="cuThickness" value="" />
+    		<jque:dialogField name="twBefore" value="0" />
+    		<jque:dialogField name="lineSpeed" value="0" />
+    		<jque:dialogField name="cuThickness" value="0" />
     		<jque:checkBoxField name="splash" type="checkbox" labelName="Were the panels splashed"  checked="${false}" />
     		<jque:dialogField name="operator" value="" type="select" from="${['Cliff Gray','Frank Krznaric','Kim Stanley','Jake Kurnot','Don Lang','Pete Sullivan','Oscar Curtis','Jason Persun'] }"/>
     		</jque:newDialog>  
     		
     		<jque:newDialog controller='job' action="tinStrip" ajax="false" id='tinstrip' title="Tin Strip Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		<jque:dialogField name="twAfter" value="" />
+    		<jque:dialogField name="twAfter" value="0" />
     		<jque:dialogField name="operator" value="" type="select" from="${['Cliff Gray','Frank Krznaric','Kim Stanley','Jake Kurnot','Don Lang','Pete Sullivan','Oscar Curtis','Jason Persun'] }"/>
     		</jque:newDialog>  
 
@@ -168,7 +169,7 @@
                				</div>  
                				
                				<div class="job" style = "float:right">
-               				<jque:newShowDialog buttonCaption="Search Job for DC Plating/Outer Layer Etch" dialogId="searchDcplating" /> 
+               				<jque:newShowDialog buttonCaption="Search Job" dialogId="searchDcplating" /> 
                				</div>
                				
                				<div style="height:60px"></div>

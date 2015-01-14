@@ -151,7 +151,7 @@
                                     <label for="size"><g:message code="job.size.label" default="Panel Size" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'size', 'errors')}">
-                                    <g:textField name="size" value="${jobInstance?.size}" />
+                                    <g:select name="size" from="${['12X9','12X12','12X18','12X24','16X18','18X24','18X28','20X24','21X24','22X25','22X26','other']}" value="${jobInstance?.size}" />
                                 </td>
                                 <td valign="top" class="name">
                                     <label for="thickness"><g:message code="job.thickness.label" default="Panel Thickness" /></label>

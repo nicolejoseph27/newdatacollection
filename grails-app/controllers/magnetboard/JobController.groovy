@@ -39,11 +39,15 @@ class JobController {
 		[flawsPerSide: flawsPerSide]
 	}
 	
+	def engineering = {
+		params.max = Math.min(params.max ? params.int('max') : 15, 100)
+		[jobInstanceList: Job.list(params), jobInstanceTotal: Job.count()]
+	}
 	
 	def innerLayerFirstPassYield = {
 		def jobInstance = Job.findAllByAoiAeDateIsNotNull()		
-		def i = 1
-		def finalYield = 0
+		def grandTotalLayers = 0
+		def grandTotalPanelsScrap = 0
 		jobInstance.sort{it.aoiAeDate}
 		def firstPassYield = []
 		jobInstance.each {
@@ -52,10 +56,10 @@ class JobController {
 			Integer panelsScrap = it.aoiAeNoOfPanelsScrap.toInteger()
 			if (numberOfLayers <= 2) {numberOfLayers = 4} 
 			def totalLayers = ((numberOfLayers - 2)/2) * numberOfPanelsMade
-			def jobYield = (1  - panelsScrap/totalLayers) * 100
-		    finalYield = (jobYield + finalYield)/ i  
-			firstPassYield << [it.aoiAeDate, finalYield]
-			i++
+			grandTotalLayers = grandTotalLayers + totalLayers
+			grandTotalPanelsScrap = grandTotalPanelsScrap + panelsScrap
+			def yield = (1  - grandTotalPanelsScrap/grandTotalLayers) * 100
+			firstPassYield << [it.aoiAeDate, yield]
 		}
 		[firstPassYield: firstPassYield]
 	}
@@ -269,11 +273,19 @@ class JobController {
 	def dcplatingSearch = {
 		if(magnetboard.Job.findByJobname(params.jobName)){
 		def searchJob = magnetboard.Job.findAllWhere(["jobname": params.jobName])
-		searchJob.sort{it.dcDate}
 		def jobSearch = []
+		// Search for DC Plating and Outer Layer Etch
+		if (params.equipment == 'DC Plating/ Outer Layer Etch') {
+		searchJob.sort{it.dcDate}
 		searchJob.each {
 		jobSearch << [it.dcDate, it.dcAsf, it.dcTct, it.dcCell, it.dcMinCuDeposit, it.dcMaxCuDeposit, it.dcSpec, it.olEtchLineSpeed, it.olEtchCuThickness, it.olEtchSplash]
-		}
+		}}
+		if (params.equipment == 'HASL') {
+			searchJob.sort{it.halDate}
+			searchJob.each {
+				jobSearch << [it.halDate, it.halOperator, it.halBakeTime, it.halTimeSinceLastBaked, it.halAirKnifeGap, it.halDoubleFlux, it.halDwellTime, it.halDoubleDip, it.halAirKnifePressureFront, it.halAirKnifePressureRear, it.halWithdrawalTurns, it.halGoldFingers, it.halColdPress, it.halNotes]
+			}
+			render(view: "HASL", model: [jobSearch: jobSearch])}
 		[searchJob: searchJob, jobSearch: jobSearch]
 		}
 		else {flash.message = "No Job Found"

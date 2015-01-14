@@ -13,10 +13,6 @@ class MaintenanceOnMachinesController {
         [maintenanceOnMachinesInstanceList: MaintenanceOnMachines.list(params), maintenanceOnMachinesInstanceTotal: MaintenanceOnMachines.count()]
     }
 	
-	def maintenanceGraph = {
-		
-	}
-
     def create = {
         def maintenanceOnMachinesInstance = new MaintenanceOnMachines()
         maintenanceOnMachinesInstance.properties = params
@@ -24,7 +20,14 @@ class MaintenanceOnMachinesController {
     }
 
     def save = {
+		
         def maintenanceOnMachinesInstance = new MaintenanceOnMachines(params)
+		def machineInstance = maintenanceOnMachinesInstance.machine
+		def main = maintenanceOnMachinesInstance.laborHours.toFloat()
+		if (!machineInstance.totalLaborHours){
+		machineInstance.totalLaborHours = 0
+		}
+		machineInstance.totalLaborHours = machineInstance.totalLaborHours + main
         if (maintenanceOnMachinesInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'maintenanceOnMachines.label', default: 'MaintenanceOnMachines'), maintenanceOnMachinesInstance.id])}"
             redirect(action: "show", id: maintenanceOnMachinesInstance.id)
