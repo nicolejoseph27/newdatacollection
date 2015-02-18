@@ -1,6 +1,7 @@
 package magnetboard
 
 import grails.plugins.springsecurity.Secured
+import magnetboard.Machine
 
 
 
@@ -160,6 +161,111 @@ class JobController {
 		render(view: "printmagnet", model: [jobInstance: jobInstance])
 	}
 	
+	def processTime = {
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+			def jobInstance = Job.get(jobNumber.id) 
+			
+			if (params.processName == "AOI Inner Before Etch"){
+				if (params.start){
+					def beginTime = System.currentTimeMillis()
+				jobInstance.aoiBeStartTime = beginTime
+				}
+				if (params.stop){
+					def endTime = System.currentTimeMillis()
+					jobInstance.aoiBeStopTime = endTime
+					if (!jobInstance.aoiBeRunTime){jobInstance.aoiBeRunTime = 0}
+					jobInstance.aoiBeRunTime = (jobInstance.aoiBeRunTime + (jobInstance.aoiBeStopTime - jobInstance.aoiBeStartTime).toLong())/60000
+				}	
+			}	
+			
+			if (params.processName == "Touch Up Inners"){
+				if (params.start){
+					def beginTime = System.currentTimeMillis()
+				jobInstance.touchUpStartTime = beginTime
+				}
+				if (params.stop){
+					def endTime = System.currentTimeMillis()
+					jobInstance.touchUpStopTime = endTime
+					if (!jobInstance.touchUpRunTime){jobInstance.touchUpRunTime = 0}
+					jobInstance.touchUpRunTime = (jobInstance.touchUpRunTime + (jobInstance.touchUpStopTime - jobInstance.touchUpStartTime).toLong())/60000
+				}		
+			}
+			
+			if (params.processName == "AOI Inner After Etch"){
+				if (params.start){
+					def beginTime = System.currentTimeMillis()
+				jobInstance.aoiAeStartTime = beginTime
+				}
+				if (params.stop){
+					def endTime = System.currentTimeMillis()
+					jobInstance.aoiAeStopTime = endTime
+					if (!jobInstance.aoiAeRunTime){jobInstance.aoiAeRunTime = 0}
+					jobInstance.aoiAeRunTime = (jobInstance.aoiAeRunTime + (jobInstance.aoiAeStopTime - jobInstance.aoiAeStartTime).toLong())/60000
+				}
+			}
+			
+			if (params.processName == "Repair Inners"){
+				if (params.start){
+					def beginTime = System.currentTimeMillis()
+				jobInstance.repairStartTime = beginTime
+				}
+				if (params.stop){
+					def endTime = System.currentTimeMillis()
+					jobInstance.repairStopTime = endTime
+					if (!jobInstance.repairRunTime){jobInstance.repairRunTime = 0}
+					jobInstance.repairRunTime = (jobInstance.repairRunTime + (jobInstance.repairStopTime - jobInstance.repairStartTime).toLong())/60000
+				}
+			}
+			
+			if (params.processName == "AOI outer before pattern"){
+				if (params.start){
+					def beginTime = System.currentTimeMillis()
+				jobInstance.aoiBpStartTime = beginTime
+				}
+				if (params.stop){
+					def endTime = System.currentTimeMillis()
+					jobInstance.aoiBpStopTime = endTime
+					if (!jobInstance.aoiBpRunTime){jobInstance.aoiBpRunTime = 0}
+					jobInstance.aoiBpRunTime = (jobInstance.aoiBpRunTime + (jobInstance.aoiBpStopTime - jobInstance.aoiBpStartTime).toLong())/60000
+				}
+			}
+			
+			if (params.processName == "AOI outer final"){
+				if (params.start){
+					def beginTime = System.currentTimeMillis()
+				jobInstance.aoiFinalStartTime = beginTime
+				}
+				if (params.stop){
+					def endTime = System.currentTimeMillis()
+					jobInstance.aoiFinalStopTime = endTime
+					if (!jobInstance.aoiFinalRunTime){jobInstance.aoiFinalRunTime = 0}
+					jobInstance.aoiFinalRunTime = (jobInstance.aoiFinalRunTime + (jobInstance.aoiFinalStopTime - jobInstance.aoiFinalStartTime).toLong())/60000
+				}
+			}
+			
+			if (params.processName == "Repair outers"){
+				if (params.start){
+					def beginTime = System.currentTimeMillis()
+				jobInstance.repairOuterStartTime = beginTime
+				}
+				if (params.stop){
+					def endTime = System.currentTimeMillis()
+					jobInstance.repairOuterStopTime = endTime
+					if (!jobInstance.repairOuterRunTime){jobInstance.repairOuterRunTime = 0}
+					jobInstance.repairOuterRunTime = (jobInstance.repairOuterRunTime + (jobInstance.repairOuterStopTime - jobInstance.repairOuterStartTime).toLong())/60000
+				}
+			}
+			
+			[jobInstance: jobInstance]	
+		}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(controller: "machine", action: "addJobDataList")
+		}	
+	}
+	
+	
 	def reCreate = {
 		if(magnetboard.Finishedjobs.findByJobname(params.partnumber)){
 		def jobnumber = magnetboard.Finishedjobs.findByJobname(params.partnumber)
@@ -262,6 +368,7 @@ class JobController {
 			jobInstance.dcAsf = params.asf
 			jobInstance.dcTct = params.totalCopperTime
 			jobInstance.dcRack = params.dcRack
+			jobInstance.dcNotes = params.dcNotes
 		    redirect(controller: "machine", action: "addJobDataList")
 		}
 		else {
@@ -278,7 +385,7 @@ class JobController {
 		if (params.equipment == 'DC Plating/ Outer Layer Etch') {
 		searchJob.sort{it.dcDate}
 		searchJob.each {
-		jobSearch << [it.dcDate, it.dcAsf, it.dcTct, it.dcCell, it.dcMinCuDeposit, it.dcMaxCuDeposit, it.dcSpec, it.olEtchLineSpeed, it.olEtchCuThickness, it.olEtchSplash]
+		jobSearch << [it.dcDate, it.dcAsf, it.dcRack, it.dcTct, it.dcCell, it.dcMinCuDeposit, it.dcMaxCuDeposit, it.dcSpec, it.dcNotes, it.olEtchLineSpeed, it.olEtchCuThickness, it.olEtchSplash]
 		}}
 		if (params.equipment == 'HASL') {
 			searchJob.sort{it.halDate}
@@ -336,6 +443,26 @@ class JobController {
 		}
 	}
 	
+	def machineVariableReset = {
+		if(magnetboard.Machine.findByName(params.machine)) {
+			def machineInstance = magnetboard.Machine.findByName(params.machine)
+			if (machineInstance.name == "PPG Developer"){
+				machineInstance.totalSquareFeet = 0
+				flash.message = "PPG Developer square footage has been reset to zero"
+				redirect(controller: "job", action: "engineering")
+			}
+			if (machineInstance.name == "PPG Stripper"){
+				machineInstance.totalSquareFeet = 0
+				flash.message = "PPG Stripper square footage has been reset to zero"
+				redirect(controller: "job", action: "engineering")
+			}
+		}
+		else {
+			flash.message =  "NO MACHINE FOUND"
+			redirect(controller: "job", action: "engineering")
+		}
+	}
+	
 	def olEtch = {
 		if(magnetboard.Job.findByWorkorder(params.workorder)){			
 			def jobNumber = magnetboard.Job.findByWorkorder(params.workorder)
@@ -373,6 +500,64 @@ class JobController {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(controller: "machine", action: "addJobDataList")
 		}	 
+	}
+	
+	def ppgDeveloper = {
+		if(magnetboard.Job.findByWorkorder(params.workorder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workorder)
+			def jobInstance = Job.get(jobNumber.id)
+			def today = new Date()
+			jobInstance.ppgRunSpeed = params.runSpeed
+			jobInstance.ppgStepTab = params.stepTab
+			jobInstance.ppgNoOfPanels = params.ppgNoOfPanels
+			jobInstance.ppgOperator = params.operator
+			jobInstance.ppgDate = today
+			Float squareFeet = 3
+			if (jobInstance.size == '18X16'){squareFeet = 4}
+			if (jobInstance.size == '24 x 18' || jobInstance.size == '24 X 18' || jobInstance.size == '24X18'){squareFeet = 6}
+			def jobSquareFeet = params.ppgNoOfPanels.toInteger() * squareFeet
+			def machineInstance = magnetboard.Machine.findByName("PPG Developer")
+			machineInstance.totalSquareFeet = machineInstance.totalSquareFeet + jobSquareFeet
+			if (machineInstance.totalSquareFeet > 450) {
+				
+					flash.message = "Total Square Footage is " + machineInstance.totalSquareFeet + " square feet.  Notify Process Engineer" 
+				
+				}
+			
+		redirect(controller: "machine", action: "addJobDataList")
+		}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(controller: "machine", action: "addJobDataList")
+		}
+	}
+	
+	def ppgStripper = {
+		if(magnetboard.Job.findByWorkorder(params.workorder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workorder)
+			def jobInstance = Job.get(jobNumber.id)
+			def today = new Date()
+			jobInstance.ppgStripperNoOfPanels = params.noOfPanels
+			jobInstance.ppgStripperOperator = params.operator
+			jobInstance.ppgStripperDate = today
+			Float squareFeet = 3
+			if (jobInstance.size == '18X16'){squareFeet = 4}
+			if (jobInstance.size == '24 x 18' || jobInstance.size == '24 X 18' || jobInstance.size == '24X18'){squareFeet = 6}
+			def jobSquareFeet = params.noOfPanels.toInteger() * squareFeet
+			def machineInstance = magnetboard.Machine.findByName("PPG Stripper")
+			machineInstance.totalSquareFeet = machineInstance.totalSquareFeet + jobSquareFeet
+			if (machineInstance.totalSquareFeet > 950) {
+				
+					flash.message = "Total Square Footage is " + machineInstance.totalSquareFeet + " square feet.  Notify Process Engineer"
+				
+				}
+			
+		redirect(controller: "machine", action: "addJobDataList")
+		}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(controller: "machine", action: "addJobDataList")
+		}
 	}
     def update = {
         def jobInstance = Job.get(params.id)

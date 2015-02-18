@@ -119,7 +119,7 @@
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "notes")}</td>
                             
-                            <td valign="top" class="name" style="text-align:right"><g:message code="job.material.label" default="material"/></td>
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.material.label" default="Material"/></td>
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "material")}</td>
                        </tr>
@@ -191,9 +191,17 @@
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "dcMaxCuDeposit")}</td>
                         </tr>
                         
+                        <tr class="prop2">
+                            
+                           <td valign="top" class="name" style="text-align:right"><g:message code="job.dcNotes.label" default="DC Notes"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "dcNotes")}</td>
+                            
+                        </tr>
+                        
                         <tr class="prop">
                             
-                           <td valign="top" class="name" style="text-align:right"><g:message code="job.pluritecOperator.label" default="Plurietc Operator"/></td>
+                           <td valign="top" class="name" style="text-align:right"><g:message code="job.pluritecOperator.label" default="Pluritec Operator"/></td>
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "pluritecOperator")}</td>
                             
@@ -341,7 +349,170 @@
                             <td valign="top" class="name" style="text-align:right"><g:message code="job.halNotes.label" default="HAL Notes"/></td>
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "halNotes")}</td>
-                        </tr>                                                                                                                                                                  
+                        </tr>
+
+<!-- PPG -->                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgDate.label" default="PPG Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgDate")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgOperator.label" default="PPG Operator"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgOperator")}</td>                            
+                        </tr>                                                 
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgRunSpeed.label" default="PPG Run Speed"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgRunSpeed")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgStepTab.label" default="PPG Step Tab"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgStepTab")}</td>
+                        </tr>
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgNoOfPanels.label" default="PPG No. Of Panels"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgNoOfPanels")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgStripperDate.label" default="PPG Stripper Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgStripperDate")}</td>
+                        </tr>
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgStripperOperator.label" default="PPG Stripper Operator"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgStripperOperator")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.ppgStripperNoOfPanels.label" default="PPG Stripper No. Of Panels"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "ppgStripperNoOfPanels")}</td>
+                        </tr>                        
+<!-- Start Times -->                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiBeStartTime.label" default="AOI Before Etch Start Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBeStartTime")}</td>
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiBeStopTime.label" default="AOI Before Etch Stop Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBeStopTime")}</td>
+                        </tr>
+                        
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiBeRunTime.label" default="AOI Before Etch Run Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBeRunTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.touchUpStartTime.label" default="Touch Up Start Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "touchUpStartTime")}</td>
+                        </tr>                        
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.touchUpStopTime.label" default="Touch Up Stop Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "touchUpStopTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.touchUpRunTime.label" default="Touch Up Run Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "touchUpRunTime")}</td>
+                        </tr>                                                          
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiAeStartTime.label" default="AOI After Etch Start Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiAeStartTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.aoiAeStopTime.label" default="AOI After Etch Stop Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiAeStopTime")}</td>
+                        </tr>                        
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiAeRunTime.label" default="AOI After Etch Run Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiAeRunTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.repairStartTime.label" default="Repair Inners Start Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "repairStartTime")}</td>
+                        </tr>
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.repairStopTime.label" default="Repair Inners Stop Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "repairStopTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.repairRunTime.label" default="Repair Inners Run Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "repairRunTime")}</td>
+                        </tr>                        
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiBpStartTime.label" default="AOI Before Plating Start Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBpStartTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.aoiBpStopTime.label" default="AOI Before Plating Stop Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBpStopTime")}</td>
+                        </tr>
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiBpRunTime.label" default="AOI Before Plating Run Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBpRunTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.aoiFinalStartTime.label" default="AOI Final Start Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiFinalStartTime")}</td>
+                        </tr>                        
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.aoiFinalStopTime.label" default="AOI Final Stop Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiFinalStopTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.aoiFinalRunTime.label" default="AOI Final Run Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiFinalRunTime")}</td>
+                        </tr>                        
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.repairOuterStartTime.label" default="Repair Outers Start Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "repairOuterStartTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.repairOuterStopTime.label" default="Repair Outers Stop Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "repairOuterStopTime")}</td>
+                        </tr>                        
+                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.repairOuterRunTime.label" default="Repair Outers Run Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "repairOuterRunTime")}</td>
+                        </tr>  
+                                                                                                                                                                                      
                     </tbody>
                 </table>
             </div>

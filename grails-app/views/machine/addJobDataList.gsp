@@ -51,7 +51,7 @@
             <jque:newDialog controller='job' action="PEP" ajax="false" id='PEP' title="PEP Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
     		<jque:dialogField name="mean" value="0" />
-    		<jque:dialogField name="operator" value="" type="select" from="${['Adrian Smith','Brian Emerschak','Ed Norcott','Jake Kurnot','Carlos Harrison','Becky Brunner','Joe Pawlowski','Mark Husarik','Bob Gosliak','Cindy Stemmler','Beth Lang','Cliff Gray','Joel Williams','Melissa Knight','Jesse Ward','Gerry Glatz','Oscar Curtis','Matt Shirey'] }"/>
+    		<jque:dialogField name="operator" value="" type="select" from="${['Adrian Smith','Brian Emerschak','Ed Norcott','Jake Kurnot','Becky Brunner','Joe Pawlowski','Mark Husarik','Bob Gosliak','Cindy Stemmler','Beth Lang','Cliff Gray','Melissa Knight','Jesse Ward','Gerry Glatz','Oscar Curtis','Matt Shirey'] }"/>
     		</jque:newDialog> 
     		<!-- AOI Before Etch -->
     		<jque:newDialog controller='job' action="aoiBeforeEtch" ajax="false" id='aoibe' title="AOI Before Etch Variables" success="s_div2" width="600">
@@ -78,7 +78,7 @@
     		<jque:dialogField name="workorder" value="" />
     		<jque:dialogField name="Xcomp" value="0" />
     		<jque:dialogField name="Ycomp" value="0" />
-    		<jque:dialogField name="operator" value="" type="select" from="${['Matt Shirey','Scott Zaboski','Bob Atkinson','Ken Gulick','Jason Gale'] }"/>
+    		<jque:dialogField name="operator" value="" type="select" from="${['Matt Shirey','Bob Atkinson','Ken Gulick','Jason Gale'] }"/>
     		</jque:newDialog> 
     		
     		<jque:newDialog controller='job' action="dcplating" ajax="false" id='dcplating' title="DC Plating Variables" success="s_div2" width="600">
@@ -88,14 +88,15 @@
     		<jque:dialogField name="areaTop" value="" />
     		<jque:dialogField name="areaBottom" value="" />
     		<jque:dialogField name="spec" value="" />
-    		<jque:dialogField name="operator" value="" type="select" from="${['Cliff Gray','Frank Krznaric','Kim Stanley','Jake Kurnot','Jason Persun'] }"/>
+    		<jque:dialogField name="operator" value="" type="select" from="${['Jason Persun','Frank Krznaric','Kim Stanley','Jake Kurnot','Cliff Gray'] }"/>
     		<jque:dialogField name="minCuDeposit" value="" />
     		<jque:dialogField name="maxCuDeposit" value="" />
     		<jque:dialogField name="asf" value="" />
-    		<jque:dialogField name="totalCopperTime" value="" />    		
+    		<jque:dialogField name="totalCopperTime" value="" /> 
+    		<jque:dialogField name="dcNotes" value="" />    		
     		</jque:newDialog>   
     		
-    		<jque:newDialog controller='job' action="dcplatingSearch" ajax="false" id='searchDcplating' title="Search for DC Plating" success="s_div2" width="600">
+    		<jque:newDialog controller='job' action="dcplatingSearch" ajax="false" id='searchDcplating' title="Search" success="s_div2" width="600">
     		<jque:dialogField name="jobName" value="" />
     		<jque:dialogField name="equipment" value="" type="select" from = "${['DC Plating/ Outer Layer Etch','HASL'] }" />
     		</jque:newDialog> 
@@ -117,7 +118,7 @@
 
     		<jque:newDialog controller='job' action="hal" ajax="false" id='hal' title="HASL Variables" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		<jque:dialogField name="operator" value="" type="select" from="${['Cliff Gray','Frank Krznaric','Jason Persun','Oscar Curtis'] }"/>
+    		<jque:dialogField name="operator" value="" type="select" from="${['Frank Krznaric','Jason Persun','Cliff Gray','Oscar Curtis'] }"/>
     		<jque:dialogField name="bakeTime" value="" />
     		<jque:dialogField name="timeSinceLastBaked" value="" />		
     		<jque:dialogField name="airKnifeGap" value="" />	
@@ -132,7 +133,20 @@
     		<jque:dialogField name="notes" value="" />   		
     		</jque:newDialog>
     
+    		<jque:newDialog controller='job' action="ppgDeveloper" ajax="false" id='ppgDeveloper' title="PPG Developer" success="s_div2" width="600">
+    		<jque:dialogField name="workorder" value="" />
+            <jque:dialogField name="operator" value="" type="select" from="${['Melissa Knight','Michele Crooks','Ed Norcott','Gerry Glatz','Jesse Ward','Jake Kurnot','Matt Dudik','Joe Pawlowski'] }"/>
+            <jque:dialogField name="runSpeed" value="0" />
+    		<jque:dialogField name="stepTab" value="0" />	
+    		<jque:dialogField name="ppgNoOfPanels" value="0" />     
+            </jque:newDialog>
             
+            <jque:newDialog controller='job' action="ppgStripper" ajax="false" id='ppgStripper' title="PPG Stripper" success="s_div2" width="600">
+    		<jque:dialogField name="workorder" value="" />
+            <jque:dialogField name="operator" value="" type="select" from="${['Gerry Glatz','Jesse Ward','Jake Kurnot','Frank Krznaric','Don Lang','Becky Brunner','Matt Dudik'] }"/>			
+    		<jque:dialogField name="noOfPanels" value="0" />     
+            </jque:newDialog>
+                   
 <!-- Page display.  Each block produces a button that calls the applicable job dialog -->            
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
@@ -186,6 +200,16 @@
                	
                             <div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="Tin Strip" dialogId="tinstrip" />
+               				</div> 
+               				
+               				<div class="job" style = "float:right"> 
+                   	 		<jque:newShowDialog buttonCaption="PPG Developer" dialogId="ppgDeveloper" />
+               				</div> 
+               				
+               				<div style="height:60px"></div>
+               				
+               				<div class="job" style = "float:left"> 
+                   	 		<jque:newShowDialog buttonCaption="PPG Stripper" dialogId="ppgStripper" />
                				</div> 
                				
             </div>

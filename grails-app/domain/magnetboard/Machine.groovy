@@ -6,7 +6,11 @@ class Machine {
 	
 	 String name
    	 Float totalLaborHours 
+	Float totalSquareFeet
 		
+	static constraints = {totalLaborHours(nullable:true)
+		totalSquareFeet(nullable:true)
+	}
   String toString(){
 	  return name
 	 }

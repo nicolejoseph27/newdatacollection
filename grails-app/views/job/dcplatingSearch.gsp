@@ -15,7 +15,7 @@
         </div>
         
         <%
-   def dcPlatingColumns = [['datetime', 'Date'], ['string', 'Asf'], ['string', 'Total Copper TIme'], ['string', 'Cell'],['string', 'Minimum Plating Reading'], ['string', 'Maximum Plating Reading'],['string', 'Class'],['string', 'Line Speed'],['string', 'Copper Thickness'],['string', 'Was panel splashed?']]
+   def dcPlatingColumns = [['date', 'Date'], ['string', 'Asf'], ['string','Rack'], ['string', 'Total Copper Time'], ['string', 'Cell'],['string', 'Min. Plating Reading'], ['string', 'Max. Plating Reading'],['string', 'Class'],['string','dcNotes'],['string', 'Line Speed'],['string', 'Copper Thickness'],['string', 'Was panel splashed?']]
 %>
 <script type="text/javascript">
    function selectHandler(e) {

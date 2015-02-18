@@ -54,6 +54,12 @@
     <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec','Labor Graph'] }" />
     </jque:newDialog>
       
+      <jque:newDialog controller='job' action="processTime" ajax="false" id='startButton' title="Process Time" success="s_div2" width="600">
+    <jque:dialogField name="workOrder" value="" />
+    <jque:dialogField name="processName" value="" type="select" from="${['AOI Inner Before Etch','Touch Up Inners','AOI Inner After Etch','Repair Inners','AOI outer before pattern','AOI outer final','Repair outers'] }" />
+    <jque:checkBoxField name="start" type="checkbox" labelName="Start Button"  checked="${false}"/>
+    <jque:checkBoxField name="stop" type="checkbox" labelName="Stop Button"  checked="${false}"/>
+    </jque:newDialog>
                
         <div id="pageBody">
         
@@ -92,11 +98,13 @@
                <div class="job" style = "float:right"> 
                    	 <jque:newShowDialog buttonCaption="Charts" dialogId="chartChoice" />
                </div>
+               <div style="height:60px"></div>
+              <div class="job" style = "float:left"> 
+                   	 <jque:newShowDialog buttonCaption="Time Tracker" dialogId="startButton" />
+               </div>
                
                <!--
-               <div class="job" style = "float:right"> 
-                   	 <g:link controller="maintenanceOnMachines" action="maintenanceGraph" style="color:#228B22;text-transform:capitalize">Maintenance Graph</g:link>
-               </div>
+               
 				
                <div class="job" style = "float:left"> 
                 	 <g:link controller="throughput" style="color:#228B22;text-transform:capitalize">throughput</g:link>
@@ -108,20 +116,12 @@
                <div class="job" style = "float:left"> 
                    	 <g:link controller="process" action="prioritylist" style="color:#228B22;text-transform:capitalize">List of processes</g:link>
                </div>
-               <div class="job" style = "float:right"> 
-                   	 <jque:newShowDialog buttonCaption="Create a Redo Job" dialogId="redoJob" />
-               </div>
+               
+               
+				
+               
                <div style="height:60px"></div>
-				<div class="job" style = "float:left"> 
-                   	 <g:link controller="maintenance" action="list" style="color:#228B22;text-transform:capitalize">List of maintenance</g:link>
-               </div>
-               <div class="job" style = "float:right"> 
-                   	 <g:link controller="machine" action="list" style="color:#228B22;text-transform:capitalize">List of machines</g:link>
-               </div>
-               <div style="height:60px"></div>
-               <div class="job" style = "float:left"> 
-                   	 <g:link controller="machineVariable" action="list" style="color:#228B22;text-transform:capitalize">List of variables for machines</g:link>
-               </div>
+               
                <div class="job" style = "float:right">
                 	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">magnetboard</g:link>
                </div>   -->

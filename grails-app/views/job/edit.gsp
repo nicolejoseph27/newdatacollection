@@ -241,6 +241,15 @@
                                     <g:textField name="dcMaxCuDeposit" value="${jobInstance?.dcMaxCuDeposit}" />
                                 </td>
                              </tr>
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="dcNotes"><g:message code="dcNotes.label" default="DC Notes" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'dcNotes', 'errors')}">
+                                    <g:textField name="dcNotes" value="${jobInstance?.dcNotes}" />
+                                </td>
+                             </tr>
                               
                               <tr class="prop">
                                 <td valign="top" class="name">
@@ -565,7 +574,228 @@
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'halNotes', 'errors')}">
                                     <g:textField name="halNotes" value="${jobInstance?.halNotes}" />
                                 </td>
-                             </tr>                                                            
+                             </tr>
+
+          <!-- PPG EDIT -->                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="ppgDate"><g:message code="ppgDate.label" default="PPG Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'ppgDate', 'errors')}">
+                                    <g:textField name="ppgDate" value="${jobInstance?.ppgDate}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="ppgOperator"><g:message code="job.ppgOperator.label" default="PPG Operator" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'PPG Operator', 'errors')}">
+                                    <g:textField name="ppgOperator" value="${jobInstance?.ppgOperator}" />
+                                </td>
+                             </tr> 
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="ppgRunSpeed"><g:message code="ppgRunSpeed.label" default="PPG Run Speed" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'ppgRunSpeed', 'errors')}">
+                                    <g:textField name="ppgRunSpeed" value="${jobInstance?.ppgRunSpeed}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="ppgStepTab"><g:message code="job.ppgStepTab.label" default="PPG Step Tab" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'ppgStepTab', 'errors')}">
+                                    <g:textField name="ppgStepTab" value="${jobInstance?.ppgStepTab}" />
+                                </td>
+                             </tr>
+
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="ppgNoOfPanels"><g:message code="ppgNoOfPanels.label" default="PPG No. Of Panels" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'ppgNoOfPanels', 'errors')}">
+                                    <g:textField name="ppgNoOfPanels" value="${jobInstance?.ppgNoOfPanels }" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="ppgStripperDate"><g:message code="job.ppgStripperDate.label" default="PPG Stripper Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'ppgStripperDate', 'errors')}">
+                                    <g:textField name="ppgStripperDate" value="${jobInstance?.ppgStripperDate}" />
+                                </td>
+                             </tr>
+
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="ppgStripperOperator"><g:message code="ppgStripperOperator.label" default="PPG Stripper Operator" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'ppgStripperOperator', 'errors')}">
+                                    <g:textField name="ppgStripperOperator" value="${jobInstance?.ppgStripperOperator}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="ppgStripperNoOfPanels"><g:message code="job.ppgStripperNoOfPanels.label" default="PPG Stripper No. Of Panels" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'ppgStripperNoOfPanels', 'errors')}">
+                                    <g:textField name="ppgStripperNoOfPanels" value="${jobInstance?.ppgStripperNoOfPanels}" />
+                                </td>
+                             </tr>                             
+
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="aoiBeStartTime"><g:message code="aoiBeStartTime.label" default="AOI Before Etch Start Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeStartTime', 'errors')}">
+                                    <g:textField name="aoiBeStartTime" value="${jobInstance?.aoiBeStartTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiBeStopTime"><g:message code="job.aoiBeStopTime.label" default="AOI Before Stop Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeStopTime', 'errors')}">
+                                    <g:textField name="aoiBeStopTime" value="${jobInstance?.aoiBeStopTime}" />
+                                </td>
+                             </tr>                             
+
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="aoiBeRunTime"><g:message code="aoiBeRunTime.label" default="AOI Before Etch Run Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBeRunTime', 'errors')}">
+                                    <g:textField name="aoiBeRunTime" value="${jobInstance?.aoiBeRunTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="touchUpStartTime"><g:message code="job.touchUpStartTime.label" default="Touch Up Start Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'touchUpStartTime', 'errors')}">
+                                    <g:textField name="touchUpStartTime" value="${jobInstance?.touchUpStartTime}" />
+                                </td>                                
+                             </tr> 
+                            
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="touchUpStopTime"><g:message code="touchUpStopTime.label" default="Touch Up Stop Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'touchUpStopTime', 'errors')}">
+                                    <g:textField name="touchUpStopTime" value="${jobInstance?.touchUpStopTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="touchUpRunTime"><g:message code="job.touchUpRunTime.label" default="Touch Up Run Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'touchUpRunTime', 'errors')}">
+                                    <g:textField name="touchUpRunTime" value="${jobInstance?.touchUpRunTime}" />
+                                </td>                                
+                             </tr>
+
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="aoiAeStartTime"><g:message code="aoiAeStartTime.label" default="AOI After Etch Start Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeStartTime', 'errors')}">
+                                    <g:textField name="aoiAeStartTime" value="${jobInstance?.aoiAeStartTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiAeStopTime"><g:message code="job.aoiAeStopTime.label" default="AOI After Etch Stop Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeStopTime', 'errors')}">
+                                    <g:textField name="aoiAeStopTime" value="${jobInstance?.aoiAeStopTime}" />
+                                </td>                                
+                             </tr> 
+                            
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="aoiAeRunTime"><g:message code="aoiAeRunTime.label" default="AOI After Etch Run Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiAeRunTime', 'errors')}">
+                                    <g:textField name="aoiAeRunTime" value="${jobInstance?.aoiAeRunTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="repairStartTime"><g:message code="job.repairStartTime.label" default="Repair Inners Start Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'repairStartTime', 'errors')}">
+                                    <g:textField name="repairStartTime" value="${jobInstance?.repairStartTime}" />
+                                </td>                                
+                             </tr>
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="repairStopTime"><g:message code="repairStopTime.label" default="Repair Inners Stop Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'repairStopTime', 'errors')}">
+                                    <g:textField name="repairStopTime" value="${jobInstance?.repairStopTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="repairRunTime"><g:message code="job.repairRunTime.label" default="Repair Inners Run Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'repairRunTime', 'errors')}">
+                                    <g:textField name="repairRunTime" value="${jobInstance?.repairRunTime}" />
+                                </td>                                
+                             </tr> 
+                            
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="aoiBpStartTime"><g:message code="aoiBpStartTime.label" default="AOI Before Pattern Start Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBpStartTime', 'errors')}">
+                                    <g:textField name="aoiBpStartTime" value="${jobInstance?.aoiBpStartTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiBpStopTime"><g:message code="job.aoiBpStopTime.label" default="AOI Before Plating Stop Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBpStopTime', 'errors')}">
+                                    <g:textField name="aoiBpStopTime" value="${jobInstance?.aoiBpStopTime}" />
+                                </td>                                
+                             </tr>                                                          
+
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="aoiBpRunTime"><g:message code="aoiBpRunTime.label" default="AOI Before Plating Run Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiBpRunTime', 'errors')}">
+                                    <g:textField name="aoiBpRunTime" value="${jobInstance?.aoiBpRunTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiFinalStartTime"><g:message code="job.aoiFinalStartTime.label" default="AOI Final Start Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiFinalStartTime', 'errors')}">
+                                    <g:textField name="aoiFinalStartTime" value="${jobInstance?.aoiFinalStartTime}" />
+                                </td>                                
+                             </tr> 
+                            
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="aoiFinalStopTime"><g:message code="aoiFinalStopTime.label" default="AOI Final Stop Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiFinalStopTime', 'errors')}">
+                                    <g:textField name="aoiFinalStopTime" value="${jobInstance?.aoiFinalStopTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="aoiFinalRunTime"><g:message code="job.aoiFinalRunTime.label" default="AOI Final Run Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'aoiFinalRunTime', 'errors')}">
+                                    <g:textField name="aoiFinalRunTime" value="${jobInstance?.aoiFinalRunTime}" />
+                                </td>                                
+                             </tr>
+
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="repairOuterStartTime"><g:message code="repairOuterStartTime.label" default="Repair Outers Start Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'repairOuterStartTime', 'errors')}">
+                                    <g:textField name="repairOuterStartTime" value="${jobInstance?.repairOuterStartTime}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="repairOuterStopTime"><g:message code="job.repairOuterStopTime.label" default="Repair Outers Stop Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'repairOuterStopTime', 'errors')}">
+                                    <g:textField name="repairOuterStopTime" value="${jobInstance?.repairOuterStopTime}" />
+                                </td>                                
+                             </tr> 
+                            
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="repairOuterRunTime"><g:message code="repairOuterRunTime.label" default="Repair Outers Run Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'repairOuterRunTime', 'errors')}">
+                                    <g:textField name="repairOuterRunTime" value="${jobInstance?.repairOuterRunTime}" />
+                                </td>                             
+                             </tr>                                                                                                        
+                                                                      
                         </tbody>
                     </table>
                 </div>

@@ -68,6 +68,8 @@
                            <g:sortableColumn property="name" title="${message(code: 'machine.name.label', default: 'Name')}" />
                             
                            <g:sortableColumn property="totalLaborHours" title="${message(code: 'machine.totalLaborHours.label', default: 'Total Labor Hours')}" />                    
+                           
+                           <g:sortableColumn property="totalSquareFeet" title="${message(code: 'machine.totalSquareFeet.label', default: 'Total Square Feet')}" />
                         </tr>
                     </thead>
                     <tbody>
@@ -79,6 +81,8 @@
                             <td>${fieldValue(bean: machineInstance, field: "name")}</td>
                         
                         	<td>${fieldValue(bean: machineInstance, field: "totalLaborHours")}</td>
+                        	
+                        	<td>${fieldValue(bean: machineInstance, field: "totalSquareFeet")}</td>
                         </tr>
                     </g:each>
                     </tbody>

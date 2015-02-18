@@ -45,6 +45,7 @@ String dcAsf
 String dcTct
 Date dcDate
 String dcRack
+String dcNotes 
 
 //pluritec variables
 Date pluritecDate
@@ -80,6 +81,27 @@ Date aoiAeDate
 String aoiAeNoOfShorts
 String aoiAeNoOfOpens
 String aoiAeMachineLightSource
+Long aoiBeStartTime
+Long aoiBeStopTime
+Long aoiBeRunTime
+Long touchUpStartTime
+Long touchUpStopTime
+Long touchUpRunTime
+Long aoiAeStartTime
+Long aoiAeStopTime
+Long aoiAeRunTime
+Long repairStartTime
+Long repairStopTime
+Long repairRunTime
+Long aoiBpStartTime
+Long aoiBpStopTime
+Long aoiBpRunTime
+Long aoiFinalStartTime
+Long aoiFinalStopTime
+Long aoiFinalRunTime
+Long repairOuterStartTime
+Long repairOuterStopTime
+Long repairOuterRunTime
 
 //HAL
 Date halDate
@@ -101,6 +123,18 @@ String halDwellTime
 String halAirKnifePressureFront
 String halAirKnifePressureRear
 
+//PPG developer
+Date ppgDate
+String ppgOperator
+String ppgRunSpeed
+String ppgStepTab
+String ppgNoOfPanels
+
+//PPG Stripper
+Date ppgStripperDate
+String ppgStripperOperator
+String ppgStripperNoOfPanels
+
 static constraints = {process(nullable:true)
 					pepMean(nullable:true)
 					pepOperator(nullable:true)
@@ -116,6 +150,7 @@ static constraints = {process(nullable:true)
 					dcAsf(nullable:true)
 					dcTct(nullable:true)
 					dcRack(nullable:true)
+					dcNotes(nullable:true)
 					pluritecDate(nullable:true)
 					pluritecOperator(nullable:true)
 					pluritecXcomp(nullable:true)
@@ -136,6 +171,27 @@ static constraints = {process(nullable:true)
 					aoiAeOperator(nullable:true)
 					aoiBeNoOfOpens(nullable:true)
 					aoiBeNoOfShorts(nullable:true)
+					aoiBeStartTime(nullable:true)
+					aoiBeStopTime(nullable:true)
+					aoiBeRunTime(nullable:true)
+					touchUpStartTime(nullable:true)
+					touchUpStopTime(nullable:true)
+					touchUpRunTime(nullable:true)
+					aoiAeStartTime(nullable:true)
+					aoiAeStopTime(nullable:true)
+					aoiAeRunTime(nullable:true)
+					repairStartTime(nullable:true)
+					repairStopTime(nullable:true)
+					repairRunTime(nullable:true)
+					aoiBpStartTime(nullable:true)
+					aoiBpStopTime(nullable:true)
+					aoiBpRunTime(nullable:true)
+					aoiFinalStartTime(nullable:true)
+					aoiFinalStopTime(nullable:true)
+					aoiFinalRunTime(nullable:true)
+					repairOuterStartTime(nullable:true)
+					repairOuterStopTime(nullable:true)
+					repairOuterRunTime(nullable:true)
 					minSpace(nullable:true)
 					minLine(nullable:true)
 					aoiBeDate(nullable:true)
@@ -159,6 +215,15 @@ static constraints = {process(nullable:true)
 					halDwellTime(nullable:true)
 					halAirKnifePressureFront(nullable:true)
 					halAirKnifePressureRear(nullable:true)
+					ppgDate(nullable:true)
+					ppgOperator(nullable:true)
+					ppgRunSpeed(nullable:true)
+					ppgStepTab(nullable:true)
+					ppgNoOfPanels(nullable:true)
+					ppgStripperDate(nullable:true)
+					ppgStripperOperator(nullable:true)
+					ppgStripperNoOfPanels(nullable:true)
+					
 
 }
 

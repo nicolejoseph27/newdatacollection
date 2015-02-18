@@ -20,6 +20,10 @@
 			<jque:newDialog controller='job' action="searchWorkOrder" ajax="false" id='searchWorkOrder' title="Work Order Search" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
     		</jque:newDialog>   
+    		
+    		<jque:newDialog controller='job' action="machineVariableReset" ajax="false" id='machineVariableReset' title="Machine Variable Reset" success="s_div2" width="600">
+    		<jque:dialogField name="machine" value="" type="select" from="${['PPG Developer','PPG Stripper'] }"/>
+    		</jque:newDialog>  
             
         <div class="body" style="width:85%">
             <h1><g:message code="default.list.label" args="[entityName]" /></h1>
@@ -76,6 +80,18 @@
             <div class="job" style = "float:left">
             <jque:newShowDialog buttonCaption="Search Work Order" dialogId="searchWorkOrder" /> 
             </div>  
+            
+            <div class="job" style = "float:left">
+            <jque:newShowDialog buttonCaption="Machine variable reset" dialogId="machineVariableReset" /> 
+            </div>  
+            
+             <div class="job" style = "float:right">
+                	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">magnetboard</g:link>
+               </div>
+               
+               <div class="job" style = "float:right"> 
+                	 <g:link controller="process" action="bethview" style="color:#228B22;text-transform:capitalize">bethview</g:link>
+               </div>
         </div>
      </body>
 </html>
