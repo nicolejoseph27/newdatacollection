@@ -795,6 +795,21 @@
                                     <g:textField name="repairOuterRunTime" value="${jobInstance?.repairOuterRunTime}" />
                                 </td>                             
                              </tr>                                                                                                        
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="jobStartDate"><g:message code="jobStartDate.label" default="Job Start Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'jobStartDate', 'errors')}">
+                                    <g:textField name="jobStartDate" value="${jobInstance?.jobStartDate}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="jobEndDate"><g:message code="job.jobEndDate.label" default="Job End Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'jobEndDate', 'errors')}">
+                                    <g:textField name="jobEndDate" value="${jobInstance?.jobEndDate}" />
+                                </td>                                
+                             </tr> 
                                                                       
                         </tbody>
                     </table>

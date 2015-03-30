@@ -44,6 +44,12 @@
     </head>
     <body>
     
+    <div align = "center" style="font-size:100px;background-color:red">
+        <g:if test="${flash.message }">
+        ${flash.message }
+        </g:if>
+    </div>
+    
     <div id="pageBody">
    
         <div class="body">
@@ -146,6 +152,12 @@
             <jque:dialogField name="operator" value="" type="select" from="${['Gerry Glatz','Jesse Ward','Jake Kurnot','Frank Krznaric','Don Lang','Becky Brunner','Matt Dudik'] }"/>			
     		<jque:dialogField name="noOfPanels" value="0" />     
             </jque:newDialog>
+            
+            <jque:newDialog controller='job' action="aspectRatio" ajax="false" id='aspectRatio' title="aspectRatio" success="s_div2" width="600">
+    		<jque:dialogField name="workorder" value="" />
+            <jque:dialogField name="thickness" value="0" />			
+    		<jque:dialogField name="minHole" value="0" />     
+            </jque:newDialog>
                    
 <!-- Page display.  Each block produces a button that calls the applicable job dialog -->            
             <g:if test="${flash.message}">
@@ -210,7 +222,11 @@
                				
                				<div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="PPG Stripper" dialogId="ppgStripper" />
-               				</div> 
+               				</div>
+               				
+               				<div class="job" style = "float:right"> 
+                   	 		<jque:newShowDialog buttonCaption="Plating Aspect Ratio" dialogId="aspectRatio" />
+               				</div>                				 
                				
             </div>
             

@@ -1,4 +1,3 @@
-
 <%@ page import="magnetboard.Job" %>
 <html>
     <head>
@@ -20,10 +19,10 @@
         
 			<jque:newDialog controller='job' action="searchWorkOrder" ajax="false" id='searchWorkOrder' title="Work Order Search" success="s_div2" width="600">
     		<jque:dialogField name="workorder" value="" />
-    		</jque:newDialog>   
+    		</jque:newDialog>  
             
         <div class="body" style="width:85%">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
+            <h1><g:message code="Job Process Time"/></h1>
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -33,15 +32,24 @@
                         <tr>
                         
                             <g:sortableColumn style="text-align:center" property="workorder" title="${message(code: 'job.id.label', default: 'Work Order')}" />
-                        
+                            
                             <g:sortableColumn style="text-align:center" property="companyname" title="${message(code: 'job.companyname.label', default: 'Company Name')}" />
                         
                             <g:sortableColumn  style="text-align:center" property="jobname" title="${message(code: 'job.jobname.label', default: 'Part Number')}" />
                             
-                            <g:sortableColumn  style="text-align:center" property="duedate" title="${message(code: 'job.duedate.label', default: 'Due Date')}" />
+                            <g:sortableColumn style="text-align:center" property="aoiBeRunTime" title="${message(code: 'job.aoiBeRunTime.label', default: 'AOI BE Time')}" />
+
+                            <g:sortableColumn style="text-align:center" property="touchUpRunTime" title="${message(code: 'job.touchUpRunTime.label', default: 'Touch Up Time')}" />
+
+                            <g:sortableColumn style="text-align:center" property="aoiAeRunTime" title="${message(code: 'job.aoiAeRunTime.label', default: 'AOI AE Time')}" />
+
+                            <g:sortableColumn style="text-align:center" property="repairRunTime" title="${message(code: 'job.repairRunTime.label', default: 'Repair Time')}" />
                             
-                            <th style="text-align:center"><g:message code="job.process.label" default="Process" /></th>
-                        
+                            <g:sortableColumn style="text-align:center" property="aoiBpRunTime" title="${message(code: 'job.aoiBpRunTime.label', default: 'AOI BP Time')}" />   
+                            
+                            <g:sortableColumn style="text-align:center" property="aoiFinalRunTime" title="${message(code: 'job.aoiFinalRunTime.label', default: 'AOI Final Time')}" />
+                            
+                            <g:sortableColumn style="text-align:center" property="repairOuterRunTime" title="${message(code: 'job.repairOuterRunTime.label', default: 'Repair Outer Time')}" />                                                                             
                         </tr>
                     </thead>
                     <tbody>
@@ -49,14 +57,24 @@
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
                             <td style="text-align:center"><g:link action="show" id="${jobInstance.id}">${fieldValue(bean: jobInstance, field: "workorder")}</g:link></td>
-                        
+                            
                             <td style="text-align:center">${fieldValue(bean: jobInstance, field: "companyname")}</td>
                         
                             <td style="text-align:center">${fieldValue(bean: jobInstance, field: "jobname")}</td>
+ 
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBeRunTime")}</td>
                             
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "duedate")}</td>
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "touchUpRunTime")}</td>
                             
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "process")}</td>
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiAeRunTime")}</td>
+                            
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "repairRunTime")}</td>
+                            
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBpRunTime")}</td>
+                            
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiFinalRunTime")}</td>
+                            
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "repairOuterRunTime")}</td>
                         
                         </tr>
                     </g:each>
@@ -74,5 +92,6 @@
             <jque:newShowDialog buttonCaption="Search Work Order" dialogId="searchWorkOrder" /> 
             </div>  
         </div>
+        
      </body>
 </html>

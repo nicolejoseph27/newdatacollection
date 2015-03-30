@@ -53,6 +53,7 @@ class LoginController {
 		render view: view, model: [postUrl: postUrl,
 		                           rememberMeParameter: config.rememberMe.parameter]
 	}
+	
 
 	/**
 	 * The redirect action for Ajax requests. 

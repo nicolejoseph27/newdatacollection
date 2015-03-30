@@ -26,7 +26,10 @@ String salescontact
 String noofboardsordered
 String noofpanelsmade
 String notes
+String minHole
 Process process
+Date jobStartDate
+Date jobEndDate
 
 // PEP variables
 Date pepDate
@@ -46,6 +49,7 @@ String dcTct
 Date dcDate
 String dcRack
 String dcNotes 
+
 
 //pluritec variables
 Date pluritecDate
@@ -223,7 +227,9 @@ static constraints = {process(nullable:true)
 					ppgStripperDate(nullable:true)
 					ppgStripperOperator(nullable:true)
 					ppgStripperNoOfPanels(nullable:true)
-					
+					minHole(nullable:true)
+					jobStartDate(nullable:true)
+					jobEndDate(nullable:true)
 
 }
 

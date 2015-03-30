@@ -512,6 +512,18 @@
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "repairOuterRunTime")}</td>
                         </tr>  
+
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.jobStartDate.label" default="Job Start Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "jobStartDate")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.jobEndDate.label" default="Job End Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "jobEndDate")}</td>
+                        </tr>                        
+                        
                                                                                                                                                                                       
                     </tbody>
                 </table>

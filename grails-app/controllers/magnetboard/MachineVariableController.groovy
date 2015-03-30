@@ -43,6 +43,9 @@ class MachineVariableController {
 			if (params.chartName == "Labor Graph")	{
 				redirect(controller: "machine", action: "maintenanceGraph")
 		}
+			if (params.chartName == "AOI Time")	{
+				redirect(controller: "job", action: "aoiProcessTime")
+		}		 
 			[temp: temp]
 	//	l.each {
 	//	air << [it.airQuality_date, it.airQuality_spray, it.airQuality_sprayafterac]

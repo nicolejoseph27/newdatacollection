@@ -42,6 +42,11 @@
                
     </head>
     <body>
+     <div align = "center" style="font-size:100px;background-color:red">
+        <g:if test="${flash.message }">
+        ${flash.message }
+        </g:if>
+    </div>
      <div>
             <g:link controller="job" action ="engineering" style="color:#228B22;text-transform:capitalize">Engineering</g:link>
         </div>
@@ -51,7 +56,7 @@
     </jque:newDialog>
     
     <jque:newDialog controller='machineVariable' action="chartChoice" ajax="false" id='chartChoice' title="Pick a Chart" success="s_div2" width="600">
-    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec','Labor Graph'] }" />
+    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec','Labor Graph','AOI Time'] }" />
     </jque:newDialog>
       
       <jque:newDialog controller='job' action="processTime" ajax="false" id='startButton' title="Process Time" success="s_div2" width="600">
@@ -59,7 +64,13 @@
     <jque:dialogField name="processName" value="" type="select" from="${['AOI Inner Before Etch','Touch Up Inners','AOI Inner After Etch','Repair Inners','AOI outer before pattern','AOI outer final','Repair outers'] }" />
     <jque:checkBoxField name="start" type="checkbox" labelName="Start Button"  checked="${false}"/>
     <jque:checkBoxField name="stop" type="checkbox" labelName="Stop Button"  checked="${false}"/>
+    <jque:checkBoxField name="edit" type="checkbox" labelName="Edit Button"  checked="${false}"/>
     </jque:newDialog>
+    
+     <jque:newDialog controller='job' action="closeJob" ajax="false" id='closeJob' title="Close Job" success="s_div2" width="600">
+    <jque:dialogField name="workOrder" value="" />
+    <jque:checkBoxField name="closeJob" type="checkbox" labelName="Close Job"  checked="${false}"/>
+    </jque:newDialog>    
                
         <div id="pageBody">
         
@@ -102,6 +113,9 @@
               <div class="job" style = "float:left"> 
                    	 <jque:newShowDialog buttonCaption="Time Tracker" dialogId="startButton" />
                </div>
+              <div class="job" style = "float:right"> 
+                   	 <jque:newShowDialog buttonCaption="Close Job" dialogId="closeJob" />
+               </div>               
                
                <!--
                

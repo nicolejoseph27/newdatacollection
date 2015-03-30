@@ -97,8 +97,30 @@ class JobController {
     def create = {
         def jobInstance = new Job()
         jobInstance.properties = params
-        
+
     }
+	
+	def closeJob = {
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+			def jobInstance = Job.get(jobNumber.id) 
+			if (params.closeJob){
+			def today = new Date()
+			jobInstance.jobEndDate = today
+			}
+			}	
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(uri:'/')
+		}
+		def jobWithDuration = magnetboard.Job.findAllByJobStartDateIsNotNull()
+		def duration 
+		use(groovy.time.TimeCategory) {
+		duration = jobWithDuration.jobEndDate - jobWithDuration.jobStartDate
+		}
+		
+		render(view: "jobDuration", model: [jobInstanceList: jobWithDuration, jobInstanceTotal: jobWithDuration.count(), duration: duration])
+	}
 	
 	def copy = {
 		def jobInstance = Job.get(params.id)
@@ -107,6 +129,8 @@ class JobController {
 
     def save = {
         def jobInstance = new Job(params)
+		def today = new Date()
+		jobInstance.jobStartDate = today
         if (jobInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'job.label', default: 'Job'), jobInstance.id])}"
             redirect(action: "show", id: jobInstance.id)
@@ -161,21 +185,54 @@ class JobController {
 		render(view: "printmagnet", model: [jobInstance: jobInstance])
 	}
 	
+	def editTime = {
+		def jobInstance = Job.get(params.id)
+		if (!jobInstance) {
+			flash.message = "${message(code: 'default.notjobInstance.process.found.message', args: [message(code: 'job.label', default: 'Job'), params.id])}"
+			redirect(action: "list")
+		}
+		else {
+			return [jobInstance: jobInstance]
+		}
+	}
+	
+	def aoiProcessTime = {
+		def jobWithTime = magnetboard.Job.findAllByAoiBeRunTimeIsNotNull()
+		[jobInstanceList: jobWithTime, jobInstanceTotal: jobWithTime.count()]
+	}
+	
 	def processTime = {
+//	Added	
+		
+		if (params.workOrder == null ){
+			def jobWithTime = magnetboard.Job.findAllByAoiBeRunTimeIsNotNull()
+			[jobInstanceList: jobWithTime, jobInstanceTotal: jobWithTime.count()]
+		}	
+		
+		else {
+      			
+			def jobWithTime = magnetboard.Job.findAllByAoiBeRunTimeIsNotNull()
+//Added above
 		if(magnetboard.Job.findByWorkorder(params.workOrder)){
 			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
 			def jobInstance = Job.get(jobNumber.id) 
 			
-			if (params.processName == "AOI Inner Before Etch"){
+		if (params.processName == "AOI Inner Before Etch"){
 				if (params.start){
 					def beginTime = System.currentTimeMillis()
 				jobInstance.aoiBeStartTime = beginTime
 				}
 				if (params.stop){
+					if (jobInstance.aoiBeStartTime){
 					def endTime = System.currentTimeMillis()
 					jobInstance.aoiBeStopTime = endTime
 					if (!jobInstance.aoiBeRunTime){jobInstance.aoiBeRunTime = 0}
 					jobInstance.aoiBeRunTime = (jobInstance.aoiBeRunTime + (jobInstance.aoiBeStopTime - jobInstance.aoiBeStartTime).toLong())/60000
+					}
+					else {
+						flash.message = "No start time added"
+						redirect(uri:'/')
+					}	
 				}	
 			}	
 			
@@ -256,15 +313,19 @@ class JobController {
 					jobInstance.repairOuterRunTime = (jobInstance.repairOuterRunTime + (jobInstance.repairOuterStopTime - jobInstance.repairOuterStartTime).toLong())/60000
 				}
 			}
+			 if (params.edit){
+				 flash.message =  "ALL TIME IS IN MINUTES"
+				 render(view: "editTime", model: [jobInstance: jobInstance])
+			 }		
 			
-			[jobInstance: jobInstance]	
 		}
 		else {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(controller: "machine", action: "addJobDataList")
 		}	
-	}
-	
+		[jobInstanceList: jobWithTime, jobInstanceTotal: jobWithTime.count()]
+		}
+    }
 	
 	def reCreate = {
 		if(magnetboard.Finishedjobs.findByJobname(params.partnumber)){
@@ -293,6 +354,23 @@ class JobController {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(controller: "machine", action: "addJobDataList")
 		}	
+	}
+	
+	def aspectRatio = {
+		if(magnetboard.Job.findByWorkorder(params.workorder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workorder)
+			def jobInstance = Job.get(jobNumber.id)
+			def thickness = params.thickness.toFloat()
+			def minHole = params.minHole.toFloat()
+			if (jobInstance.minHole == null) { jobInstance.minHole = 0}
+			def aspectRatio = thickness / minHole
+			if (minHole < jobInstance.minHole.toFloat() && minHole > 0){
+			jobInstance.minHole = params.minHole}
+			def platingString = "Use DC Plating Line"
+			if (aspectRatio > 7){ platingString = "Use Reverse Pulse Line"}
+			flash.message = "Aspect Ratio is: " + aspectRatio +  "<br/  >" + platingString
+			redirect(controller: "machine", action: "addJobDataList")
+		}
 	}
 	
 	def aoiBeforeEtch = {
@@ -385,12 +463,12 @@ class JobController {
 		if (params.equipment == 'DC Plating/ Outer Layer Etch') {
 		searchJob.sort{it.dcDate}
 		searchJob.each {
-		jobSearch << [it.dcDate, it.dcAsf, it.dcRack, it.dcTct, it.dcCell, it.dcMinCuDeposit, it.dcMaxCuDeposit, it.dcSpec, it.dcNotes, it.olEtchLineSpeed, it.olEtchCuThickness, it.olEtchSplash]
+		jobSearch << [it.workorder, it.dcDate, it.dcAsf, it.dcRack, it.dcTct, it.dcCell, it.dcMinCuDeposit, it.dcMaxCuDeposit, it.dcSpec, it.dcNotes, it.olEtchLineSpeed, it.olEtchCuThickness, it.olEtchSplash]
 		}}
 		if (params.equipment == 'HASL') {
 			searchJob.sort{it.halDate}
 			searchJob.each {
-				jobSearch << [it.halDate, it.halOperator, it.halBakeTime, it.halTimeSinceLastBaked, it.halAirKnifeGap, it.halDoubleFlux, it.halDwellTime, it.halDoubleDip, it.halAirKnifePressureFront, it.halAirKnifePressureRear, it.halWithdrawalTurns, it.halGoldFingers, it.halColdPress, it.halNotes]
+				jobSearch << [it.workorder, it.halDate, it.halOperator, it.halBakeTime, it.halTimeSinceLastBaked, it.halAirKnifeGap, it.halDoubleFlux, it.halDwellTime, it.halDoubleDip, it.halAirKnifePressureFront, it.halAirKnifePressureRear, it.halWithdrawalTurns, it.halGoldFingers, it.halColdPress, it.halNotes]
 			}
 			render(view: "HASL", model: [jobSearch: jobSearch])}
 		[searchJob: searchJob, jobSearch: jobSearch]
