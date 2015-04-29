@@ -115,7 +115,17 @@
                </div>
               <div class="job" style = "float:right"> 
                    	 <jque:newShowDialog buttonCaption="Close Job" dialogId="closeJob" />
-               </div>               
+               </div>  
+               <div style="height:60px"></div>             
+               <div class="job" style = "float:left"> 
+                   	 <g:link controller="prePregPartNumber" action="create" style="color:#228B22;text-transform:capitalize">Add Pre-preg Part Number</g:link>
+               </div><div class="job" style = "float:right"> 
+                   	 <g:link controller="material" action="create" style="color:#228B22;text-transform:capitalize">Add Pre-preg Material</g:link>
+               </div>
+               <div style="height:60px"></div>
+               <div class="job" style = "float:left; width:98%;">
+                	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">magnetboard</g:link>
+               </div>
                
                <!--
                
@@ -136,9 +146,7 @@
                
                <div style="height:60px"></div>
                
-               <div class="job" style = "float:right">
-                	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">magnetboard</g:link>
-               </div>   -->
+                  -->
                </ul>
         </div>
     

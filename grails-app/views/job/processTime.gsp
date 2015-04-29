@@ -1,4 +1,3 @@
-
 <%@ page import="magnetboard.Job" %>
 <html>
     <head>
@@ -85,7 +84,7 @@
             </div>
             
             <div class="paginateButtons">
-                <g:paginate total="${jobInstanceTotal}" />
+                <g:paginate total="${jobInstanceTotal}"/>
             </div>
             
             </br>

@@ -30,6 +30,7 @@ String minHole
 Process process
 Date jobStartDate
 Date jobEndDate
+Integer durationProd
 
 // PEP variables
 Date pepDate
@@ -230,6 +231,7 @@ static constraints = {process(nullable:true)
 					minHole(nullable:true)
 					jobStartDate(nullable:true)
 					jobEndDate(nullable:true)
+					durationProd(nullable:true)
 
 }
 

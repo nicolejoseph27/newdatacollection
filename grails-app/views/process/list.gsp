@@ -313,7 +313,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			        case 3:
 			        	var target=$(this).attr("id")
 						//alert(target)
-						window.open ("http:/magnetboard/job/show/" + target,"mywindow","resizable=1,width=1050,height=600,toolbar=1,scrollbars=1"); 				
+						window.open ("http:/job/show/" + target,"mywindow","resizable=1,width=1050,height=600,toolbar=1,scrollbars=1"); 				
 						$('#:contains(allItems) li').noContext();
 			            break;
 			        default:
@@ -482,14 +482,16 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 							oldprocessId: contentToBeDragged_src.id.substr(9)
 						}
 						${remoteFunction(controller:'process', action:'dropJob', params:'jQuery.param(lparams)')}
-						}else{
+						}
+					else{
 						destinationObj.parentNode.insertBefore(contentToBeDragged,destinationObj);
 						var lparams = {
 							jobId: contentToBeDragged.id,
 							processId: $(destinationObj).parent().attr("id").substr(9),
 							oldprocessId: contentToBeDragged_src.id.substr(9)
 						}
-						${remoteFunction(controller:'process', action:'dropJob', params:'jQuery.param(lparams)')}		
+						${remoteFunction(controller:'process', action:'dropJob', params:'jQuery.param(lparams)')
+						}		
 					}
 					mouseoverObj.className='';
 					destinationObj = false;

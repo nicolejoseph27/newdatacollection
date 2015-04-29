@@ -1,4 +1,3 @@
-
 <%@ page import="magnetboard.Job" %>
 <html>
     <head>

@@ -42,15 +42,8 @@
 
                             <g:sortableColumn style="text-align:center" property="jobEndDate" title="${message(code: 'job.jobEndDate.label', default: 'Job End Date')}" />
 
-                            <g:sortableColumn style="text-align:center" property="aoiAeRunTime" title="${message(code: 'job.aoiAeRunTime.label', default: 'AOI AE Time')}" />
+                            <g:sortableColumn style="text-align:center" property="durationProd" title="${message(code: 'job.durationProd.label', default: 'Days')}" />
 
-                            <g:sortableColumn style="text-align:center" property="repairRunTime" title="${message(code: 'job.repairRunTime.label', default: 'Repair Time')}" />
-                            
-                            <g:sortableColumn style="text-align:center" property="aoiBpRunTime" title="${message(code: 'job.aoiBpRunTime.label', default: 'AOI BP Time')}" />   
-                            
-                            <g:sortableColumn style="text-align:center" property="aoiFinalRunTime" title="${message(code: 'job.aoiFinalRunTime.label', default: 'AOI Final Time')}" />
-                            
-                            <g:sortableColumn style="text-align:center" property="repairOuterRunTime" title="${message(code: 'job.repairOuterRunTime.label', default: 'Repair Outer Time')}" />                                                                             
                         </tr>
                     </thead>
                     <tbody>
@@ -67,16 +60,7 @@
                             
                             <td style="text-align:center">${fieldValue(bean: jobInstance, field: "jobEndDate")}</td>
                             
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiAeRunTime")}</td>
-                            
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "repairRunTime")}</td>
-                            
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiBpRunTime")}</td>
-                            
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "aoiFinalRunTime")}</td>
-                            
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "repairOuterRunTime")}</td>
-                        
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "durationProd")}</td>
                         </tr>
                     </g:each>
                     </tbody>

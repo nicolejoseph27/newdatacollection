@@ -10,6 +10,12 @@ class JobController {
 	
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+	
+	def engineering = {
+		params.max = Math.min(params.max ? params.int('max') : 15, 100)
+		[jobInstanceList: Job.list(params), jobInstanceTotal: Job.count()]
+	}
+	
     def index = {
         redirect(action: "list", params: params)
     }
@@ -40,11 +46,6 @@ class JobController {
 		[flawsPerSide: flawsPerSide]
 	}
 	
-	def engineering = {
-		params.max = Math.min(params.max ? params.int('max') : 15, 100)
-		[jobInstanceList: Job.list(params), jobInstanceTotal: Job.count()]
-	}
-	
 	def innerLayerFirstPassYield = {
 		def jobInstance = Job.findAllByAoiAeDateIsNotNull()		
 		def grandTotalLayers = 0
@@ -64,62 +65,36 @@ class JobController {
 		}
 		[firstPassYield: firstPassYield]
 	}
-	
-	def pepData = {
-		def jobInstance = Job.findAllByPepMeanIsNotNull()
-		def summ = jobInstance.sum{it.numberPepMean}
-		def amount = jobInstance.size()
-		def average = summ/amount
-		jobInstance.sort{it.pepDate}
-		def pep = []
-		jobInstance.each {
-		pep << [it.pepDate, it.pepMean, average]
-		}
-		[jobInstance: jobInstance,pep: pep]
-	}
 
-	def pluritecData = {
-		def jobInstance = Job.findAllByPluritecXcompIsNotNull()
-		def summX = jobInstance.sum{it.numberPluritecXcomp}
-		def summY = jobInstance.sum{it.numberPluritecYcomp}
-		def amount = jobInstance.size()
-		def averageX = summX/amount
-		def averageY = summY/amount
-		jobInstance.sort{it.pluritecDate}
-		def plur = []
-		jobInstance.each {
-			plur << [it.pluritecDate, it.pluritecXcomp, it.pluritecYcomp, averageX, averageY]
-		}
-		[jobInstance: jobInstance,plur: plur]
-		
-	}
 	
     def create = {
         def jobInstance = new Job()
         jobInstance.properties = params
 
     }
-	
+//CLOSE A JOB - Adds an End Date	
 	def closeJob = {
+		params.max = Math.min(params.max ? params.int('max') : 15, 100)
+		if(params.workOrder){
 		if(magnetboard.Job.findByWorkorder(params.workOrder)){
 			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
 			def jobInstance = Job.get(jobNumber.id) 
 			if (params.closeJob){
 			def today = new Date()
 			jobInstance.jobEndDate = today
+				if (!jobInstance.jobStartDate) {
+					flash.message = "NO START DATE"}
+				else	
+				{
+					jobInstance.durationProd = (jobInstance.jobEndDate - jobInstance.jobStartDate).toInteger()		
+				}		
 			}
 			}	
 		else {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(uri:'/')
-		}
-		def jobWithDuration = magnetboard.Job.findAllByJobStartDateIsNotNull()
-		def duration 
-		use(groovy.time.TimeCategory) {
-		duration = jobWithDuration.jobEndDate - jobWithDuration.jobStartDate
-		}
-		
-		render(view: "jobDuration", model: [jobInstanceList: jobWithDuration, jobInstanceTotal: jobWithDuration.count(), duration: duration])
+		}}
+		render(view: "jobDuration", model: [jobInstanceList: Job.findAllByJobStartDateIsNotNull(params), jobInstanceTotal: Job.findAllByJobStartDateIsNotNull().size()])
 	}
 	
 	def copy = {
@@ -145,10 +120,12 @@ class JobController {
 		def process1 = jobInstance.process?.canister
 		if (process1 ==~ 'finished')
 		{
-		def today = new Date()
-		def job1 = new Finishedjobs(jobname:jobInstance.jobname,companyname:jobInstance.companyname,datefinished: today,shoporder:jobInstance.shoporder,nooflayers:jobInstance.nooflayers,noboardsperpanel:jobInstance.noboardsperpanel,size:jobInstance.size,projectmanager:jobInstance.projectmanager,salescontact:jobInstance.salescontact,notes:jobInstance.notes,workorder:jobInstance.workorder,noofpanelsmade:jobInstance.noofpanelsmade,noofboardsordered:jobInstance.noofboardsordered,totalvalue:jobInstance.totalvalue,valueperboard:jobInstance.valueperboard)
-		saveOrThrow(job1)
-		jobInstance.delete(flush: true)
+		//def today = new Date()
+		//def job1 = new Finishedjobs(jobname:jobInstance.jobname,companyname:jobInstance.companyname,datefinished: today,shoporder:jobInstance.shoporder,nooflayers:jobInstance.nooflayers,noboardsperpanel:jobInstance.noboardsperpanel,size:jobInstance.size,projectmanager:jobInstance.projectmanager,salescontact:jobInstance.salescontact,notes:jobInstance.notes,workorder:jobInstance.workorder,noofpanelsmade:jobInstance.noofpanelsmade,noofboardsordered:jobInstance.noofboardsordered,totalvalue:jobInstance.totalvalue,valueperboard:jobInstance.valueperboard)
+		//saveOrThrow(job1)
+		//jobInstance.delete(flush: true)
+			def p1 = Process.get(57)
+			jobInstance.process = p1
 		}
         if (!jobInstance) {
             flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'job.label', default: 'Job'), params.id])}"
@@ -196,23 +173,44 @@ class JobController {
 		}
 	}
 	
-	def aoiProcessTime = {
-		def jobWithTime = magnetboard.Job.findAllByAoiBeRunTimeIsNotNull()
-		[jobInstanceList: jobWithTime, jobInstanceTotal: jobWithTime.count()]
+	def pepData = {
+		def jobInstance = Job.findAllByPepMeanIsNotNull()
+		def summ = jobInstance.sum{it.numberPepMean}
+		def amount = jobInstance.size()
+		def average = summ/amount
+		jobInstance.sort{it.pepDate}
+		def pep = []
+		jobInstance.each {
+		pep << [it.pepDate, it.pepMean, average]
+		}
+		[jobInstance: jobInstance,pep: pep]
 	}
-	
-	def processTime = {
-//	Added	
+
+	def pluritecData = {
+		def jobInstance = Job.findAllByPluritecXcompIsNotNull()
+		def summX = jobInstance.sum{it.numberPluritecXcomp}
+		def summY = jobInstance.sum{it.numberPluritecYcomp}
+		def amount = jobInstance.size()
+		def averageX = summX/amount
+		def averageY = summY/amount
+		jobInstance.sort{it.pluritecDate}
+		def plur = []
+		jobInstance.each {
+			plur << [it.pluritecDate, it.pluritecXcomp, it.pluritecYcomp, averageX, averageY]
+		}
+		[jobInstance: jobInstance,plur: plur]
 		
+	}
+
+//PROCESS TIME - AOI Times		
+	def processTime = {
+		params.max = Math.min(params.max ? params.int('max') : 15, 100)
+
 		if (params.workOrder == null ){
-			def jobWithTime = magnetboard.Job.findAllByAoiBeRunTimeIsNotNull()
-			[jobInstanceList: jobWithTime, jobInstanceTotal: jobWithTime.count()]
+			[jobInstanceList: Job.findAllByAoiBeRunTimeIsNotNull(params), jobInstanceTotal: Job.findAllByAoiBeRunTimeIsNotNull().size()]
 		}	
 		
 		else {
-      			
-			def jobWithTime = magnetboard.Job.findAllByAoiBeRunTimeIsNotNull()
-//Added above
 		if(magnetboard.Job.findByWorkorder(params.workOrder)){
 			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
 			def jobInstance = Job.get(jobNumber.id) 
@@ -316,14 +314,13 @@ class JobController {
 			 if (params.edit){
 				 flash.message =  "ALL TIME IS IN MINUTES"
 				 render(view: "editTime", model: [jobInstance: jobInstance])
-			 }		
-			
+			 }			
 		}
 		else {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(controller: "machine", action: "addJobDataList")
 		}	
-		[jobInstanceList: jobWithTime, jobInstanceTotal: jobWithTime.count()]
+		[jobInstanceList: Job.findAllByAoiBeRunTimeIsNotNull(params), jobInstanceTotal: Job.findAllByAoiBeRunTimeIsNotNull().size()]
 		}
     }
 	
