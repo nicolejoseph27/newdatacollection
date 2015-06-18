@@ -249,6 +249,13 @@
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'dcNotes', 'errors')}">
                                     <g:textField name="dcNotes" value="${jobInstance?.dcNotes}" />
                                 </td>
+                                                           
+                                <td valign="top" class="name">
+                                  <label for="minHole"><g:message code="minHole.label" default="Minimum Hole Diameter" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'minHole', 'errors')}">
+                                    <g:textField name="minHole" value="${jobInstance?.minHole}" />
+                                </td>  
                              </tr>
                               
                               <tr class="prop">
@@ -793,7 +800,7 @@
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'repairOuterRunTime', 'errors')}">
                                     <g:textField name="repairOuterRunTime" value="${jobInstance?.repairOuterRunTime}" />
-                                </td>                             
+                                </td>                                                           
                              </tr>                                                                                                        
                              
                              <tr class="prop2">
@@ -810,7 +817,45 @@
                                     <g:textField name="jobEndDate" value="${jobInstance?.jobEndDate}" />
                                 </td>                                
                              </tr> 
-                                                                      
+                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="durationProd"><g:message code="durationProd.label" default="Days To Complete" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'durationProd', 'errors')}">
+                                    <g:textField name="durationProd" value="${jobInstance?.durationProd}" />
+                                </td>                            
+                             </tr> 
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="onTimeDeliveryRatio"><g:message code="onTimeDeliveryRatio.label" default="On-Time Delivery Ratio" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'onTimeDeliveryRatio', 'errors')}">
+                                    <g:textField name="onTimeDeliveryRatio" value="${jobInstance?.onTimeDeliveryRatio}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="shipDate"><g:message code="job.shipDate.label" default="Ship Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'shipDate', 'errors')}">
+                                    <g:textField name="shipDate" value="${jobInstance?.shipDate}" />
+                                </td>                                
+                             </tr>                                                         
+                             
+                             <tr class="prop">
+                                <td valign="top" class="name">
+                                  <label for="originalMilestones"><g:message code="originalMilestones.label" default="Original Milestones" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
+                                    <g:textField name="originalMilestones" value="${jobInstance?.originalMilestones}" />
+                                </td>
+                                <td valign="top" class="name">
+                                  <label for="processMilestones"><g:message code="job.processMilestones.label" default="Process Milestones" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'processMilestones', 'errors')}">
+                                    <g:textField name="processMilestones" value="${jobInstance?.processMilestones}" />
+                                </td>                                
+                             </tr>                                                                      
                         </tbody>
                     </table>
                 </div>

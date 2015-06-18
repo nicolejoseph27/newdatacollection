@@ -197,6 +197,9 @@
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "dcNotes")}</td>
                             
+                           <td valign="top" class="name" style="text-align:right"><g:message code="job.minHole.label" default="Minimum Hole Diameter"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "minHole")}</td>                            
                         </tr>
                         
                         <tr class="prop">
@@ -522,9 +525,37 @@
 							<td valign="top" class="name" style="text-align:right"><g:message code="job.jobEndDate.label" default="Job End Date"/></td>
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "jobEndDate")}</td>
-                        </tr>                        
+                        </tr>  
+
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.durationProd.label" default="Days to Complete"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "durationProd")}</td>
+                        </tr>                                               
                         
-                                                                                                                                                                                      
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.onTimeDeliveryRatio.label" default="On-Time Delivery Ratio"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "onTimeDeliveryRatio")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.shipDate.label" default="Ship Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "shipDate")}</td>
+                        </tr>  
+                        <tr class="prop2">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.originalMilestones.label" default="Original Milestones"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "originalMilestones")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.processMilestones.label" default="Process Milestones"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "processMilestones")}</td>
+                        </tr>  
+                        
+                                                                                                                                                                                                             
                     </tbody>
                 </table>
             </div>

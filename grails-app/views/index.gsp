@@ -126,6 +126,9 @@
                <div class="job" style = "float:left; width:98%;">
                 	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">magnetboard</g:link>
                </div>
+               <div class="job" style = "float:left; width:98%;">
+                	 <g:link controller="process" action="jakevue" style="color:#228B22;text-transform:capitalize">Jake Vue</g:link>
+               </div>
                
                <!--
                

@@ -1,6 +1,6 @@
-
 <%@ page import="magnetboard.Process" %>
 <%@ page import="magnetboard.Job" %>
+<%@ page import="magnetboard.Constants" %>
 <%@page 
 import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 
@@ -21,7 +21,6 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 		font-family: Trebuchet MS, Lucida Sans Unicode, Arial, sans-serif;	/* Font to use */
 		background-color:white;
 	}
-	
 	#footer{
 		height:30px;
 		vertical-align:middle;
@@ -50,12 +49,13 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 
 	#dhtmlgoodies_dragDropContainer li,#dragContent li,li#indicateDestination{	/* Movable items, i.e. <LI> */
 		list-style-type:none;
-		height:22px;
+		height:28px;
 		background-color:#EEE;
 		border:1px solid #000;
 		padding:2px;
 		margin-bottom:2px;
 		cursor:pointer;
+		font-size:0.9em;
 		border-radius:6px;
 	}
 
@@ -73,13 +73,13 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 
 		/* CSS HACK */
 		width: 180px;	/* IE 5.x */
-		width/* */:/**/165px;	/* Other browsers */
-		width: /**/165px;
+		width/* */:/**/160px;	/* Other browsers */
+		width: /**/160px;
 
 	}
 	#dhtmlgoodies_listOfItems ul{	/* Left(Sources) column <ul> */
 		height:2000px;
-		overflow-Y:scroll;
+		overflow-Y:scroll; 
 	}
 
 	div#dhtmlgoodies_listOfItems div{
@@ -96,14 +96,13 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 	#dhtmlgoodies_listOfItems div p{	/* Heading above left column */
 		margin:0px;
 		font-weight:bold;
-		padding-left:2px;
+		padding-left:12px;
 		background-color:black;
 		color:#FFF;
 		margin-bottom:5px;
 		text-align:center;
-		font-size:16px;
+		font-size:12px;
 		font-family:sans-serif;
-		
 	}
 	/* END LEFT COLUMN CSS */
 
@@ -117,48 +116,44 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 		margin-left:185px;
 		float:left;
 		overflow:auto;
-		
 	}
 	#dhtmlgoodies_mainContainer div{	/* Parent <div> of small boxes */
 		float:left;
-		margin-right:10px;
-		margin-bottom:10px;
+		margin-right:5px;
+		margin-bottom:5px;
 		margin-top:0px;
-		border:5px solid #999;
+		border:1px solid #999;
 		box-shadow:2px 2px 3px 3px #6495ED;
 		border-style:groove;
-		border-radius:13px;
+		border-radius:12px;
 		background-color:#F5F5F5;
 
 		/* CSS HACK */
-		width: 172px;	/* IE 5.x */
-		width/* */:/**/173px;	/* Other browsers */
-		width: /**/173px;
-		
+		width: 145px;	/* IE 5.x */
+		width/* */:/**/145px;	/* Other browsers */
+		width: /**/145px;
 
 	}
 	#dhtmlgoodies_mainContainer div ul{
-		margin-left:2px;
+		margin-left:4px;
 	}
 
 	#dhtmlgoodies_mainContainer div p{	/* Heading above small boxes */
 		margin:0px;
 		padding:0px;
-		padding-left:4px;
+		padding-left:2px;
 		font-weight:bold;
 		background-color:black;
 		color:#FFF;
 		margin-bottom:5px;
 		text-align:center;
-		font-size:16px;
+		font-size:12px;
 		text-transform:capitalize;
 		font-family:sans-serif;
 	}
 
-	
-
 	#dhtmlgoodies_mainContainer ul{	/* Small box in right column ,i.e <ul> */
-		width:165px;
+		width:138px;
 		height:250px;
 		border:0px;
 		margin-bottom:0px;
@@ -182,7 +177,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 	ul::-webkit-scrollbar-button:start:decrement,
         ul::-webkit-scrollbar-button:end:increment {
                 display: block;
-                height: 8px;
+                height: 10px;
         }
 
 	#dragContent{	/* Drag container */
@@ -483,17 +478,16 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 							processId: destinationObj.id.substr(9),
 							oldprocessId: contentToBeDragged_src.id.substr(9)
 						}
+						//alert(contentToBeDragged_src.id)
 						${remoteFunction(controller:'process', action:'dropJob', params:'jQuery.param(lparams)')}
-						}
-					else{
+						}else{
 						destinationObj.parentNode.insertBefore(contentToBeDragged,destinationObj);
 						var lparams = {
 							jobId: contentToBeDragged.id,
 							processId: $(destinationObj).parent().attr("id").substr(9),
 							oldprocessId: contentToBeDragged_src.id.substr(9)
 						}
-						${remoteFunction(controller:'process', action:'dropJob', params:'jQuery.param(lparams)')
-						}		
+						${remoteFunction(controller:'process', action:'dropJob', params:'jQuery.param(lparams)')}
 					}
 					mouseoverObj.className='';
 					destinationObj = false;
@@ -522,6 +516,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 
 		}
 
+		
 
 		function initDragDropScript()
 		{
@@ -546,7 +541,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			var uls = mainContainer.getElementsByTagName('UL');
 			itemHeight = itemHeight + verticalSpaceBetweenListItems;
 			for(var no=0;no<uls.length;no++){
-				uls[no].style.height = itemHeight * 8  + 'px';
+				uls[no].style.height = itemHeight * 6  + 'px';
 			}
 			
 			var leftContainer = document.getElementById('dhtmlgoodies_listOfItems');
@@ -577,113 +572,109 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 		}		window.onload = initDragDropScript;
 		
 
+		// right click on the job for more info
+		//$(document).ready( function() {
 				
-			// right click on the process for throughput information
-			//$(document).ready( function() {	
-			//	$("#dhtmlgoodies_mainContainer ul").rightClick( function(e) {
-			//	var target=$(this).attr("id")
-			//	alert(target);
-			//	});	
-			//	$('#dhtmlgoodies_mainContainer ul').noContext();
+				//$('#:contains(allItems) li').rightClick( function(e) {
+				
+				//var target=$(this).attr("id")
+				//alert(target)
+				//window.open ("http:/magnetboard/job/show/" + target,"mywindow","resizable=1,width=500,height=650,toolbar=1,scrollbars=1"); 				
+				//destinationObj.parentNode.insertBefore(contentToBeDragged,destinationObj);
+//});
+				//$('#:contains(allItems) li').noContext();
+			   // $("#dragContent").noContext();
+			    	
 			//});
+			
+			// right click on the process for throughput information
+			$(document).ready( function() {	
+				$("#dhtmlgoodies_mainContainer ul").rightClick( function(e) {
+				});	
+				$('#dhtmlgoodies_mainContainer ul').noContext();
+			});
 		</script>
     </head>
     <body>
         	<div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
+            <g:link controller="constants" action="list" style="color:#228B22;text-transform:capitalize">Change color limits</g:link>
         </div>
         <div id="dhtmlgoodies_dragDropContainer">
 	<div id="dhtmlgoodies_listOfItems">	
 		<div>
 			<p style="border-top-right-radius:9px;border-top-left-radius:9px">New Work Orders</p>
 		<ul id="allItems">
+		
 			<g:each in="${jobInstanceList}" status="i" var="jobInstance" >
-			<g:if test= "${jobInstance.process.toString() == 'null'}">
-			<g:if test = "${jobInstance.priority == 'Normal Turn Multi-Layer'}">
-			<li id="${jobInstance.id}" style="border-radius:6px">
-			<p style="background-color:#FFB84D;color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">			
-			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 			<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 			<!--</br>-->
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 			<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 			</br>
- 			</p>	
-			</li>
-			</g:if>
-			<g:if test = "${jobInstance.priority == 'Fast Turn Multi-Layer'}">
-			<li id="${jobInstance.id}" style="border-radius:6px">
-			<p style="background-color:red;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 			<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 			<!--</br>-->
- 			<!--<span style="float:left;font-size:14px">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 			<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 			</br>
- 			</p>	
-			</li>
-			</g:if>
-			<g:if test = "${jobInstance.priority == 'Rework'}">
-			<li id="${jobInstance.id}" style="border-radius:6px">
-			<p style="background-color:#00CC33;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 			<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 			<!--</br>-->
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 			<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 			</br>
- 			</p>	
-			</li>
-			</g:if>
-			<g:if test = "${jobInstance.priority == 'Normal Turn Double Sided'}">
-			<li id="${jobInstance.id}" style="border-radius:6px">
-			<p style="background-color:white;color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 			<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 			<!--</br>-->
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 			<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 			</br>
- 			</p>	
-			</li>
-			</g:if>
-			<g:if test = "${jobInstance.priority == 'Fast Turn Double Sided'}">
-			<li id="${jobInstance.id}" style="border-radius:6px">
-			<p style="background-color:yellow;color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 			<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 			<!--</br>-->
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 			<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 			</br>
- 			</p>	
-			</li>
-			</g:if>
-			<g:if test = "${jobInstance.priority == 'Assembly'}">
-			<li id="${jobInstance.id}" style="border-radius:6px">
-			<p style="background-color:blue;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 			<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 			<!--</br>-->
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 			<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 			</br>
- 			</p>	
-			</li>
-			</g:if>
-			<g:if test = "${jobInstance.priority == 'On-hold'}">
-			<li id="${jobInstance.id}" style="border-radius:6px">
-			<p style="background-color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
-			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 			<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 			<!--</br>-->
- 			<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 			<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 			</br>
- 			</p>
- 			</li>
- 			</g:if>
-			</g:if>
+			
+				<g:if test= "${jobInstance.process.toString() == 'null'}">
+				
+					<g:if test= "${!jobInstance.onTimeDeliveryRatio}">	
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:white;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>
+			 			</p>		
+						</li>
+					</g:if>					
+				
+					<g:if test = "${jobInstance.onTimeDeliveryRatio && jobInstance.onTimeDeliveryRatio <= red}">
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:red;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>	
+			 			</p>		
+						</li>
+					</g:if>
+					
+					<g:if test = "${jobInstance.onTimeDeliveryRatio > red && jobInstance.onTimeDeliveryRatio <= yellow}">
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:yellow;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>
+			 			</p>		
+						</li>
+					</g:if>
+						
+					<g:if test = "${jobInstance.onTimeDeliveryRatio > yellow}">
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:green;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>	
+			 			</p>		
+						</li>
+					</g:if>
+													
+				</g:if>
 			</g:each>
 		</ul>
 		</div>
@@ -695,111 +686,81 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			<p style="border-top-right-radius:9px;border-top-left-radius:9px">${fieldValue(bean: processInstance, field: "canister")}</p>
 			<ul id="allItems_${processInstance.id}">
 			<g:each in="${jobInstanceList}" status="j" var="jobInstance" >
-			
 			<g:if test= "${processInstance.canister == jobInstance.process.toString()}">
 			
-				<g:if test = "${jobInstance.priority == 'Normal Turn Multi-Layer'}">
-					<li id="${jobInstance.id}">
-						<p style="background-color:#FFB84D;color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">			
-						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 						<!--</br>-->
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 							<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 						</br>
- 						</p>		
-					</li>
-				</g:if>
-			
-				<g:if test = "${jobInstance.priority == 'Fast Turn Multi-Layer'}">
-					<li id="${jobInstance.id}">
-						<p style="background-color:red;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 						<!--</br>-->
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 						<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 						</br>
- 						</p>	
-					</li>
-				</g:if>
-				
-				<g:if test = "${jobInstance.priority == 'Rework'}">
-					<li id="${jobInstance.id}">
-						<p style="background-color:#00CC33;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 						<!--</br>-->
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 						<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 						</br>
- 						</p>	
-					</li>
-				</g:if>
-				
-				<g:if test = "${jobInstance.priority == 'Normal Turn Double Sided'}">
-					<li id="${jobInstance.id}">
-						<p style="background-color:white;color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 						<!--</br>-->
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 						<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 						</br>
- 						</p>	
-					</li>
-				</g:if>
-				
-				<g:if test = "${jobInstance.priority == 'Fast Turn Double Sided'}">
-					<li id="${jobInstance.id}">
-						<p style="background-color:yellow;color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 						<!--</br>-->
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 						<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 						</br>
- 						</p>	
-					</li>
-				</g:if>
-				
-				<g:if test = "${jobInstance.priority == 'Assembly'}">
-					<li id="${jobInstance.id}">
-						<p style="background-color:blue;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 						<!--</br>-->
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 						<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 						</br>
- 						</p>	
-					</li>
-				</g:if>
-				
-				<g:if test = "${jobInstance.priority == 'On-hold'}">
-					<li id="${jobInstance.id}">
-						<p style="background-color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">
-						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
- 						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
- 						<!--</br>-->
- 						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 						<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
- 						</br>
- 						</p>
- 					</li>
- 				</g:if>
- 				
+			<g:if test= "${!jobInstance.onTimeDeliveryRatio}">	
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:white;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>
+			 			</p>		
+						</li>
+					</g:if>
+
+					<g:if test = "${jobInstance.onTimeDeliveryRatio && jobInstance.onTimeDeliveryRatio <= red}">
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:red;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>	
+			 			</p>		
+						</li>
+					</g:if>
+					
+					<g:if test = "${jobInstance.onTimeDeliveryRatio > red && jobInstance.onTimeDeliveryRatio <= yellow}">
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:yellow;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>
+			 			</p>		
+						</li>
+					</g:if>
+						
+					<g:if test = "${jobInstance.onTimeDeliveryRatio > yellow}">
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:green;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>	
+			 			</p>		
+						</li>
+					</g:if>	
+
 			</g:if>
-				
 			</g:each>
-			
 			</ul>	
-		  </div>
+		</div>
 		</g:each>
 	</div>
 </div>
 <ul id="dragContent"></ul>
 <div id="dragDropIndicator"></div>
 <div id="saveContent"><!-- THIS ID IS ONLY NEEDED FOR THE DEMO --></div>
- </body>
+    </body>
 </html>

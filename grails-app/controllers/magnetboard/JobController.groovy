@@ -106,6 +106,32 @@ class JobController {
         def jobInstance = new Job(params)
 		def today = new Date()
 		jobInstance.jobStartDate = today
+		
+		// create correct Original Milestones string
+		def origMile = jobInstance.originalMilestones.tokenize(',')
+		def placeHolder = origMile.pop()
+		while (placeHolder == "CAM"  && origMile.size() > 0){
+			placeHolder = origMile.pop()
+		}
+		origMile.push(placeHolder)
+		jobInstance.originalMilestones = origMile.join(",")
+		
+		//Push onto process Milestones
+		def procMile = []
+		while (origMile.size() > 1){	
+			procMile.push(origMile.pop())	
+		}
+		procMile.push(origMile.pop())
+		jobInstance.processMilestones = procMile.join(",")
+		
+		// create on time delivery ratio
+		Date shipDate = today
+		if (jobInstance.shipDate)
+		{shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
+		}
+		origMile = jobInstance.originalMilestones.tokenize(',')
+		jobInstance.onTimeDeliveryRatio = (shipDate - today) / origMile.size()
+		
         if (jobInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'job.label', default: 'Job'), jobInstance.id])}"
             redirect(action: "show", id: jobInstance.id)
@@ -114,7 +140,7 @@ class JobController {
             render(view: "create", model: [jobInstance: jobInstance])
         }
     }
-
+	
     def show = {
         def jobInstance = Job.get(params.id)
 		def process1 = jobInstance.process?.canister

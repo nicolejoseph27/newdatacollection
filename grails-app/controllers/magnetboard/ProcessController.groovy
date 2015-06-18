@@ -2,6 +2,8 @@ package magnetboard
 
 import magnetboard.Finishedjobs
 
+import magnetboard.Constants
+
 
 import grails.plugins.springsecurity.Secured
 
@@ -16,7 +18,9 @@ class ProcessController {
 
 	def list = {
 		params.max = Math.min(params.max ? params.int('max') : 75, 100)
-		[processInstanceList: Process.list(params), processInstanceTotal: Process.count(),jobInstanceList:Job.list()]
+		def processList = Process.list(params) - Process.findByCanister("Archive")
+		def jobProcessList = Job.list().sort{it.onTimeDeliveryRatio}
+		[processInstanceList: processList, processInstanceTotal: Process.count(),jobInstanceList:jobProcessList]
 	}
 	
 	def prioritylist = {
@@ -25,9 +29,20 @@ class ProcessController {
 	}
 	def bethview = {
 		params.max = Math.min(params.max ? params.int('max') : 75, 100)
-		[processInstanceList: Process.list(params), processInstanceTotal: Process.count(),jobInstanceList:Job.list()]
+		def processList = Process.list(params) - Process.findByCanister("Archive")
+		def jobProcessList = Job.list().sort{it.onTimeDeliveryRatio}
+		[processInstanceList: processList, processInstanceTotal: Process.count(),jobInstanceList:jobProcessList]
 	}
 
+	def jakevue = {
+		params.max = Math.min(params.max ? params.int('max') : 75, 100)
+		def processList = Process.list(params) - Process.findByCanister("Archive")
+		def jobProcessList = Job.list().sort{it.onTimeDeliveryRatio}
+		def red = Constants.findByName("red")
+		def yellow = Constants.findByName("yellow")
+		[processInstanceList: processList, processInstanceTotal: Process.count(),jobInstanceList:jobProcessList,red: red.limitNumber, yellow: yellow.limitNumber]
+	}
+	
 	def create = {
 		def processInstance = new Process()
 		processInstance.properties = params
@@ -44,7 +59,7 @@ class ProcessController {
 			render(view: "create", model: [processInstance: processInstance])
 		}
 	}
-
+	
 	def show = {
 		def processInstance = Process.get(params.id)
 		if (!processInstance) {
@@ -154,6 +169,24 @@ class ProcessController {
 			def today = new Date()
 			def job2 = new Throughput(process:oldprocessInstance.canister,datefinished: today,jobname: jobInstance.jobname,companyname: jobInstance.companyname,totalvalue: jobInstance.totalvalue,workorder: jobInstance.workorder)
 			saveOrThrow(job2)
+			if (jobInstance.processMilestones){
+				//Check if oldProcessInstance is a Milestone.  Remove the Milestone from the processMilestones stack.  
+				def procMile = jobInstance.processMilestones.tokenize(',')
+				def placeHolder = procMile.pop()
+			
+					if(oldprocessInstance.canister == placeHolder){
+						jobInstance.processMilestones = procMile.join(",")
+					}
+					else {
+						procMile.push(placeHolder)
+						jobInstance.processMilestones = procMile.join(",")
+					}
+						//Recalculate On-time Delivery Ratio
+						if (procMile.size() >= 1){
+							def shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
+							jobInstance.onTimeDeliveryRatio = (shipDate - today) / procMile.size()
+						}
+			}
 		}	
 		// When job is finished
 		if (processInstance ==~ 'finished')

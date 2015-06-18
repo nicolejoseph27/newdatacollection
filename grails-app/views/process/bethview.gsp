@@ -101,7 +101,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 		color:#FFF;
 		margin-bottom:5px;
 		text-align:center;
-		font-size:16px;
+		font-size:12px;
 		font-family:sans-serif;
 	}
 	/* END LEFT COLUMN CSS */
@@ -147,7 +147,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 		color:#FFF;
 		margin-bottom:5px;
 		text-align:center;
-		font-size:16px;
+		font-size:12px;
 		text-transform:capitalize;
 		font-family:sans-serif;
 	}
@@ -310,7 +310,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			        case 3:
 			        	var target=$(this).attr("id")
 						//alert(target)
-						window.open ("http:/magnetboard/job/show/" + target,"mywindow","resizable=1,width=1050,height=600,toolbar=1,scrollbars=1"); 				
+						window.open ("http:/job/show/" + target,"mywindow","resizable=1,width=1050,height=600,toolbar=1,scrollbars=1"); 				
 						$('#:contains(allItems) li').noContext();
 			            break;
 			        default:
@@ -752,7 +752,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 	</div>
 	<div id="dhtmlgoodies_mainContainer">
 		<!-- ONE <UL> for each "room" -->
-		<g:each in="${processInstanceList}" status="i" var="processInstance">
+		<g:each in="${processInstanceList.sort{it.priority}}" status="i" var="processInstance">
 		<div>
 			<p style="border-top-right-radius:9px;border-top-left-radius:9px">${fieldValue(bean: processInstance, field: "canister")}</p>
 			<ul id="allItems_${processInstance.id}">

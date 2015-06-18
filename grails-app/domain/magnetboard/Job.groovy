@@ -32,6 +32,14 @@ Date jobStartDate
 Date jobEndDate
 Integer durationProd
 
+//Variables for scheduling
+Float onTimeDeliveryRatio
+String shipDate
+String processMilestones
+String originalMilestones
+String finalMilestones
+String actualMilestones
+
 // PEP variables
 Date pepDate
 String pepMean
@@ -232,7 +240,13 @@ static constraints = {process(nullable:true)
 					jobStartDate(nullable:true)
 					jobEndDate(nullable:true)
 					durationProd(nullable:true)
-
+					onTimeDeliveryRatio(nullable:true)
+					shipDate(nullable:true)
+					processMilestones(nullable:true)
+					originalMilestones(nullable:true)
+					finalMilestones(nullable:true)
+					actualMilestones(nullable:true)
+					
 }
 
 double getScrubbedTotalValue() {
