@@ -158,45 +158,85 @@ class ProcessController {
 			throw new RuntimeException('Failed')
 		}
 	}
-
+	
 	def dropJob = {
-		def oldprocessInstance = Process.get(params.oldprocessId)
+		def p1 = Process.get(57)
+		def today = new Date()
+		def oldprocessInstance = Process.get(params.oldprocessId) 
 		def processInstance = Process.get(params.processId)
 		def jobInstance = Job.get(params.jobId)
 		jobInstance.process = processInstance
+		
+		
 		if (oldprocessInstance)
 		{
-			def today = new Date()
+			
 			def job2 = new Throughput(process:oldprocessInstance.canister,datefinished: today,jobname: jobInstance.jobname,companyname: jobInstance.companyname,totalvalue: jobInstance.totalvalue,workorder: jobInstance.workorder)
 			saveOrThrow(job2)
-			if (jobInstance.processMilestones){
-				//Check if oldProcessInstance is a Milestone.  Remove the Milestone from the processMilestones stack.  
-				def procMile = jobInstance.processMilestones.tokenize(',')
-				def placeHolder = procMile.pop()
 			
-					if(oldprocessInstance.canister == placeHolder){
-						jobInstance.processMilestones = procMile.join(",")
-					}
-					else {
-						procMile.push(placeHolder)
-						jobInstance.processMilestones = procMile.join(",")
-					}
-						//Recalculate On-time Delivery Ratio
-						if (procMile.size() >= 1){
-							def shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
-							jobInstance.onTimeDeliveryRatio = (shipDate - today) / procMile.size()
+					if (jobInstance.processMilestones){
+							//Check if oldProcessInstance is a Milestone.  Remove the Milestone from the processMilestones stack.  
+							def procMile = jobInstance.processMilestones.tokenize(',')
+							
+							def placeHolder = procMile.pop() 
+								// Remove processes that take multiple days
+								while(oldprocessInstance.canister == placeHolder && procMile){
+									placeHolder = procMile.pop()	
+								}
+								// Add process back to the stack if it is not the next milestone
+								if(!(oldprocessInstance.canister == placeHolder)){
+										procMile.push(placeHolder)
+								}
+										jobInstance.processMilestones = procMile.join(",")
+								}
+					}	
+		
+		// recalculate the ontimedeliveryratio on every drop
+		Job.list().each{
+			if (it.processMilestones){
+				def shipDate = Date.parse("MM/dd/yyyy", it.shipDate)
+				def businessDays = shipDate - today
+				def proMilestone = it.processMilestones.tokenize(',')
+					(today..shipDate).each {
+						def dateCounter = it.format("MM/dd/yyyy")
+						NonBusinessDay.list().each{
+							def stringBus = it.nonBusinessDate.toString()
+							def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+							def nonBusCompare = nonBus.format("MM/dd/yyyy")
+							if (nonBusCompare == dateCounter){
+								businessDays = businessDays - 1
+							}
 						}
+					}
+			it.onTimeDeliveryRatio = businessDays / proMilestone.size()
 			}
-		}	
+		}
+		
+		//Assign an end date to the job when moved from QA.  Calculate how many production days the job took.
+		if (oldprocessInstance ==~ 'Quality Assurance'){
+			jobInstance.jobEndDate = today
+			def businessDays = jobInstance.jobEndDate - jobInstance.jobStartDate
+			(jobInstance.jobStartDate..jobInstance.jobEndDate).each {
+				def dateCounter = it.format("MM/dd/yyyy")
+				NonBusinessDay.list().each{
+					def stringBus = it.nonBusinessDate.toString()
+					def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+					def nonBusCompare = nonBus.format("MM/dd/yyyy")
+					if (nonBusCompare == dateCounter){
+						businessDays = businessDays - 1
+					}
+				}
+			}
+			jobInstance.durationProd = (businessDays).toInteger() + 1
+		}
 		// When job is finished
 		if (processInstance ==~ 'finished')
-		{
-		//def today = new Date()
+				{
 		//	def job1 = new Finishedjobs(jobname:jobInstance.jobname,companyname:jobInstance.companyname,datefinished: today,shoporder:jobInstance.shoporder,nooflayers:jobInstance.nooflayers,noboardsperpanel:jobInstance.noboardsperpanel,size:jobInstance.size,projectmanager:jobInstance.projectmanager,salescontact:jobInstance.salescontact,notes:jobInstance.notes,workorder:jobInstance.workorder,noofpanelsmade:jobInstance.noofpanelsmade,noofboardsordered:jobInstance.noofboardsordered,totalvalue:jobInstance.totalvalue,valueperboard:jobInstance.valueperboard)
 		//saveOrThrow(job1)
-		//jobInstance.delete(flush: true)
-		def p1 = Process.get(57)
-		jobInstance.process = p1
-		}
+		//jobInstance.delete(flush: true)	
+		jobInstance.process = p1 
+				}
+				
 		} 
 }

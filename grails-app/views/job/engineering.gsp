@@ -92,6 +92,10 @@
                <div class="job" style = "float:right"> 
                 	 <g:link controller="process" action="bethview" style="color:#228B22;text-transform:capitalize">bethview</g:link>
                </div>
+               
+               <div class="job" style = "float:right"> 
+                	 <g:link controller="nonBusinessDay" action="create" style="color:#228B22;text-transform:capitalize">Create Non Business Day</g:link>
+               </div>
         </div>
      </body>
 </html>

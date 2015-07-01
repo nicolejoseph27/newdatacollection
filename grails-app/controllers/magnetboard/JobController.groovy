@@ -86,7 +86,19 @@ class JobController {
 					flash.message = "NO START DATE"}
 				else	
 				{
-					jobInstance.durationProd = (jobInstance.jobEndDate - jobInstance.jobStartDate).toInteger()		
+					def businessDays = jobInstance.jobEndDate - jobInstance.jobStartDate
+					(jobInstance.jobStartDate..jobInstance.jobEndDate).each {
+						def dateCounter = it.format("MM/dd/yyyy")
+						NonBusinessDay.list().each{
+							def stringBus = it.nonBusinessDate.toString()
+							def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+							def nonBusCompare = nonBus.format("MM/dd/yyyy")
+							if (nonBusCompare == dateCounter){
+								businessDays = businessDays - 1
+							}
+				}
+			}
+			jobInstance.durationProd = (businessDays).toInteger() + 1		
 				}		
 			}
 			}	
@@ -130,7 +142,19 @@ class JobController {
 		{shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
 		}
 		origMile = jobInstance.originalMilestones.tokenize(',')
-		jobInstance.onTimeDeliveryRatio = (shipDate - today) / origMile.size()
+		def businessDays = shipDate - today
+		(today..shipDate).each {
+			def dateCounter = it.format("MM/dd/yyyy")
+			NonBusinessDay.list().each{
+				def stringBus = it.nonBusinessDate.toString()
+				def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+				def nonBusCompare = nonBus.format("MM/dd/yyyy")
+				if (nonBusCompare == dateCounter){
+					businessDays = businessDays - 1
+				}
+			}
+		}
+		jobInstance.onTimeDeliveryRatio = businessDays / origMile.size()
 		
         if (jobInstance.save(flush: true)) {
             flash.message = "${message(code: 'default.created.message', args: [message(code: 'job.label', default: 'Job'), jobInstance.id])}"
@@ -626,7 +650,7 @@ class JobController {
 				}
 			
 		redirect(controller: "machine", action: "addJobDataList")
-		}
+		} 
 		else {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(controller: "machine", action: "addJobDataList")

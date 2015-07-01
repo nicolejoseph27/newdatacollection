@@ -729,7 +729,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
 			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
 			 			</br>
-			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>            
 			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
 			 			</br>
 			 			</p>		
