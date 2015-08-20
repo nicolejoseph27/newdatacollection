@@ -98,6 +98,20 @@
     		<jque:checkBoxField name="pluritecMaintenance" label= "1. Vacuum dust and chips from granite surfaces and table bed. 2. Inspect and clean rubber center gasket to maintain suction efficiency of table bed."/>
     		</jque:newDialog>
     		
+    		<jque:newDialog controller='machineVariable' action="cleaningSchedule" ajax="false" id='cleaningSchedule' title="Cleaning Schedule" success="s_div2" width="1000">
+    		<jque:dialogField name="operator" value="" type="select" from="${['Melissa Knight','Michele Crooks','Ed Norcott','Frank Bolkovac','Other'] }"/>
+    		<jque:checkBoxField name="goldRoomFloors" label= "1. Goldroom - Floors with tacky roller"/>
+    		<jque:checkBoxField name="goldRoomHorizontalSurfaces" label= "2. Goldroom - Horizontal Surfaces"/>
+    		<jque:checkBoxField name="goldRoomFloors2" label= "3. Goldroom - Floors with the vacuum"/>
+    		<jque:checkBoxField name="goldRoomWalls" label= "4. Goldroom - Walls"/> 
+    		<jque:checkBoxField name="filmRoomFloors" label= "5. Films - Floors"/>
+    		<jque:checkBoxField name="filmsRoomHorizontalSurfaces" label= "6. Films - Horizontal Surfaces"/>  
+    		<jque:checkBoxField name="filmRoomFloors2" label= "7. Films - Floors with the vacuum"/>
+    		<jque:checkBoxField name="filmRoomWalls" label= "8. Films - Walls"/> 
+    		<jque:checkBoxField name="tackRoomFloors" label= "9. Tackroom - Floors with tacky roller"/>
+    		<jque:checkBoxField name="tackRoomHorizontalSurfaces" label= "10. Tackroom - Horizontal Surfaces"/>
+    		</jque:newDialog>
+    		
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -118,6 +132,9 @@
                				</div> 
                				<div class="job" style = "float:right"> 
                    	 		<jque:newShowDialog buttonCaption="Pluritec" dialogId="pluritec" />
+               				</div> 
+               				<div class="job" style = "float:left"> 
+                   	 		<jque:newShowDialog buttonCaption="Cleaning Schedule" dialogId="cleaningSchedule" />
                				</div>         
                             </g:if>
                                        

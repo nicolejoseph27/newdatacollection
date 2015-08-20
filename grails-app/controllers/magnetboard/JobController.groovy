@@ -186,6 +186,39 @@ class JobController {
         }
     }
 	
+	def showMilestones = {
+		if(params.workOrder){
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+			def jobInstance = Job.get(jobNumber.id)
+			
+			//Convert processMilestones to an array and send to the show page in reverse order (first to last)
+			def dummyArray = jobInstance.processMilestones.tokenize(',')
+			def processArray = []
+			while (dummyArray.size() > 1){
+				processArray.push(dummyArray.pop())
+			}
+			processArray.push(dummyArray.pop())
+			[jobInstance: jobInstance, processArray: processArray]
+			}	
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(uri:'/')
+		}}
+		
+	}
+	
+	def editMilestones = {
+		def jobInstance = Job.get(params.id)
+		if (!jobInstance) {
+			flash.message = "${message(code: 'default.notjobInstance.process.found.message', args: [message(code: 'job.label', default: 'Job'), params.id])}"
+			redirect(action: "list")
+		}
+		else {
+			return [jobInstance: jobInstance]
+		}
+	}
+    
 	def saveOrThrow(def o) {
 		if (!o.save()) {
 			println "COULD NOT SAVE: ${o}"

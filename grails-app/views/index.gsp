@@ -72,6 +72,10 @@
     <jque:checkBoxField name="closeJob" type="checkbox" labelName="Close Job"  checked="${false}"/>
     </jque:newDialog>    
                
+    <jque:newDialog controller='job' action="showMilestones" ajax="false" id='showMilestones' title="Show Job Milestones" success="s_div2" width="600">
+    <jque:dialogField name="workOrder" value="" />
+    </jque:newDialog>           
+               
         <div id="pageBody">
         
         <ul style="font-size:15px">
@@ -129,27 +133,10 @@
                <div class="job" style = "float:left; width:98%;">
                 	 <g:link controller="process" action="jakevue" style="color:#228B22;text-transform:capitalize">Jake Vue</g:link>
                </div>
-               
-               <!--
-               
-				
-               <div class="job" style = "float:left"> 
-                	 <g:link controller="throughput" style="color:#228B22;text-transform:capitalize">throughput</g:link>
-               </div>
-               <div class="job" style = "float:right"> 
-                	 <g:link controller="process" action="bethview" style="color:#228B22;text-transform:capitalize">bethview</g:link>
-               </div>
-               <div style="height:60px"></div>
-               <div class="job" style = "float:left"> 
-                   	 <g:link controller="process" action="prioritylist" style="color:#228B22;text-transform:capitalize">List of processes</g:link>
+                <div class="job" style = "float:right"> 
+                   	 <jque:newShowDialog buttonCaption="Show Job Milestones" dialogId="showMilestones" />
                </div>
                
-               
-				
-               
-               <div style="height:60px"></div>
-               
-                  -->
                </ul>
         </div>
     

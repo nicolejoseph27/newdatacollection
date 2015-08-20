@@ -14,7 +14,7 @@ class MachineVariableController {
     }
 	
 	def chartChoice = {
-		def list =  MachineVariable.list(params)
+		def list =  MachineVariable.findAllByAirQuality_dateIsNotNull()
 		def temp = []
 		
 		if (params.chartName == "Goldroom Temperatures"){
@@ -73,7 +73,7 @@ class MachineVariableController {
 	}
 	
 	def soldermaskRoomAirQuality = {
-		def list =  MachineVariable.list(params)
+		def list =  MachineVariable.findAllByAirQuality_dateIsNotNull()
 		def soldermaskRoomAirQuality = []
 		list.each {
 			soldermaskRoomAirQuality << [it.airQuality_date,  it.airQuality_hall, it.airQuality_spray]
@@ -86,6 +86,66 @@ class MachineVariableController {
 		if (params.pluritecMaintenance)	{
 			flash.message = "Joe Pawlowski"
 		}
+		redirect(controller: "machine", action: "addJobDataList")
+	}
+	
+	def cleaningSchedule = {
+		def machineVariableInstance = new MachineVariable()
+		def today = new Date()
+		machineVariableInstance.cleanRoomCleaningDate = today
+		machineVariableInstance.cleanRoomCleaningOperator = params.operator
+		if (params.goldRoomFloors)	{
+			machineVariableInstance.cleanRoomCleaning = "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = "n"}
+		
+		if (params.goldRoomHorizontalSurfaces)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.goldRoomFloors2)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.goldRoomWalls)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.filmRoomFloors)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.filmsRoomHorizontalSurfaces)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.filmRoomFloors2)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.filmRoomWalls)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.tackRoomFloors)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		if (params.tackRoomHorizontalSurfaces)	{
+			machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "y"
+		}
+		else {machineVariableInstance.cleanRoomCleaning = machineVariableInstance.cleanRoomCleaning + "n"}
+		
+		saveOrThrow(machineVariableInstance)
+		
 		redirect(controller: "machine", action: "addJobDataList")
 	}
 

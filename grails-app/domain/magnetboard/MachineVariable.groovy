@@ -41,6 +41,9 @@ class MachineVariable {
 	String airQualityStagingPressure
 	String airQualityOutsideTemp
 	String airQualityOutsideHumid
+	Date cleanRoomCleaningDate
+	String cleanRoomCleaningOperator
+	String cleanRoomCleaning
 	
 	static constraints = {
 		airQuality_date(nullable:true)
@@ -81,7 +84,9 @@ class MachineVariable {
 		airQualityStagingPressure(nullable:true)
 		airQualityOutsideHumid(nullable:true)
 		airQualityOutsideTemp(nullable:true)
-		
+		cleanRoomCleaning(nullable:true)
+		cleanRoomCleaningDate(nullable:true)
+		cleanRoomCleaningOperator(nullable:true)
 }
 
 }

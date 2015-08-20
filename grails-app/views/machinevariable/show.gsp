@@ -211,6 +211,13 @@
                             
                         </tr>
                     
+                    	<tr class="prop">
+                            <td valign="top" class="name"><g:message code="machineVariable.cleanRoomCleaning.label" default="cleanRoomCleaning" /></td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean: machineVariableInstance, field: "cleanRoomCleaning")}</td>
+                            
+                        </tr>
+                        
                     </tbody>
                 </table>
             </div>

@@ -193,7 +193,7 @@ class ProcessController {
 		
 		// recalculate the ontimedeliveryratio on every drop
 		Job.list().each{
-			if (it.processMilestones){
+			if (it.processMilestones && it.shipDate){
 				def shipDate = Date.parse("MM/dd/yyyy", it.shipDate)
 				def businessDays = shipDate - today
 				def proMilestone = it.processMilestones.tokenize(',')
