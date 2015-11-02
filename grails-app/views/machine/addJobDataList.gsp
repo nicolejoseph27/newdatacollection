@@ -84,7 +84,7 @@
     		<jque:dialogField name="workorder" value="" />
     		<jque:dialogField name="Xcomp" value="0" />
     		<jque:dialogField name="Ycomp" value="0" />
-    		<jque:dialogField name="operator" value="" type="select" from="${['Matt Shirey','Bob Atkinson','Ken Gulick','Jason Gale'] }"/>
+    		<jque:dialogField name="operator" value="" type="select" from="${['Steve Baverso','Bob Atkinson','Ken Gulick','Jason Gale'] }"/>
     		</jque:newDialog> 
     		
     		<jque:newDialog controller='job' action="dcplating" ajax="false" id='dcplating' title="DC Plating Variables" success="s_div2" width="600">

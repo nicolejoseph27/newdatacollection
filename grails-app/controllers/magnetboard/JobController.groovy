@@ -208,6 +208,21 @@ class JobController {
 		
 	}
 	
+	def addMilestones = {
+		if(params.workOrder){
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+			def jobInstance = Job.get(jobNumber.id)
+			[jobInstance: jobInstance]
+			}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(uri:'/')
+		}}
+		
+	}
+	
+	
 	def editMilestones = {
 		def jobInstance = Job.get(params.id)
 		if (!jobInstance) {
@@ -717,6 +732,79 @@ class JobController {
 			redirect(controller: "machine", action: "addJobDataList")
 		}
 	}
+	
+	def updateMilestones = {
+		def jobInstance = Job.get(params.id)
+		
+		if (jobInstance) {
+			if (params.version) {
+				def version = params.version.toLong()
+				if (jobInstance.version > version) {
+					jobInstance.errors.rejectValue("version", "default.optimistic.locking.failure", [message(code: 'job.label', default: 'Job')] as Object[], "Another user has updated this Job while you were editing")
+					render(view: "edit", model: [jobInstance: jobInstance])
+					return
+				}
+			}
+			jobInstance.properties = params
+
+		def today = new Date()
+		jobInstance.jobStartDate = today
+		// create correct Original Milestones string
+		def origMile = jobInstance.originalMilestones.tokenize(',')
+		def placeHolder = origMile.pop()
+		while (placeHolder == "CAM"  && origMile.size() > 0){
+			placeHolder = origMile.pop()
+		}
+		origMile.push(placeHolder)
+		jobInstance.originalMilestones = origMile.join(",")
+		
+		//Push onto process Milestones
+		def procMile = []
+		while (origMile.size() > 1){
+			procMile.push(origMile.pop())
+		}
+		procMile.push(origMile.pop())
+		jobInstance.processMilestones = procMile.join(",")
+		
+		// create on time delivery ratio
+		Date shipDate = today
+		if (jobInstance.shipDate)
+		{shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
+		}
+		origMile = jobInstance.originalMilestones.tokenize(',')
+		def businessDays = shipDate - today
+		(today..shipDate).each {
+			def dateCounter = it.format("MM/dd/yyyy")
+			NonBusinessDay.list().each{
+				def stringBus = it.nonBusinessDate.toString()
+				def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+				def nonBusCompare = nonBus.format("MM/dd/yyyy")
+				if (nonBusCompare == dateCounter){
+					businessDays = businessDays - 1
+				}
+			}
+		}
+		jobInstance.onTimeDeliveryRatio = businessDays / origMile.size()
+		
+		
+		
+			if (!jobInstance.hasErrors() && jobInstance.save(flush: true)) {
+				flash.message = "${message(code: 'default.updated.message', args: [message(code: 'job.label', default: 'Job'), jobInstance.id])}"
+				redirect(action: "show", id: jobInstance.id)
+			}
+			else {
+				render(view: "edit", model: [jobInstance: jobInstance])
+				
+			}
+		}
+		else {
+			flash.message = "${message(code: 'default.not.found.message', args: [message(code: 'job.label', default: 'Job'), params.id])}"
+			redirect(action: "list")
+		}
+		
+	}
+	
+
     def update = {
         def jobInstance = Job.get(params.id)
 		def process1 = jobInstance.process?.canister

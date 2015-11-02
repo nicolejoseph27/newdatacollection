@@ -74,7 +74,11 @@
                
     <jque:newDialog controller='job' action="showMilestones" ajax="false" id='showMilestones' title="Show Job Milestones" success="s_div2" width="600">
     <jque:dialogField name="workOrder" value="" />
-    </jque:newDialog>           
+    </jque:newDialog>  
+    
+    <jque:newDialog controller='job' action="addMilestones" ajax="false" id='addMilestones' title="Add Job Milestones" success="s_div2" width="600">
+    <jque:dialogField name="workOrder" value="" />
+    </jque:newDialog>         
                
         <div id="pageBody">
         
@@ -128,10 +132,13 @@
                </div>
                <div style="height:60px"></div>
                <div class="job" style = "float:left; width:98%;">
-                	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">magnetboard</g:link>
+                	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">Production</g:link>
                </div>
                <div class="job" style = "float:left; width:98%;">
-                	 <g:link controller="process" action="jakevue" style="color:#228B22;text-transform:capitalize">Jake Vue</g:link>
+                	 <g:link controller="process" action="jakevue" style="color:#228B22;text-transform:capitalize">Manager</g:link>
+               </div>
+               <div class="job" style = "float:left"> 
+                   	 <jque:newShowDialog buttonCaption="Add Job Milestones" dialogId="addMilestones" />
                </div>
                 <div class="job" style = "float:right"> 
                    	 <jque:newShowDialog buttonCaption="Show Job Milestones" dialogId="showMilestones" />
