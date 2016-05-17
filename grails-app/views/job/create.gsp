@@ -227,13 +227,13 @@
                                     <label for="*"><g:message code="job.*.label" default="Day 1" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />
                                 </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.*.label" default="Day 2" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />
                                 </td>
                             </tr>  
                            	
@@ -242,14 +242,12 @@
                                       <label for="*"><g:message code="job.originalMilestones.label" default="Day 3" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 4" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                             </tr>
                             
                             <tr class="prop">
@@ -257,14 +255,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 5" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 6" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                                 
                              <tr class="prop2">
@@ -272,14 +268,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 7" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 8" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                                
                              <tr class="prop">
@@ -287,14 +281,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 9" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 10" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                              
                              <tr class="prop2">
@@ -302,14 +294,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 11" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 12" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                                 
                              <tr class="prop">
@@ -317,14 +307,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 13" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 14" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                                
                              <tr class="prop2">
@@ -332,14 +320,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 15" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 16" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                                 
                              <tr class="prop">
@@ -347,14 +333,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 17" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 18" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                                 
                              <tr class="prop2">
@@ -362,14 +346,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 19" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 20" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                              </tr>
                                 
                              <tr class="prop">
@@ -377,14 +359,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 21" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 22" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td> 
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td> 
                              </tr>  
                                 
                              <tr class="prop2">
@@ -392,14 +372,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 23" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 24" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                              </tr>
 
                              <tr class="prop">
@@ -407,14 +385,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 25" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 26" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                              </tr>
 
                              <tr class="prop2">
@@ -422,14 +398,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 27" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 28" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                              </tr>                                                        
 
                              <tr class="prop">
@@ -437,14 +411,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 29" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 30" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                              </tr>
 
                              <tr class="prop2">
@@ -452,14 +424,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 31" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 32" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                              </tr>
 
                              <tr class="prop">
@@ -467,14 +437,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 33" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 34" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                             </tr> 
 
                              <tr class="prop2">
@@ -482,14 +450,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 35" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 36" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                              </tr>
 
                              <tr class="prop">
@@ -497,14 +463,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 37" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 38" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                              </tr>
                             
                              <tr class="prop2">
@@ -512,14 +476,12 @@
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 39" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>
                                 <td valign="top" class="name">
                                     <label for="*"><g:message code="job.originalMilestones.label" default="Day 40" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'originalMilestones', 'errors')}">
-                                    <g:select name="originalMilestones" from="${['CAM', 'IL Image & Develop', 'Layup & Press', 'Laser Drill', 'Smart Drill', 'Drill', 'PTH', 'DC Electroplating', 'PPR Plating', 'PPG Image / DES', 'Soldermask Coat', 'HASL', 'ENIG', 'Electrical Test', 'Outside Services', 'Quality Assurance']}" value="${jobInstance?.originalMilestones}" />
-                                </td>                                   
+                                    <g:select name="originalMilestones" from="${mileStoneList}" value="${jobInstance?.originalMilestones}" noSelection=mileStoneList(0) />                                </td>                                   
                             </tr>                                                                                                                                                                                                    
                         </tbody>
                     </table>

@@ -21,21 +21,27 @@
                     <thead>
                         <tr>
                         
+                        	<g:sortableColumn style="text-align:center" property="id" title="${message(code: 'process.id.label', default: 'ID')}" />
+                        
                             <g:sortableColumn style="text-align:center" property="canister" title="${message(code: 'process.id.label', default: 'Canister')}" />
                         
                             <g:sortableColumn style="text-align:center" property="priority" title="${message(code: 'process.priority.label', default: 'Priority')}" />
                         
-                                               
+                            <g:sortableColumn style="text-align:center" property="mileStone" title="${message(code: 'process.priority.label', default: 'Milestone')}" />                 
+                        
                         </tr>
                     </thead>
                     <tbody>
                     <g:each in="${processInstanceList}" status="i" var="processInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
+                        	<td style="text-align:center">${fieldValue(bean: processInstance, field: "id")}</td>
+                        
                             <td style="text-align:center"><g:link action="priorityshow" id="${processInstance.id}">${fieldValue(bean: processInstance, field: "canister")}</g:link></td>
                         
                             <td style="text-align:center">${fieldValue(bean: processInstance, field: "priority")}</td>
                         
+                        	<td style="text-align:center">${fieldValue(bean: processInstance, field: "mileStone")}</td>
                                                    
                         </tr>
                     </g:each>

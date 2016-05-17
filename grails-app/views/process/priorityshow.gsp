@@ -35,7 +35,13 @@
                             
                         </tr>
                     
-                                         
+                        <tr class="prop">
+                            <td valign="top" class="name"><g:message code="process.mileStone.label" default="Milestone" /></td>
+                            
+                            <td valign="top" class="value">${fieldValue(bean: processInstance, field: "mileStone")}</td>
+                            
+                        </tr>  
+                                     
                     </tbody>
                 </table>
             </div>

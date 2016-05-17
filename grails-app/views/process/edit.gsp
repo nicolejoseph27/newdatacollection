@@ -45,14 +45,6 @@
                                   <label for="job"><g:message code="process.job.label" default="Job" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: processInstance, field: 'job', 'errors')}">
-                                    
-<ul>
-<g:each in="${processInstance?.job?}" var="j">
-    <li><g:link controller="job" action="show" id="${j.id}">${j?.encodeAsHTML()}</g:link></li>
-</g:each>
-</ul>
-<g:link controller="job" action="create" params="['process.id': processInstance?.id]">${message(code: 'default.add.label', args: [message(code: 'job.label', default: 'Job')])}</g:link>
-
                                 </td>
                             </tr>
                         

@@ -4,6 +4,10 @@ import magnetboard.Finishedjobs
 
 import magnetboard.Constants
 
+import groovy.time.TimeCategory
+
+import magnetboard.Job
+
 
 import grails.plugins.springsecurity.Secured
 
@@ -20,6 +24,18 @@ class ProcessController {
 		params.max = Math.min(params.max ? params.int('max') : 75, 100)
 		def processList = Process.list(params) - Process.findByCanister("Archive")
 		def jobProcessList = Job.list().sort{it.onTimeDeliveryRatio}
+		def bakeList = Job.findAllByBakeTimeIsNotNull()
+		def finishedBakeList = []
+		bakeList.each{
+			def today = new Date()
+			def newBake = it.bakeTime
+			if (newBake < today){
+			finishedBakeList.push(it)
+			}
+			}
+		if (finishedBakeList){
+		flash.message =  "Remove $finishedBakeList from oven"
+		}
 		[processInstanceList: processList, processInstanceTotal: Process.count(),jobInstanceList:jobProcessList]
 	}
 	
@@ -195,7 +211,9 @@ class ProcessController {
 		Job.list().each{
 			if (it.processMilestones && it.shipDate){
 				def shipDate = Date.parse("MM/dd/yyyy", it.shipDate)
-				def businessDays = shipDate - today
+				def businessDays = shipDate - today + 1
+				//
+				
 				def proMilestone = it.processMilestones.tokenize(',')
 					(today..shipDate).each {
 						def dateCounter = it.format("MM/dd/yyyy")

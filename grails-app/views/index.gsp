@@ -8,7 +8,7 @@
    
         <meta name="layout" content="main"/>
         
-        <h1 style="font-size:52px;text-align:center;text-shadow:5px 5px 8px #7F7F7F;color:#228B22">Compunetics</h1> 
+        <h1 style="font-size:52px;text-align:center;text-shadow:5px 5px 8px #7F7F7F;color:#228B22">Compunetics</h1>
         <h2 style="font-style:italic;font-size:20px;text-align:center">excellence, measured in microns.</h2>
         
         
@@ -42,6 +42,7 @@
                
     </head>
     <body>
+    ${flash.message }.blink()
      <div align = "center" style="font-size:100px;background-color:red">
         <g:if test="${flash.message }">
         ${flash.message }
@@ -127,7 +128,8 @@
                <div style="height:60px"></div>             
                <div class="job" style = "float:left"> 
                    	 <g:link controller="prePregPartNumber" action="create" style="color:#228B22;text-transform:capitalize">Add Pre-preg Part Number</g:link>
-               </div><div class="job" style = "float:right"> 
+               </div>
+               <div class="job" style = "float:right"> 
                    	 <g:link controller="material" action="create" style="color:#228B22;text-transform:capitalize">Add Pre-preg Material</g:link>
                </div>
                <div style="height:60px"></div>
@@ -143,6 +145,10 @@
                 <div class="job" style = "float:right"> 
                    	 <jque:newShowDialog buttonCaption="Show Job Milestones" dialogId="showMilestones" />
                </div>
+               <div style="height:60px"></div>
+               <div class="job" style = "float:left"> 
+                   	 <g:link controller="job" action="weeklyList" style="color:#228B22;text-transform:capitalize">Weekly Production</g:link>
+             	</div>
                
                </ul>
         </div>

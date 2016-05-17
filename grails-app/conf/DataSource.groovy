@@ -43,7 +43,7 @@ environments {
     }
     production {
         dataSource {
-             url = "jdbc:mysql://localhost:3306/magnet?zeroDateTimeBehavior=convertToNull"
+             url = "jdbc:mysql://localhost:3306/magnet?zeroDateTimeBehavior=convertToNull&autoReconnect=true"
             pooled = true
             driverClassName = "com.mysql.jdbc.Driver"
             username = "tombrown"

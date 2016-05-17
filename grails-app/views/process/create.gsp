@@ -41,6 +41,14 @@
                                 <td valign="top" class="value ${hasErrors(bean: processInstance, field: 'priority', 'errors')}">
                                     <g:textField name="priority" value="${processInstance?.priority}" />
                                 </td>
+                                <tr class="prop">
+                                <td valign="top" class="name">
+                                    <label for="mileStone"><g:message code="process.mileStone.label" default="MileStone" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: processInstance, field: 'mileStone', 'errors')}">
+                                    <g:checkBox name="mileStone" value="${processInstance?.mileStone}" />
+                                </td>
+                            </tr>
                             </tr>
                         
                         </tbody>

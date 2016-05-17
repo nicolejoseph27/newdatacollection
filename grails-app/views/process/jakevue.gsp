@@ -610,7 +610,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			
 				<g:if test= "${jobInstance.process.toString() == 'null'}">
 				
-					<g:if test= "${!jobInstance.onTimeDeliveryRatio}">	
+					<g:if test= "${jobInstance.originalMilestones == 'CAM'}">	
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:white;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
@@ -626,7 +626,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 						</li>
 					</g:if>					
 				
-					<g:if test = "${jobInstance.onTimeDeliveryRatio && jobInstance.onTimeDeliveryRatio <= red}">
+					<g:if test = "${jobInstance.originalMilestones != 'CAM' && jobInstance.onTimeDeliveryRatio <= red}">
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:red;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
@@ -642,7 +642,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 						</li>
 					</g:if>
 					
-					<g:if test = "${jobInstance.onTimeDeliveryRatio > red && jobInstance.onTimeDeliveryRatio <= yellow}">
+					<g:if test = "${jobInstance.originalMilestones != 'CAM' && jobInstance.onTimeDeliveryRatio > red && jobInstance.onTimeDeliveryRatio <= yellow}">
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:yellow;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
@@ -658,7 +658,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 						</li>
 					</g:if>
 						
-					<g:if test = "${jobInstance.onTimeDeliveryRatio > yellow}">
+					<g:if test = "${jobInstance.originalMilestones != 'CAM' && jobInstance.onTimeDeliveryRatio > yellow}">
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:green;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
@@ -688,7 +688,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			<g:each in="${jobInstanceList}" status="j" var="jobInstance" >
 			<g:if test= "${processInstance.canister == jobInstance.process.toString()}">
 			
-			<g:if test= "${!jobInstance.onTimeDeliveryRatio}">	
+			<g:if test= "${jobInstance.originalMilestones == 'CAM'}">	
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:white;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
@@ -704,7 +704,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 						</li>
 					</g:if>
 
-					<g:if test = "${jobInstance.onTimeDeliveryRatio && jobInstance.onTimeDeliveryRatio <= red}">
+					<g:if test = "${jobInstance.originalMilestones != 'CAM' && jobInstance.onTimeDeliveryRatio <= red}">
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:red;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
@@ -720,7 +720,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 						</li>
 					</g:if>
 					
-					<g:if test = "${jobInstance.onTimeDeliveryRatio > red && jobInstance.onTimeDeliveryRatio <= yellow}">
+					<g:if test = "${jobInstance.originalMilestones != 'CAM' && jobInstance.onTimeDeliveryRatio > red && jobInstance.onTimeDeliveryRatio <= yellow}">
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:yellow;font-family:arial;color:black;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
@@ -736,7 +736,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 						</li>
 					</g:if>
 						
-					<g:if test = "${jobInstance.onTimeDeliveryRatio > yellow}">
+					<g:if test = "${jobInstance.originalMilestones != 'CAM' && jobInstance.onTimeDeliveryRatio > yellow}">
 						<li id="${jobInstance.id}" style="border-radius:6px">
 						<p style="background-color:green;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
 			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>

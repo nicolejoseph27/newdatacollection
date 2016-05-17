@@ -31,6 +31,7 @@ Process process
 Date jobStartDate
 Date jobEndDate
 Integer durationProd
+Date bakeTime
 
 //Variables for scheduling
 Float onTimeDeliveryRatio
@@ -242,10 +243,11 @@ static constraints = {process(nullable:true)
 					durationProd(nullable:true)
 					onTimeDeliveryRatio(nullable:true)
 					shipDate(nullable:true)
-					processMilestones(nullable:true)
-					originalMilestones(nullable:true)
-					finalMilestones(nullable:true)
-					actualMilestones(nullable:true)
+					processMilestones(nullable:true, maxsize:1000)
+					originalMilestones(nullable:true, maxsize:1000)
+					finalMilestones(nullable:true, maxsize:1000)
+					actualMilestones(nullable:true, maxsize:1000)
+					bakeTime(nullable:true)
 					
 }
 

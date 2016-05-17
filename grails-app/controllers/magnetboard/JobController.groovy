@@ -2,6 +2,7 @@ package magnetboard
 
 import grails.plugins.springsecurity.Secured
 import magnetboard.Machine
+import groovy.time.TimeCategory
 
 
 
@@ -24,6 +25,13 @@ class JobController {
         params.max = Math.min(params.max ? params.int('max') : 15, 100)
         [jobInstanceList: Job.list(params), jobInstanceTotal: Job.count()]
     }
+	
+	def weeklyList = {
+		params.max = Math.min(params.max ? params.int('max') : 15, 100)
+		Date wednesday = new Date() 
+		Date monday = wednesday - 3
+		[jobInstanceList: jobInstance, jobInstanceTotal: Job.count()]
+	}
 	
 	def innerLayerFlawsPerSide = {
 		Date todaysDate = new Date()
@@ -69,9 +77,11 @@ class JobController {
 	
     def create = {
         def jobInstance = new Job()
+		def mileStoneList = magnetboard.Process.findAllByMileStone(true)
         jobInstance.properties = params
-
+		[mileStoneList: mileStoneList]
     }
+	
 //CLOSE A JOB - Adds an End Date	
 	def closeJob = {
 		params.max = Math.min(params.max ? params.int('max') : 15, 100)
@@ -138,11 +148,14 @@ class JobController {
 		
 		// create on time delivery ratio
 		Date shipDate = today
+		if (jobInstance.duedate && !jobInstance.shipDate)
+		{jobInstance.shipDate = jobInstance.duedate}
 		if (jobInstance.shipDate)
 		{shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
 		}
 		origMile = jobInstance.originalMilestones.tokenize(',')
-		def businessDays = shipDate - today
+		def businessDays = shipDate - today + 1
+
 		(today..shipDate).each {
 			def dateCounter = it.format("MM/dd/yyyy")
 			NonBusinessDay.list().each{
@@ -213,13 +226,15 @@ class JobController {
 		if(magnetboard.Job.findByWorkorder(params.workOrder)){
 			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
 			def jobInstance = Job.get(jobNumber.id)
-			[jobInstance: jobInstance]
+			def mileStoneList = magnetboard.Process.findAllByMileStone(true)
+			[jobInstance: jobInstance, mileStoneList: mileStoneList]
 			}
 		else {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(uri:'/')
-		}}
-		
+		}
+
+		}
 	}
 	
 	
@@ -298,6 +313,40 @@ class JobController {
 		}
 		[jobInstance: jobInstance,plur: plur]
 		
+	}
+	
+	def bake = {
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+			def jobInstance = Job.get(jobNumber.id)
+			Date soldermaskBake
+			def today = new Date() 
+			use( TimeCategory ) {
+				soldermaskBake = today + 90.minutes
+			}
+			jobInstance.bakeTime = soldermaskBake
+			redirect(controller: "process", action: "list")
+			
+	}
+		 
+		else {
+		flash.message =  "NO WORK ORDER FOUND"
+		redirect(controller: "process", action: "list")
+	}
+		
+		}
+   
+	def stopBake = {
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+			def jobInstance = Job.get(jobNumber.id)
+			jobInstance.bakeTime = null
+		redirect(controller: "process", action: "list")
+		}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(controller: "process", action: "list")
+		}
 	}
 
 //PROCESS TIME - AOI Times		
@@ -772,7 +821,8 @@ class JobController {
 		{shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
 		}
 		origMile = jobInstance.originalMilestones.tokenize(',')
-		def businessDays = shipDate - today
+		def businessDays = shipDate - today + 1
+
 		(today..shipDate).each {
 			def dateCounter = it.format("MM/dd/yyyy")
 			NonBusinessDay.list().each{
