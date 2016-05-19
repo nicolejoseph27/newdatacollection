@@ -855,7 +855,23 @@
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'processMilestones', 'errors')}">
                                     <g:textField name="processMilestones" value="${jobInstance?.processMilestones}" />
                                 </td>                                
-                             </tr>                                                                      
+                             </tr> 
+                             
+                             <tr class="prop2">
+                                <td valign="top" class="name">
+                                  <label for="bakeTime"><g:message code="bakeTime.label" default="Bake Time" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'bakeTime', 'errors')}">
+                                    <g:textField name="bakeTime" value="${jobInstance?.bakeTime}" />
+                                </td> 
+                                <td valign="top" class="name">
+                                  <label for="dateShipDate"><g:message code="dateShipDate.label" default="Date Ship Date" /></label>
+                                </td>
+                                <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'dateShipDate', 'errors')}">
+                                    <g:textField name="dateShipDate" value="${jobInstance?.dateShipDate}" />
+                                </td>                            
+                             </tr>
+                                                                                                  
                         </tbody>
                     </table>
                 </div>

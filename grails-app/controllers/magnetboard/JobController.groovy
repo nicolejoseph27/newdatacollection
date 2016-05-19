@@ -28,10 +28,18 @@ class JobController {
 	
 	def weeklyList = {
 		params.max = Math.min(params.max ? params.int('max') : 15, 100)
-		Date wednesday = new Date() 
-		Date monday = wednesday - 3
-		[jobInstanceList: jobInstance, jobInstanceTotal: Job.count()]
-	}
+		def jobInstance = Job.list()
+		def jobInstanceList = []
+		jobInstance.each {
+			def process1 = it.process?.canister
+			if (process1 != "Archive"){
+				jobInstanceList.push(it)
+			}	
+		}
+
+		[jobInstanceList: jobInstanceList, jobInstanceTotal: jobInstanceList.count()]
+	
+    }
 	
 	def innerLayerFlawsPerSide = {
 		Date todaysDate = new Date()
@@ -152,6 +160,7 @@ class JobController {
 		{jobInstance.shipDate = jobInstance.duedate}
 		if (jobInstance.shipDate)
 		{shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
+		jobInstance.dateShipDate = shipDate
 		}
 		origMile = jobInstance.originalMilestones.tokenize(',')
 		def businessDays = shipDate - today + 1

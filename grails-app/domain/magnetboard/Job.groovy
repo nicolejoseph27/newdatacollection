@@ -36,6 +36,7 @@ Date bakeTime
 //Variables for scheduling
 Float onTimeDeliveryRatio
 String shipDate
+Date dateShipDate
 String processMilestones
 String originalMilestones
 String finalMilestones
@@ -248,7 +249,7 @@ static constraints = {process(nullable:true)
 					finalMilestones(nullable:true, maxsize:1000)
 					actualMilestones(nullable:true, maxsize:1000)
 					bakeTime(nullable:true)
-					
+					dateShipDate(nullable:true)
 }
 
 double getScrubbedTotalValue() {

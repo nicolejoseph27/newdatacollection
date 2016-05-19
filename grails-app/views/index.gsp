@@ -42,7 +42,7 @@
                
     </head>
     <body>
-    ${flash.message }.blink()
+
      <div align = "center" style="font-size:100px;background-color:red">
         <g:if test="${flash.message }">
         ${flash.message }
@@ -111,10 +111,10 @@
                <div class="job" style = "float:right"> 
                    	 <g:link controller="maintenanceOnMachines" action="create" style="color:#228B22;text-transform:capitalize">Maintenance Time</g:link>
                </div>
-               <div style="height:60px"></div>
-                <div class="job" style = "float:left"> 
+              <div style="height:60px"></div>
+          <!--      <div class="job" style = "float:left"> 
                    	 <g:link controller="bottomsUp" action="create" style="color:#228B22;text-transform:capitalize">Create a quote</g:link>
-               </div>
+               </div> -->
                <div class="job" style = "float:right"> 
                    	 <jque:newShowDialog buttonCaption="Charts" dialogId="chartChoice" />
                </div>
@@ -126,13 +126,13 @@
                    	 <jque:newShowDialog buttonCaption="Close Job" dialogId="closeJob" />
                </div>  
                <div style="height:60px"></div>             
-               <div class="job" style = "float:left"> 
+       <!--        <div class="job" style = "float:left"> 
                    	 <g:link controller="prePregPartNumber" action="create" style="color:#228B22;text-transform:capitalize">Add Pre-preg Part Number</g:link>
                </div>
                <div class="job" style = "float:right"> 
                    	 <g:link controller="material" action="create" style="color:#228B22;text-transform:capitalize">Add Pre-preg Material</g:link>
                </div>
-               <div style="height:60px"></div>
+               <div style="height:60px"></div>  -->
                <div class="job" style = "float:left; width:98%;">
                 	 <g:link controller="process" style="color:#228B22;text-transform:capitalize">Production</g:link>
                </div>
@@ -148,7 +148,7 @@
                <div style="height:60px"></div>
                <div class="job" style = "float:left"> 
                    	 <g:link controller="job" action="weeklyList" style="color:#228B22;text-transform:capitalize">Weekly Production</g:link>
-             	</div>
+             	</div> 
                
                </ul>
         </div>

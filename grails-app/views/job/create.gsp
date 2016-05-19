@@ -209,7 +209,7 @@
 
                             <tr class="prop">
                                 <td valign="top" class="name">
-                                    <label for="shipDate"><g:message code="job.shipDate.label" default="shipDate" /></label>
+                                    <label for="shipDate"><g:message code="job.shipDate.label" default="Ship Date" /></label>
                                 </td>
                                 <td valign="top" class="value ${hasErrors(bean: jobInstance, field: 'shipDate', 'errors')}">
                                     <g:textField id="datepicker" name="shipDate" value="${jobInstance?.shipDate}"  />

@@ -554,7 +554,16 @@
                             
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "processMilestones")}</td>
                         </tr>  
-                        
+                        <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.bakeTime.label" default="Bake Time"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "bakeTime")}</td>
+
+							<td valign="top" class="name" style="text-align:right"><g:message code="job.dateShipDate.label" default="Date Ship Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "dateShipDate")}</td>
+                        </tr>                         
                                                                                                                                                                                                              
                     </tbody>
                 </table>

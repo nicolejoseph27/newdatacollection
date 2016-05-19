@@ -31,14 +31,17 @@
                     <thead>
                         <tr>
                         
+							<g:sortableColumn  style="text-align:center" property="shipDate" title="${message(code: 'job.shipDate.label', default: 'Ship Date')}" />
+							
+							<g:sortableColumn  style="text-align:center" property="duedate" title="${message(code: 'job.duedate.label', default: 'Due Date')}" />
+
                             <g:sortableColumn style="text-align:center" property="workorder" title="${message(code: 'job.id.label', default: 'Work Order')}" />
                         
                             <g:sortableColumn style="text-align:center" property="companyname" title="${message(code: 'job.companyname.label', default: 'Company Name')}" />
                         
                             <g:sortableColumn  style="text-align:center" property="jobname" title="${message(code: 'job.jobname.label', default: 'Part Number')}" />
                             
-                            <g:sortableColumn  style="text-align:center" property="duedate" title="${message(code: 'job.duedate.label', default: 'Due Date')}" />
-                            
+                                                        
                             <th style="text-align:center"><g:message code="job.process.label" default="Process" /></th>
                         
                         </tr>
@@ -47,14 +50,17 @@
                     <g:each in="${jobInstanceList}" status="i" var="jobInstance">
                         <tr class="${(i % 2) == 0 ? 'odd' : 'even'}">
                         
-                            <td style="text-align:center"><g:link action="show" id="${jobInstance.id}">${fieldValue(bean: jobInstance, field: "workorder")}</g:link></td>
-                        
+                            <td style="text-align:center"><g:link action="show" id="${jobInstance.id}">${fieldValue(bean: jobInstance, field: "shipDate")}</g:link></td>
+
+
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "duedate")}</td>
+
+                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "workorder")}</td>
+                                                                                
                             <td style="text-align:center">${fieldValue(bean: jobInstance, field: "companyname")}</td>
                         
                             <td style="text-align:center">${fieldValue(bean: jobInstance, field: "jobname")}</td>
-                            
-                            <td style="text-align:center">${fieldValue(bean: jobInstance, field: "duedate")}</td>
-                            
+                                               
                             <td style="text-align:center">${fieldValue(bean: jobInstance, field: "process")}</td>
                         
                         </tr>
