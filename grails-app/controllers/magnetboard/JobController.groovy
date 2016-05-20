@@ -129,7 +129,8 @@ class JobController {
 	
 	def copy = {
 		def jobInstance = Job.get(params.id)
-		render(view: "create", model: [jobInstance: jobInstance])
+		def mileStoneList = magnetboard.Process.findAllByMileStone(true)
+		render(view: "create", model: [jobInstance: jobInstance, mileStoneList: mileStoneList])
 	}
 
     def save = {
@@ -481,15 +482,16 @@ class JobController {
     }
 	
 	def reCreate = {
+		def mileStoneList = magnetboard.Process.findAllByMileStone(true)
 		if(magnetboard.Finishedjobs.findByJobname(params.partnumber)){
 		def jobnumber = magnetboard.Finishedjobs.findByJobname(params.partnumber)
 		def finishedjobsInstance = Finishedjobs.get(jobnumber.id)
 		def jobInstance = new Job(Jobname: params.partnumber, Companyname: finishedjobsInstance.companyname,Noboardsperpanel: finishedjobsInstance.noboardsperpanel,Nooflayers: finishedjobsInstance.nooflayers,Notes: finishedjobsInstance.notes,Projectmanager: finishedjobsInstance.projectmanager,Salescontact: finishedjobsInstance.salescontact,Size: finishedjobsInstance.size)
-		render(view: "create", model: [jobInstance: jobInstance])
+		render(view: "create", model: [jobInstance: jobInstance, mileStoneList: mileStoneList])
 		}
 		else {
 		def jobInstance = new Job(Jobname: params.partnumber)
-		render(view: "create", model: [jobInstance: jobInstance])
+		render(view: "create", model: [jobInstance: jobInstance, mileStoneList: mileStoneList])
 		}
 	}	
 
