@@ -27,17 +27,17 @@ class JobController {
     }
 	
 	def weeklyList = {
-		params.max = Math.min(params.max ? params.int('max') : 15, 100)
 		def jobInstance = Job.list()
 		def jobInstanceList = []
+		def jobParams = []
 		jobInstance.each {
 			def process1 = it.process?.canister
 			if (process1 != "Archive"){
 				jobInstanceList.push(it)
+				jobParams << [it.dateShipDate, it.duedate, it.workorder, it.companyname, it.jobname, it.totalvalue, process1]
 			}	
 		}
-
-		[jobInstanceList: jobInstanceList, jobInstanceTotal: jobInstanceList.count()]
+		[jobParams: jobParams]
 	
     }
 	
@@ -357,6 +357,15 @@ class JobController {
 			flash.message =  "NO WORK ORDER FOUND"
 			redirect(controller: "process", action: "list")
 		}
+	}
+	
+	def bakeList = {
+		def jobParams = []
+		def bakeList = magnetboard.Job.findAllByBakeTimeIsNotNull()
+		bakeList.each{
+		jobParams << [it.workorder, it.companyname, it.jobname, it.bakeTime]
+		}
+		[jobParams: jobParams]
 	}
 
 //PROCESS TIME - AOI Times		

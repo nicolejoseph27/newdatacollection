@@ -611,6 +611,7 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
         	<jque:newShowDialog buttonCaption="Start Bake" dialogId="bakeButton" />
         	<jque:newShowDialog buttonCaption="Stop Bake" dialogId="stopBakeButton" />
+        	<g:link controller="job" action="bakeList" style="color:#228B22;text-transform:capitalize">Bake List</g:link>
         </div>
          
         <div id="dhtmlgoodies_dragDropContainer">

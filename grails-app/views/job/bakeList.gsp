@@ -20,7 +20,7 @@
         </div>
         
         <%
-   def weeklyColumns = [['date','Ship Date'], ['string', 'Due Date'], ['string', 'Work Order'], ['string','Company Name'], ['string', 'Part Number'], ['string', 'Value'],['string', 'Process']]
+   def bakeTimeColumns = [['string', 'Work Order'], ['string','Company Name'], ['string', 'Part Number'], ['string', 'bakeTime']]
 %>
 <script type="text/javascript">
    function selectHandler(e) {
@@ -28,10 +28,10 @@
    }
 </script>
 
-<gvisualization:table elementId="table"  page= 'enable' pageSize="${25}" columns="${weeklyColumns}"  
+<gvisualization:table elementId="table"  columns="${bakeTimeColumns}" 
  data="${jobParams}" select="selectHandler" />
 <div id="table"></div>
  
 </body>            
     
-</html>         
+</html>        
