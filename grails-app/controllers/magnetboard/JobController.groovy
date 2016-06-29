@@ -134,7 +134,21 @@ class JobController {
 	}
 
     def save = {
+		
+		def duplicate = 0
         def jobInstance = new Job(params)
+		
+		// check for duplicate work orders
+		def jobInstanceList = Job.list()
+		
+		jobInstanceList.each{
+			if (it.workorder == jobInstance.workorder){
+				flash.message =  "WORK ORDER ALREADY EXISTS"
+				redirect(uri:'/')
+				duplicate = 1
+			}
+		}
+		if (duplicate == 0){
 		def today = new Date()
 		jobInstance.jobStartDate = today
 		
@@ -187,7 +201,7 @@ class JobController {
             render(view: "create", model: [jobInstance: jobInstance])
         }
     }
-	
+    }
     def show = {
         def jobInstance = Job.get(params.id)
 		def process1 = jobInstance.process?.canister

@@ -208,27 +208,27 @@ class ProcessController {
 					}	
 		
 		// recalculate the ontimedeliveryratio on every drop
-		Job.list().each{
-			if (it.processMilestones && it.shipDate){
-				def shipDate = Date.parse("MM/dd/yyyy", it.shipDate)
-				def businessDays = shipDate - today + 1
+	//	Job.list().each{
+		//	if (it.processMilestones && it.shipDate){
+			//	def shipDate = Date.parse("MM/dd/yyyy", it.shipDate)
+			//	def businessDays = shipDate - today + 1
 				//
 				
-				def proMilestone = it.processMilestones.tokenize(',')
-					(today..shipDate).each {
-						def dateCounter = it.format("MM/dd/yyyy")
-						NonBusinessDay.list().each{
-							def stringBus = it.nonBusinessDate.toString()
-							def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
-							def nonBusCompare = nonBus.format("MM/dd/yyyy")
-							if (nonBusCompare == dateCounter){
-								businessDays = businessDays - 1
-							}
-						}
-					}
-			it.onTimeDeliveryRatio = businessDays / proMilestone.size()
-			}
-		}
+			//	def proMilestone = it.processMilestones.tokenize(',')
+			//		(today..shipDate).each {
+			//			def dateCounter = it.format("MM/dd/yyyy")
+			//			NonBusinessDay.list().each{
+			//				def stringBus = it.nonBusinessDate.toString()
+			//				def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+			//				def nonBusCompare = nonBus.format("MM/dd/yyyy")
+			//				if (nonBusCompare == dateCounter){
+			//					businessDays = businessDays - 1
+			//				}
+			//			}
+			//		}
+	//		it.onTimeDeliveryRatio = businessDays / proMilestone.size()
+	//		}
+	//	}
 		
 		//Assign an end date to the job when moved from QA.  Calculate how many production days the job took.
 		if (oldprocessInstance ==~ 'Quality Assurance'){

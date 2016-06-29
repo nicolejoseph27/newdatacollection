@@ -134,13 +134,16 @@
     	  var data = new google.visualization.DataTable();
     	  data.addColumn('datetime', 'Short');
     	  data.addColumn('number', '2 Camera Temp');
-    	  data.addColumn('number', '4 Camera Temp');
-    	  <g:each in="${temp}" var="e" >
-    	  data.addRow([new Date("${e[0]}"),${e[1]},${e[2]}]);
-		  </g:each>
+    	  data.addColumn('number', 'Average');
+    	  data.addColumn('number', 'UCL');
+    	  data.addColumn('number', 'LCL');
     	  
-        var options = {
-        	    title: 'Room Temperatures',
+    	  <g:each in="${temp}" var="e" >
+    	  data.addRow([new Date("${e[0]}"),${e[1]},${e[2]},${e[3]},${e[4]}]);
+		  </g:each>
+
+          var options = {
+        	    title: 'LDI Temperature Control Chart',
         	    curveType: 'function',
         	    legend: { position: 'bottom' },
         	    chartArea: {width: '80%', height: '80%'}
@@ -153,7 +156,7 @@
       }
 </script>
 
-        <div id="temp_div" style="width: 1500px; height: 1000px;"></div> 
+        <div id="temp_div" style="width: 750px; height: 500px;"></div> 
               
         
 <!--       

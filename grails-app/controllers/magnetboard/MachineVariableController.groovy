@@ -14,15 +14,36 @@ class MachineVariableController {
     }
 	
 	def chartChoice = {
-		def list =  MachineVariable.findAllByAirQuality_dateIsNotNull()
+		def today = new Date()
+		def firstDate = Date.parse("yyyy-MM-dd hh:mm:ss", "2014-07-01 0:00:01")
+		def lastDate = today
+		def list = magnetboard.MachineVariable.findAllByAirQuality_dateBetween(firstDate,lastDate)
 		def temp = []
+		def sum = 0 
+		def sumOfDif = 0
+		def ucl = 0
+		def lcl = 0
+		def average = 0
 		
 		if (params.chartName == "Goldroom Temperatures"){
 			list.each {
-				temp << [it.airQuality_date,  it.airQuality_2cameraTemp, it.airQuality_4cameraTemp]
+				sum = it.airQuality_2cameraTemp.toFloat() + sum
 				}
+			average = sum / list.size()
+			list.each {
+				def dif = (it.airQuality_2cameraTemp.toFloat() - average) ** 2
+				sumOfDif = sumOfDif + dif
+				}
+			def variance = sumOfDif / list.size()
+			def sdev = variance ** 0.5
+			ucl = average + 3 * sdev
+			lcl = average - 3 * sdev
 			
-					}
+			list.each {
+			temp << [it.airQuality_date,  it.airQuality_2cameraTemp,  average, ucl, lcl]
+			}
+			}
+		
 			if (params.chartName == "Innerlayer first pass yield")	{
 				redirect(controller: "job", action: "innerLayerFirstPassYield")
 			}
