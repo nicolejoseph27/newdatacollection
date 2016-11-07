@@ -96,6 +96,9 @@
                <div class="job" style = "float:right"> 
                 	 <g:link controller="nonBusinessDay" action="create" style="color:#228B22;text-transform:capitalize">Create Non Business Day</g:link>
                </div>
+               <div class="job" style = "float:right"> 
+                	 <g:link controller="process" action="recalculateOnTimeDelivery" style="color:#228B22;text-transform:capitalize">Recalculate the on time ratio</g:link>
+               </div>
         </div>
      </body>
 </html>

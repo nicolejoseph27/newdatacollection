@@ -224,6 +224,28 @@
                             <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "pluritecYcomp")}</td>
                         </tr>
                         
+                         <tr class="prop">
+                            
+                            <td valign="top" class="name" style="text-align:right"><g:message code="job.outerPrintDate.label" default="Outer Print Date"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "outerPrintDate")}</td>
+                        
+                        	<td valign="top" class="name" style="text-align:right"><g:message code="job.layer.label" default="Layer"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "layer")}</td>
+                        </tr>
+                        
+                        <tr class="prop2">
+                        
+                        	<td valign="top" class="name" style="text-align:right"><g:message code="job.sdRegistration.label" default="Standard Deviation"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "sdRegistration")}</td>
+                            
+                           <td valign="top" class="name" style="text-align:right"><g:message code="job.meanRegistration.label" default="Mean Registration"/></td>
+                            
+                            <td valign="top" class="value" style="text-align:center">${fieldValue(bean: jobInstance, field: "meanRegistration")}</td>
+                        </tr>
+                        
                         <tr class="prop">
                             
                            <td valign="top" class="name" style="text-align:right"><g:message code="job.olEtchOperator.label" default="Outer Layer Etch Operator"/></td>

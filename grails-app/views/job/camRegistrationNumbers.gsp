@@ -10,26 +10,21 @@
         <meta name="layout" content="main" />
         <g:set var="entityName" value="${message(code: 'pepData.label', default: 'Job')}" />
         <title><g:message code="default.list.label" args="[entityName]" /></title>
-        <script type="text/javascript" src="http://www.google.com/jsapi">
-        </script>
+        <script type="text/javascript" src="http://www.google.com/jsapi"></script>
         
     </head>
     
 <body>
-
-		<jque:newDialog controller='job' action="editWeeklyList" ajax="false" id='editJob' title="Edit Job" success="s_div2" width="600">
-    	<jque:dialogField name="workOrder" value="" />
-   		<jque:calendarField name="reminder" value="" />
-   		<jque:dialogField name="value" value="" />
-    	</jque:newDialog>
-
         <div class="nav">
             <span class="menuButton"><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></span>
-        <jque:newShowDialog buttonCaption="Edit Job" dialogId="editJob"/>
         </div>
-       
+        
+        <jque:newDialog controller='job' action="searchWorkOrder" ajax="false" id='searchWorkOrder' title="Work Order Search" success="s_div2" width="600">
+    	<jque:dialogField name="workorder" value="" />
+    	</jque:newDialog> 
+        
         <%
-   def weeklyColumns = [['date','Ship Date'], ['string', 'Due Date'], ['string', 'Work Order'], ['string','Company Name'], ['string', 'Part Number'], ['string', 'Value'],['string', 'Process']]
+   def camRegistrationColumns = [['string','Work Order'], ['date', 'Date'], ['string', 'layer'], ['string', 'mean'], ['string','Standard Deviation']]
 %>
 <script type="text/javascript">
    function selectHandler(e) {
@@ -37,10 +32,14 @@
    }
 </script>
 
-<gvisualization:table elementId="table"  page= 'enable' pageSize="${25}" columns="${weeklyColumns}"  
- data="${jobParams}" select="selectHandler" />
+<gvisualization:table elementId="table"  columns="${camRegistrationColumns}" 
+ data="${jobSearch}" select="selectHandler" />
 <div id="table"></div>
- 
+
+<div class="job" style = "float:left">
+            <jque:newShowDialog buttonCaption="Search Work Order" dialogId="searchWorkOrder" /> 
+</div>
+         
 </body>            
     
-</html>         
+</html>        

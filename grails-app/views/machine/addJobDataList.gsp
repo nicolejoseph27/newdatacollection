@@ -158,6 +158,17 @@
             <jque:dialogField name="thickness" value="0" />			
     		<jque:dialogField name="minHole" value="0" />     
             </jque:newDialog>
+            
+            <jque:newDialog controller='job' action="ldi" ajax="false" id='ldi' title="LDI" success="s_div2" width="600">
+    		<jque:dialogField name="workorder" value="" />
+    		<jque:dialogField name="layer" value="0" />
+            <jque:dialogField name="mean" value="0" />			
+    		<jque:dialogField name="standardDeviation" value="0" />     
+            </jque:newDialog>
+            
+            <jque:newDialog controller='job' action="camRegistrationNumbers" ajax="false" id='camSearch' title="Search" success="s_div2" width="600">
+    		<jque:dialogField name="jobName" value="" />
+    		</jque:newDialog> 
                    
 <!-- Page display.  Each block produces a button that calls the applicable job dialog -->            
             <g:if test="${flash.message}">
@@ -226,7 +237,17 @@
                				
                				<div class="job" style = "float:right"> 
                    	 		<jque:newShowDialog buttonCaption="Plating Aspect Ratio" dialogId="aspectRatio" />
-               				</div>                				 
+               				</div>  
+               				
+               				<div style="height:60px"></div>
+               				
+               				<div class="job" style = "float:left"> 
+                   	 		<jque:newShowDialog buttonCaption="LDI" dialogId="ldi" />
+               				</div> 
+               				
+               				<div class="job" style = "float:right"> 
+                   	 		<jque:newShowDialog buttonCaption="Cam Search" dialogId="camSearch" />
+               				</div>               				 
                				
             </div>
             

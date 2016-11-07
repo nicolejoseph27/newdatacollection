@@ -150,6 +150,12 @@ Date ppgStripperDate
 String ppgStripperOperator
 String ppgStripperNoOfPanels
 
+//LDI Variables
+Date outerPrintDate
+String layer
+String meanRegistration
+String sdRegistration
+
 static constraints = {process(nullable:true)
 					pepMean(nullable:true)
 					pepOperator(nullable:true)
@@ -250,6 +256,10 @@ static constraints = {process(nullable:true)
 					actualMilestones(nullable:true, maxsize:1000)
 					bakeTime(nullable:true)
 					dateShipDate(nullable:true)
+					meanRegistration(nullable:true)
+					sdRegistration(nullable:true)
+					outerPrintDate(nullable:true)
+					layer(nullable:true)
 }
 
 double getScrubbedTotalValue() {

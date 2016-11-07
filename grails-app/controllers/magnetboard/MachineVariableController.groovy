@@ -13,6 +13,38 @@ class MachineVariableController {
         [machineVariableInstanceList:MachineVariable.list(params), machineVariableInstanceTotal: MachineVariable.count()]
     }
 	
+	def ldiParticleCount = {
+		def today = new Date()
+		def firstDate = Date.parse("yyyy-MM-dd hh:mm:ss", "2016-02-01 0:00:01")
+		def lastDate = today
+		def list = magnetboard.MachineVariable.findAllByAirQuality_dateBetween(firstDate,lastDate)
+		def part = []
+		def sum = 0
+		def sumOfDif = 0
+		def ucl = 0
+		def lcl = 0
+		def average = 0
+		
+		list.each {
+			sum = it.airQuality_2camera.toFloat() + sum
+			}
+		average = sum / list.size()
+		list.each {
+			def dif = (it.airQuality_2camera.toFloat() - average) ** 2
+			sumOfDif = sumOfDif + dif
+			}
+		def variance = sumOfDif / list.size()
+		def sdev = variance ** 0.5
+		ucl = average + 3 * sdev
+		lcl = average - 3 * sdev
+		if (lcl < 0){ lcl = 0 }
+		list.each {
+		part << [it.airQuality_date,  it.airQuality_2camera,  average, ucl, lcl]
+		}
+		[part:part]
+		}
+
+	
 	def chartChoice = {
 		def today = new Date()
 		def firstDate = Date.parse("yyyy-MM-dd hh:mm:ss", "2014-07-01 0:00:01")
@@ -54,6 +86,9 @@ class MachineVariableController {
 			
 			if (params.chartName == "Soldermask Room Air Quality")	{	
 				redirect(action: "soldermaskRoomAirQuality")
+		}
+			if (params.chartName == "LDI Air Quality")	{
+				redirect(action: "ldiParticleCount")
 		}
 			if (params.chartName == "Post Etch Punch")	{
 				redirect(controller: "job", action: "pepData")

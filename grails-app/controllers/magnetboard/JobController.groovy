@@ -26,6 +26,26 @@ class JobController {
         [jobInstanceList: Job.list(params), jobInstanceTotal: Job.count()]
     }
 	
+	def editWeeklyList = {
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+				def jobInstance = Job.get(jobNumber.id)
+				if (params.value){
+				jobInstance.totalvalue = params.value
+				}
+				if(params.date){
+				jobInstance.shipDate = params.date
+				jobInstance.dateShipDate = Date.parse("yyyy-MM-dd", jobInstance.shipDate)
+				}
+				redirect(controller: "job", action: "weeklyList")
+		}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(controller: "job", action: "weeklyList")
+		}
+	}
+	
+	
 	def weeklyList = {
 		def jobInstance = Job.list()
 		def jobInstanceList = []
@@ -506,9 +526,9 @@ class JobController {
 	
 	def reCreate = {
 		def mileStoneList = magnetboard.Process.findAllByMileStone(true)
-		if(magnetboard.Finishedjobs.findByJobname(params.partnumber)){
-		def jobnumber = magnetboard.Finishedjobs.findByJobname(params.partnumber)
-		def finishedjobsInstance = Finishedjobs.get(jobnumber.id)
+		if(magnetboard.Job.findByJobname(params.partnumber)){
+		def jobnumber = magnetboard.Job.findByJobname(params.partnumber)
+		def finishedjobsInstance = Job.get(jobnumber.id)
 		def jobInstance = new Job(Jobname: params.partnumber, Companyname: finishedjobsInstance.companyname,Noboardsperpanel: finishedjobsInstance.noboardsperpanel,Nooflayers: finishedjobsInstance.nooflayers,Notes: finishedjobsInstance.notes,Projectmanager: finishedjobsInstance.projectmanager,Salescontact: finishedjobsInstance.salescontact,Size: finishedjobsInstance.size)
 		render(view: "create", model: [jobInstance: jobInstance, mileStoneList: mileStoneList])
 		}
@@ -533,6 +553,41 @@ class JobController {
 			redirect(controller: "machine", action: "addJobDataList")
 		}	
 	}
+	
+	def ldi = {
+		if(magnetboard.Job.findByWorkorder(params.workorder)){
+		def jobNumber = magnetboard.Job.findByWorkorder(params.workorder)
+			def jobInstance = Job.get(jobNumber.id)
+			def today = new Date()
+			
+			
+			if (jobInstance.layer){
+			def layerPlus = jobInstance.layer
+			jobInstance.layer = layerPlus + "+"  + params.layer
+			}
+			else {jobInstance.layer = params.layer}
+			
+			if (jobInstance.meanRegistration){
+				def meanPlus = jobInstance.meanRegistration
+				jobInstance.meanRegistration = meanPlus + "+" + params.mean
+				}
+				else {jobInstance.meanRegistration = params.mean}
+			
+			if (jobInstance.sdRegistration){
+				def sdPlus = jobInstance.sdRegistration
+				jobInstance.sdRegistration = sdPlus + "+" + params.standardDeviation
+				}
+				else {jobInstance.sdRegistration = params.standardDeviation}
+			
+			jobInstance.outerPrintDate = today
+			
+			redirect(controller: "machine", action: "addJobDataList")
+		}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(controller: "machine", action: "addJobDataList")
+		}
+		}
 	
 	def aspectRatio = {
 		if(magnetboard.Job.findByWorkorder(params.workorder)){
@@ -655,6 +710,35 @@ class JobController {
 			  redirect(controller: "machine", action: "addJobDataList")
 			}
 	}
+	
+	def camRegistrationNumbers = {
+		if(magnetboard.Job.findByJobname(params.jobName)){
+			def searchJob = magnetboard.Job.findAllWhere(["jobname": params.jobName])
+			def jobSearch = []
+			def layerArray = []
+			def meanRegArray = []
+			def sdRegArray = []
+			
+			// Search for LDI jobs
+			searchJob.sort{it.outerPrintDate}
+			searchJob.each {
+				if (it.layer){layerArray = it.layer.tokenize('+')
+				meanRegArray = it.meanRegistration.tokenize('+')
+				sdRegArray = it.sdRegistration.tokenize('+')}
+				def i = layerArray.size()
+	
+				while (i > 0){
+					jobSearch << [it.workorder, it.outerPrintDate, layerArray[i-1], meanRegArray[i-1], sdRegArray[i-1]]
+					i = i-1
+				}
+				}
+			[searchJob: searchJob, jobSearch: jobSearch]
+				}
+			else {flash.message = "No Job Found"
+				  redirect(controller: "machine", action: "addJobDataList")
+				}
+		
+    }
 	
 	//HAL
 	def hal = {
@@ -829,7 +913,8 @@ class JobController {
 				}
 			}
 			jobInstance.properties = params
-
+			
+			
 		def today = new Date()
 		jobInstance.jobStartDate = today
 		// create correct Original Milestones string
@@ -852,7 +937,10 @@ class JobController {
 		// create on time delivery ratio
 		Date shipDate = today
 		if (jobInstance.shipDate)
-		{shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
+		
+		{
+			shipDate = Date.parse("MM/dd/yyyy", jobInstance.shipDate)
+			jobInstance.dateShipDate = shipDate
 		}
 		origMile = jobInstance.originalMilestones.tokenize(',')
 		def businessDays = shipDate - today + 1

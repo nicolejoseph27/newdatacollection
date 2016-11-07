@@ -175,6 +175,33 @@ class ProcessController {
 		}
 	}
 	
+	def recalculateOnTimeDelivery = {
+		
+		// recalculate the on time delivery ratio on every drop
+		def today = new Date()
+			Job.list().each{
+				if (it.processMilestones && it.dateShipDate){
+					def businessDays = it.dateShipDate - today + 1
+					
+					
+					def proMilestone = it.processMilestones.tokenize(',')
+						(today..it.dateShipDate).each {
+							def dateCounter = it.format("MM/dd/yyyy")
+							NonBusinessDay.list().each{
+								def stringBus = it.nonBusinessDate.toString()
+								def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+								def nonBusCompare = nonBus.format("MM/dd/yyyy")
+								if (nonBusCompare == dateCounter){
+									businessDays = businessDays - 1
+								}
+							}
+						}
+				it.onTimeDeliveryRatio = businessDays / proMilestone.size()
+				}
+			}
+			redirect(action: "list")
+	}
+	
 	def dropJob = {
 		def p1 = Process.get(57)
 		def today = new Date()
@@ -207,7 +234,26 @@ class ProcessController {
 								}
 					}	
 		
-		// recalculate the ontimedeliveryratio on every drop
+		if (jobInstance.processMilestones && jobInstance.dateShipDate){
+			
+			def businessDays = jobInstance.dateShipDate - today + 1
+			def proMilestone = jobInstance.processMilestones.tokenize(',')
+			(today..jobInstance.dateShipDate).each {
+							def dateCounter = it.format("MM/dd/yyyy")
+							NonBusinessDay.list().each{
+								def stringBus = it.nonBusinessDate.toString()
+								def nonBus = Date.parse("yyyy-MM-dd HH:mm:ss.S", stringBus)
+								def nonBusCompare = nonBus.format("MM/dd/yyyy")
+								if (nonBusCompare == dateCounter){
+									businessDays = businessDays - 1
+								}
+							}
+						}
+			jobInstance.onTimeDeliveryRatio = businessDays / proMilestone.size()
+			
+		}
+		
+		// recalculate the on time delivery ratio on every drop
 	//	Job.list().each{
 		//	if (it.processMilestones && it.shipDate){
 			//	def shipDate = Date.parse("MM/dd/yyyy", it.shipDate)

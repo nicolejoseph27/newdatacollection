@@ -57,7 +57,7 @@
     </jque:newDialog>
     
     <jque:newDialog controller='machineVariable' action="chartChoice" ajax="false" id='chartChoice' title="Pick a Chart" success="s_div2" width="600">
-    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec','Labor Graph','AOI Time'] }" />
+    <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','LDI Air Quality','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec','Labor Graph','AOI Time'] }" />
     </jque:newDialog>
       
       <jque:newDialog controller='job' action="processTime" ajax="false" id='startButton' title="Process Time" success="s_div2" width="600">
