@@ -1,0 +1,4 @@
+ALTER TABLE job ADD outer_print_date datetime DEFAULT NULL;
+ALTER TABLE job ADD layer varchar(255) DEFAULT NULL;
+ALTER TABLE job ADD mean_registration varchar(255) DEFAULT NULL;
+ALTER TABLE job ADD sd_registration varchar(255) DEFAULT NULL;
