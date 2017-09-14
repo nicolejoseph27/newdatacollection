@@ -673,7 +673,23 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			 			</p>		
 						</li>
 					</g:if>
-													
+					
+					<g:if test = "${jobInstance.priority == 'On-hold'}">
+						<li id="${jobInstance.id}" style="border-radius:6px">
+						<p style="background-color:black;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
+				 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+				 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+				 			</br>  
+				 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+				 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+				 			</br>
+				 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+				 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+				 			</br>
+			 			</p>
+			 			</li>
+	 				</g:if>
+ 												
 				</g:if>
 			</g:each>
 		</ul>
@@ -752,6 +768,22 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 						</li>
 					</g:if>	
 
+				<g:if test = "${jobInstance.priority == 'On-hold'}">
+					<li id="${jobInstance.id}" style="border-radius:6px">
+					<p style="background-color:black;font-family:arial;font-size:9px;padding-right:2px;border-radius:4px">
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "shoporder")}</span>
+			 			</br>  
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>
+			 			<span style="float:right">${fieldValue(bean: jobInstance, field: "workorder")}</span>  
+			 			</br>
+			 			<span style="float:left">${fieldValue(bean: jobInstance, field: "duedate")}</span>           
+			 			<span style="float:right">$${fieldValue(bean: jobInstance, field: "totalvalue")}</span>
+			 			</br>
+		 			</p>
+		 			</li>
+ 				</g:if>
+					
 			</g:if>
 			</g:each>
 			</ul>	

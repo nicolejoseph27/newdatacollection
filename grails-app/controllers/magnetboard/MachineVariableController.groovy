@@ -145,6 +145,14 @@ class MachineVariableController {
 		redirect(controller: "machine", action: "addJobDataList")
 	}
 	
+	def pth = {
+		def today = new Date()
+		def day = today[Calendar.DAY_OF_WEEK]
+		def maintenanceEvent = new MachineVariable(pthDate: today,day: day,preCond4461A: params.preCond4461A.toFloat(),preCond4461B: params.preCond4461B.toFloat(),cond4471: params.cond4471.toFloat(),microCuPrep: params.microCuPrepMwf.toFloat(),microSulfuricAcid: params.microSulfuricAcidMwf.toFloat(),microCu: params.microCuWednesday.toFloat(),preDipCu: params.preDipCuWednesday.toFloat(),preDipDensity: params.preDipDensity.toFloat(),preDipAcidN: params.preDipAcidN.toFloat(),preDipChlorideN: params.preDipChloridenMwf.toFloat(),actCu: params.actCuWednesday.toFloat(),actChlorideN: params.actChlorideN.toFloat(),actAcidN: params.actAcidN.toFloat(),c473: params.c473.toFloat(),stannousChloridePre: params.stannousChloridePre.toFloat(),stannousChlorideMid: params.stannousChlorideMid.toFloat(),stannicChloride: params.stannicChloride.toFloat(),actDensity: params.actDensity.toFloat(),cuaPre: params.cuaPre.toFloat(),cuaMid: params.cuaMid.toFloat(),cubPre: params.cubPre.toFloat(),cubMid: params.cubMid.toFloat(),cuM: params.cumMwf.toFloat(),cuD: params.cudWednesday.toFloat(),cuFormaldehydePre: params.cuFormaldehydePre.toFloat(),cuFormaldehydeMid: params.cuFormaldehydeMid.toFloat(),cuDensity: params.cuDensityWednesday.toFloat(),cuNickel: params.cuNickelWednesday.toFloat(),depositThickness: params.depositThickness.toFloat(),etchRate: params.etchRate.toFloat(),voidTest: params.voidTest.toFloat(),backLight: params.backLightTuesday.toFloat())
+		saveOrThrow(maintenanceEvent)
+		[machineVariableInstanceList:MachineVariable.list(params), machineVariableInstanceTotal: MachineVariable.count()]
+	}
+	
 	def cleaningSchedule = {
 		def machineVariableInstance = new MachineVariable()
 		def today = new Date()

@@ -20,6 +20,18 @@ class JobController {
     def index = {
         redirect(action: "list", params: params)
     }
+	
+	def crossSections = {
+		if(magnetboard.Job.findByWorkorder(params.workOrder)){
+			def jobNumber = magnetboard.Job.findByWorkorder(params.workOrder)
+			def jobInstance = Job.get(jobNumber.id)
+			[jobInstance: jobInstance]
+		}
+		else {
+			flash.message =  "NO WORK ORDER FOUND"
+			redirect(controller: "process", action: "list")
+		}
+	}
 
     def list = {
         params.max = Math.min(params.max ? params.int('max') : 15, 100)

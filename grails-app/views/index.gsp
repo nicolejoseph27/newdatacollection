@@ -56,6 +56,10 @@
     <jque:dialogField name="partnumber" value="" />
     </jque:newDialog>
     
+    <jque:newDialog controller='job' action="crossSections" ajax="false" id='crossSections' title="Cross Sections" success="s_div2" width="600">
+    <jque:dialogField name="workOrder" value="" />
+    </jque:newDialog>
+    
     <jque:newDialog controller='machineVariable' action="chartChoice" ajax="false" id='chartChoice' title="Pick a Chart" success="s_div2" width="600">
     <jque:dialogField name="chartName" value="" type="select" from="${['Goldroom Temperatures','LDI Air Quality','Innerlayer first pass yield','Soldermask Room Air Quality','Innerlayer before etch flaws/side','Post Etch Punch','Pluritec','Labor Graph','AOI Time'] }" />
     </jque:newDialog>
@@ -115,6 +119,9 @@
           <!--      <div class="job" style = "float:left"> 
                    	 <g:link controller="bottomsUp" action="create" style="color:#228B22;text-transform:capitalize">Create a quote</g:link>
                </div> -->
+                <div class="job" style = "float:left"> 
+                   	 <jque:newShowDialog buttonCaption="Cross Sections" dialogId="crossSections" />
+               </div>
                <div class="job" style = "float:right"> 
                    	 <jque:newShowDialog buttonCaption="Charts" dialogId="chartChoice" />
                </div>

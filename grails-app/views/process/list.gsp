@@ -627,11 +627,11 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
 			
 				<g:if test = "${jobInstance.priority == 'Normal Turn Multi-Layer'}">
 					<li id="${jobInstance.id}" style="border-radius:6px">
-					<p style="background-color:#FFB84D;color:black;font-family:arial;font-size:18px;padding-right:2px;border-radius:4px">			
-					<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>-->
+					<p style="background-color:#FFB84D;color:black;font-family:arial;font-size:12px;padding-right:2px;border-radius:4px">			
+					<span style="float:left">${fieldValue(bean: jobInstance, field: "companyname")}</span>
  					<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
  					<!--</br>-->
- 					<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
+ 					<span style="float:left;font-size:12px">${fieldValue(bean: jobInstance, field: "jobname")}</span>
  					<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
  					</br>
  					</p>	
@@ -746,10 +746,10 @@ import="org.codehaus.groovy.grails.plugins.web.taglib.JavascriptValue" %>
  						<span style="float:left">${fieldValue(bean: jobInstance, field: "workorder")}</span>
  						<!--</br>-->
  						<!--<span style="float:left">${fieldValue(bean: jobInstance, field: "jobname")}</span>-->
- 							<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
+ 						<span style="float:right;font-size:12px">${fieldValue(bean: jobInstance, field: "duedate")}</span>
  						</br>
  						</p>		
-					</li>
+</li>
 				</g:if>
 
 				<g:if test = "${jobInstance.priority == 'Fast Turn Multi-Layer'}">

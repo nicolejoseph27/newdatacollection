@@ -112,6 +112,50 @@
     		<jque:checkBoxField name="tackRoomHorizontalSurfaces" label= "10. Tackroom - Horizontal Surfaces"/>
     		</jque:newDialog>
     		
+    		<jque:newDialog controller='machineVariable' action="pth" ajax="false" id='pth' title="PTH" success="s_div2" width="1000">
+    		
+    		<jque:dialogTab caption="Prerun">
+    		<jque:dialogField name="preCond4461A" value="0" />
+    		<jque:dialogField name="preCond4461B" value="0" />
+    		<jque:dialogField name="cond4471" value="0" />
+    		<jque:dialogField name="microCuPrepMwf" value="0" />
+    		<jque:dialogField name="microSulfuricAcidMwf" value="0" />
+    		<jque:dialogField name="microCuWednesday" value="0" />
+    		<jque:dialogField name="preDipCuWednesday" value="0" />
+    		<jque:dialogField name="preDipDensity" value="0" />
+    		<jque:dialogField name="preDipAcidN" value="0" />
+    		<jque:dialogField name="preDipChloridenMwf" value="0" />
+    		<jque:dialogField name="actCuWednesday" value="0" />
+    		<jque:dialogField name="actChlorideN" value="0" />
+    		<jque:dialogField name="actAcidN" value="0" />
+    		<jque:dialogField name="c473" value="0" />
+    		<jque:dialogField name="stannousChloridePre" value="0" />
+    		<jque:dialogField name="stannicChloride" value="0" />
+    		<jque:dialogField name="actDensity" value="0" />
+    		<jque:dialogField name="cuaPre" value="0" />
+    		<jque:dialogField name="cubPre" value="0" />
+    		<jque:dialogField name="cumMwf" value="0" />
+    		<jque:dialogField name="cudWednesday" value="0" />
+    		<jque:dialogField name="cuFormaldehydePre" value="0" />
+    		<jque:dialogField name="cuDensityWednesday" value="0" />
+    		<jque:dialogField name="cuNickelWednesday" value="0" />
+    		</jque:dialogTab>
+    		
+    		<jque:dialogTab caption="Midrun">
+    		<jque:dialogField name="stannousChlorideMid" value="0" />
+    		<jque:dialogField name="cuaMid" value="0" />
+    		<jque:dialogField name="cubMid" value="0" />
+    		<jque:dialogField name="cuFormaldehydeMid" value="0" />
+    		</jque:dialogTab>
+    		
+    		<jque:dialogTab caption="Output Varriables">
+    		<jque:dialogField name="depositThickness" value="0" />
+    		<jque:dialogField name="etchRate" value="0" />
+    		<jque:dialogField name="voidTest" value="0" />
+    		<jque:dialogField name="backLightTuesday" value="0" />
+    		</jque:dialogTab>
+    		</jque:newDialog>
+    		
             <g:if test="${flash.message}">
             <div class="message">${flash.message}</div>
             </g:if>
@@ -135,7 +179,10 @@
                				</div> 
                				<div class="job" style = "float:left"> 
                    	 		<jque:newShowDialog buttonCaption="Cleaning Schedule" dialogId="cleaningSchedule" />
-               				</div>         
+               				</div>
+               				<div class="job" style = "float:right"> 
+                   	 		<jque:newShowDialog buttonCaption="PTH" dialogId="pth" />
+               				</div>          
                             </g:if>
                                        
                     </g:each>

@@ -2,6 +2,7 @@ package magnetboard
 
 class MachineVariable {
 	
+	// Clean Room
 	
 	Date airQuality_date
 	String airQuality_operator
@@ -45,6 +46,42 @@ class MachineVariable {
 	String cleanRoomCleaningOperator
 	String cleanRoomCleaning
 	
+	// PTH
+	Date pthDate
+	Integer day
+	Float preCond4461A
+	Float preCond4461B
+	Float cond4471
+	Float microCuPrep
+	Float microSulfuricAcid
+	Float microCu
+	Float preDipCu
+	Float preDipDensity
+	Float preDipAcidN
+	Float preDipChlorideN
+	Float actCu
+	Float actChlorideN
+	Float actAcidN
+	Float c473
+	Float stannousChloridePre
+	Float stannousChlorideMid
+	Float stannicChloride
+	Float actDensity
+	Float cuaPre
+	Float cuaMid
+	Float cubPre
+	Float cubMid
+	Float cuM
+	Float cuD
+	Float cuFormaldehydePre
+	Float cuFormaldehydeMid
+	Float cuDensity
+	Float cuNickel
+	Float depositThickness
+	Float etchRate
+	Float voidTest
+	Float backLight
+	
 	static constraints = {
 		airQuality_date(nullable:true)
 		airQuality_operator(nullable:true)
@@ -87,6 +124,41 @@ class MachineVariable {
 		cleanRoomCleaning(nullable:true)
 		cleanRoomCleaningDate(nullable:true)
 		cleanRoomCleaningOperator(nullable:true)
+		pthDate(nullable:true)
+		day(nullable:true)
+		preCond4461A(nullable:true)
+		preCond4461B(nullable:true)
+		cond4471(nullable:true)
+		microCuPrep(nullable:true)
+		microSulfuricAcid(nullable:true)
+		microCu(nullable:true)
+		preDipCu(nullable:true)
+		preDipDensity(nullable:true)
+		preDipAcidN(nullable:true)
+		preDipChlorideN(nullable:true)
+		actCu(nullable:true)
+		actChlorideN(nullable:true)
+		actAcidN(nullable:true)
+		c473(nullable:true)
+		stannousChloridePre(nullable:true)
+		stannousChlorideMid(nullable:true)
+		stannicChloride(nullable:true)
+		actDensity(nullable:true)
+		cuaPre(nullable:true)
+		cuaMid(nullable:true)
+		cubPre(nullable:true)
+		cubMid(nullable:true)
+		cuM(nullable:true)
+		cuD(nullable:true)
+		cuFormaldehydePre(nullable:true)
+		cuFormaldehydeMid(nullable:true)
+		cuDensity(nullable:true)
+		cuNickel(nullable:true)
+		depositThickness(nullable:true)
+		etchRate(nullable:true)
+		voidTest(nullable:true)
+		backLight(nullable:true)
+		
 }
 
 }

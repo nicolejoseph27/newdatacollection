@@ -6,6 +6,7 @@ class Job {
 	
 	static belongsTo = Process
 	
+	static hasMany = [panels: Panel] 
 // original variables added by setup to create the job
 String priority
 String thickness
@@ -156,6 +157,8 @@ String layer
 String meanRegistration
 String sdRegistration
 
+
+
 static constraints = {process(nullable:true)
 					pepMean(nullable:true)
 					pepOperator(nullable:true)
@@ -260,6 +263,7 @@ static constraints = {process(nullable:true)
 					sdRegistration(nullable:true)
 					outerPrintDate(nullable:true)
 					layer(nullable:true)
+					
 }
 
 double getScrubbedTotalValue() {

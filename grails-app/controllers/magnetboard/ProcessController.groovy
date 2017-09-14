@@ -177,7 +177,7 @@ class ProcessController {
 	
 	def recalculateOnTimeDelivery = {
 		
-		// recalculate the on time delivery ratio on every drop
+		// recalculate the on time delivery ratio when clicked
 		def today = new Date()
 			Job.list().each{
 				if (it.processMilestones && it.dateShipDate){
